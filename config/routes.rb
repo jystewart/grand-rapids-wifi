@@ -23,7 +23,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :locations, :collection => {:map => :get, :list => :get}
 
-  # map.connect 'location/map', :controller => 'location', :action => 'map'
   map.open 'open/now', :controller => 'search', :action => 'results', :open => 'now'
   map.zip 'zip/:zip', :controller => 'search', :action => 'results'
 

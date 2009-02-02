@@ -63,7 +63,7 @@ class Comment < ActiveRecord::Base
       :comment_author => blog_name,
       :comment_content => excerpt}
     # @todo   Building the URI probably doesn't belong in the model
-    options[:permalink] = "http://#{ROOT_URL}/location/view/#{commentable.permalink}" if commentable.class == 'Location'
+    options[:permalink] = "http://#{ROOT_URL}/locations/#{commentable.permalink}" if commentable.class == 'Location'
     options[:permalink] = "http://#{ROOT_URL}/news/story/#{commentable.permalink}" if commentable.class == 'News'
     options[:comment_author_url] = uri if ! uri.blank? and uri.match(/http:/)
     options[:comment_author_email] = uri unless uri.blank? or uri.match(/http:/)

@@ -4,8 +4,6 @@
 <p>(<em><a href="/search/results?search<%= other_type %>">View These Results On A Map</a></em>)</p>
 
 <ul id="hotspot-list">
-  <% @locations.each do |location| %>
-  <%= render :partial => 'location/location', :locals => {:location => location} %>
-  <% end %>
+  <%= render :collection => @locations, :partial => 'locations/location' %>
 </ul>
 <% end %>
