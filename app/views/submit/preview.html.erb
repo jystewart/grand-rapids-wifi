@@ -1,0 +1,36 @@
+<% if @comparisons.size > 0 %>
+<h3>Similar Locations</h3>
+
+<p>Our database contains some locations similar to the one you just submitted. Please make sure you didn't mean one of these existing listings.</p>
+
+<ul>
+  <% for location in @comparisons %>
+  <li><%= link_to h(location.name), location_path(location) %>
+    <br /><%=h location.street %>, <%=h location.city %> <%=h location.zip %></li>
+  <% end %>
+</ul>
+
+<% end %>
+
+<h3>Preview</h3>
+
+<p>Please check the details below to ensure they were all entered correctly. If you're happy with that listing, please click 'submit' below.</p>
+
+<dl>
+  <dt>Name</dt>
+  <dd><%=h @location.name %>
+  <dt>Address</dt>
+  <dd><%=h @location.street %> <%=h @location.city %> <%=h @location.zip %></dd>
+  <dt>Phone</dt>
+  <dd><%=h @location.phone_number %></dd>
+  <dt>Email</dt>
+  <dd><%=h @location.email %></dd>
+  <dt>SSID</dt>
+  <dd><%=h @location.ssid %></dd>
+  <dt>Description</dt>
+  <dd><%=h @location.description %></dd>
+</dd>
+
+<%= button_to 'Submit', :action => 'complete' %>
+<hr />
+

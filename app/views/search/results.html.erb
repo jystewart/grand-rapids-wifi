@@ -1,0 +1,11 @@
+<h2>Your Search Results</h2>
+
+<% if @locations %>
+<p>(<em><a href="/search/results?search<%= other_type %>">View These Results On A Map</a></em>)</p>
+
+<ul id="hotspot-list">
+  <% @locations.each do |location| %>
+  <%= render :partial => 'location/location', :locals => {:location => location} %>
+  <% end %>
+</ul>
+<% end %>

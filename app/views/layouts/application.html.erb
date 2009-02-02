@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head profile="http://www.w3.org/2006/03/hcard">
+  <%= stylesheet_link_tag 'basic' %>
+  <%= auto_discovery_link_tag :atom, {:controller => 'news', :action => 'index', :format => 'atom'}, {:title => 'News Story Atom Feed'} %>
+
+  <% if @map %>
+		<%= javascript_include_tag 'jquery' %>
+		<!-- header -->
+	  <%= Mapstraction.header(:google) %>
+	  <!-- /header -->
+		<%= @map.to_html %>
+  <% end %>
+
+	<%= yield :javascript %>
+	<%= yield :extra_headers %>
+
+  <title><% title = yield :page_title %> <%= title || "#{SITE_NAME}: Wireless Hotspots in Grand Rapids Michigan" %></title>
+</head>
+<body>
+
+    <div id="container">
+        <h1><%= link_to image_tag('grwifi.png', :alt => "#{SITE_NAME} Logo"), '/' %></h1>
+
+        <% if flash[:notice] %><p class="message"><%= flash[:notice] %></p></div><% end %>
+
+        <div id="searchbox"><%= render :partial => 'shared/searchbox' %></div>
+
+        <div id="content">
+            <%= yield %>
+        </div>
+
+        <%= render :partial => 'shared/navigation' %>
+    </div>
+
+		<%= google_analytics %>
+</body>
+</html>

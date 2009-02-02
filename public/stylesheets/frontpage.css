@@ -1,0 +1,91 @@
+body, div {
+  margin: 0px;
+  padding: 0px;
+}
+#container {
+  overflow: hidden;
+}
+#content {
+  width: 58%;
+  float: left;
+  display: inline;
+  margin-left: 18%;
+  padding-bottom: 16000px;
+  margin-bottom: -16000px;
+}
+
+#sidebars {
+  width: 18%;
+  border-left: 1px solid black;
+  padding-left: 10px;
+  margin-left: 1%;
+  float: left;
+  padding-bottom: 16000px;
+  margin-bottom: -16000px;
+}
+
+#navigation {
+/*  padding-bottom: 16000px;
+  margin-bottom: -16000px;*/
+  left: 5px;
+  float: none;
+}
+
+#sidebars ul {
+  margin-left: 0px;
+  padding-left: 0px;
+  list-style: none;
+}
+
+#sidebars ul li {
+  padding: 0.5em 0px;
+  border-bottom: 1px solid black;
+}
+
+#news {
+  list-style: none;
+}
+#news li {
+  padding: 1em 0px;
+  border-bottom: 1px solid black;
+}
+#locations {
+  list-style: none;
+}
+#locations li {
+    padding-bottom: 0.5em;
+}
+#locations li:first-line {
+  margin-left: -2em;
+}
+#content form {
+  text-align: center;
+}
+.sidebar h3 {
+  text-transform: lowercase;
+}
+
+#content div {
+  border: 1px dashed black;
+  margin: 0px 0px 1em 0px;
+  padding: 0.1em 0.5em;
+}
+
+#content div h2 {
+  font-size: 110%;
+}
+#content div ul {
+  padding-left: 0px;
+}
+div.hotspot-list-pagination {
+  margin-top: 30px; 
+  font-size: 120%; 
+  margin-left: 40px;
+}
+#hostpot-list {
+  margin-top: 0px; 
+  padding-top: 0px;
+}
+#hotspot-list li {
+  padding-top: 0px;
+}

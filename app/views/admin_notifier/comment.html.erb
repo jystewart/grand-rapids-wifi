@@ -1,0 +1,17 @@
+<p>A comment has been added or edited on <%= SITE_NAME %>:</p>
+
+<p><%= url_for(@comment.commentable) %></p>
+
+<% if @comment.hide == 1 %>
+  <p>The comment has been held for approval. It is not visible on the site.</p>
+<% end %>
+
+<p><%=h @comment.blog_name %><br />
+<%=h @comment.excerpt %></p>
+
+<p><%= link_to 'View Comment', {:host => 'grwifi.net', :only_path => false, :controller => 'comments', :action => 'show', :id => @comment.id} %> | 
+  <%= link_to 'View All', {:host => 'grwifi.net', :only_path => false, :controller => 'comments', :action => 'index'} %></p>
+
+<p><%= button_to 'Delete', {:host => 'grwifi.net', :only_path => false, :controller => 'comments', :action => 'destroy', :id => @comment.id}, :method => 'delete' %></p>
+
+<p><%= button_to 'Spam', :host => 'grwifi.net', :only_path => false, :controller => 'comments', :action => 'junk', :id => @comment.id %></p>

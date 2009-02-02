@@ -1,0 +1,10 @@
+<h2>Editing location <%= @location.name %></h2>
+
+<%- form_tag(location_path(@location), {:method => 'put'}) do -%>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<%- end -%>
+
+<%= link_to 'Show', location_url(@location) %> |
+<%= link_to 'Back', :action => 'list' %>
+

@@ -1,0 +1,28 @@
+<%= error_messages_for 'comment' %>
+
+<!--[form:comment]-->
+<p><label for="comment_created_at">Created at</label><br/>
+<%= datetime_select 'comment', 'created_at'  %></p>
+
+<p><label for="comment_title">Title</label><br/>
+<%= text_field 'comment', 'title'  %></p>
+
+<p><label for="comment_uri">Uri</label><br/>
+<%= text_field 'comment', 'uri'  %></p>
+
+<p><label for="comment_blog_name">Blog name</label><br/>
+<%= text_field 'comment', 'blog_name'  %></p>
+
+<p><label for="comment_excerpt">Excerpt</label><br/>
+<%= text_area 'comment', 'excerpt'  %></p>
+
+<p><label for="comment_user_ip">User ip</label><br/>
+<%= text_field 'comment', 'user_ip'  %></p>
+
+<p><label for="comment_trackback">Trackback</label><br/>
+<select id="comment_trackback" name="comment[trackback]"><option value="false">False</option><option value="true">True</option></select></p>
+
+<p><label for="comment_hide">Hide</label><br/>
+<%= text_field 'comment', 'hide'  %></p>
+<!--[eoform:comment]-->
+

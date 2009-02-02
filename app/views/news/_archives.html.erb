@@ -1,0 +1,8 @@
+<div id="news-archives">
+  <h3>Older News</h3>
+  <ul>
+  <% @archives.each do |month| %>
+    <li><%= link_to month[:name], archive_url(:month => month[:month], :year => month[:year]) %></li>
+  <% end %>
+  </ul>
+</div>

@@ -1,0 +1,12 @@
+<h2>WiFi in <%= @neighbourhood.name %></h2>
+
+<div id="map"></div>
+<%= @map.to_html %>
+
+<ul id="hotspot-list">
+  <% @locations.each do |location| %>
+  <%= render :partial => 'location/location', :locals => {:location => location} %>
+  <% end %>
+</ul>
+
+<%- content_for :page_title do-%> WiFi in <%= @neighbourhood.name %>, Grand Rapids <%- end -%>

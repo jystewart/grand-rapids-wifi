@@ -1,0 +1,7 @@
+
+mysql:
+  :adapter: mysql
+  :host: localhost
+  :username: faster_fixtures
+  :password:
+  :database: faster_fixtures

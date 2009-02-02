@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title><%= SITE_NAME %> Search - Find Wireless Hotspots</title>
+	<%= stylesheet_link_tag 'basic' %>
+	<%= stylesheet_link_tag 'frontpage' %>
+	<%= auto_discovery_link_tag :atom, {:controller => 'feed', :action => 'index', :format => 'atom'}, 
+			{:title => SITE_NAME + ' Atom Feed'} %>
+</head>
+
+<body>
+
+    <h1><img src="/images/grwifi.png" title="<%= SITE_NAME %>" alt="<%= SITE_NAME %> Listings" /></h1>
+
+    <% if flash[:message] %><p class="message"><%= flash[:message] %></p></div><% end %>
+
+    <div id="container">
+        <%= yield %>
+        <%= render :partial => 'shared/navigation' %>
+    </div>
+
+    <div id="footer">
+        <p>Grand Rapids WiFi is developed and maintained by <a href="http://jystewart.net">James Stewart</a>. 
+        He is available for hire.</p>
+        
+        <script type="text/javascript"><!--
+        google_ad_client = "pub-1641482391477505";
+        google_ad_width = 728;
+        google_ad_height = 90;
+        google_ad_format = "728x90_as";
+        google_ad_type = "text_image";
+        google_ad_channel ="6032470092";
+        google_color_border = "336699";
+        google_color_bg = "FFFFFF";
+        google_color_link = "0000FF";
+        google_color_text = "000000";
+        google_color_url = "008000";
+        //--></script>
+        <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+    </div>
+		<%= google_analytics %>
+</body>
+</html>

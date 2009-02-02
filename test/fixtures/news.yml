@@ -1,0 +1,227 @@
+--- 
+news_00018: 
+  permalink: citywide-trial
+  headline: Grand Rapids City-Wide WiFi Trial Begins
+  external: 
+  user_id: 1
+  id: 18
+  extended: 
+  content: Today saw the "wire cutting" of the city-wide wireless trial sites. The launch was celebrated with a news conference by Grand Rapids mayor George Heartwell and "his wi-fi team" downtown. You can find out more about the project at <a href="http://www.wirelessgr.com">wirelessgr.com</a>, and find a complete list of trial locations in <a href="http://www.ci.grand-rapids.mi.us/index.pl?binobjid=1790">this PDF</a> or maps of the locations <a href="http://www.ci.grand-rapids.mi.us/index.pl?page_id=2800">here</a>. The launch has had some press coverage, including <a href="http://wifinetnews.com/archives/005305.html">this piece at wifinetnews.com</a>
+  created_at: 2005-05-23 19:37:27 -04:00
+news_00007: 
+  permalink: site-december-2004
+  headline: Site Updates December 2004
+  external: 
+  user_id: 1
+  id: 7
+  extended: |-
+    </p><p>For convenience there are also a couple of shortcuts. To find out which locations are open right now you can go directly to <a href="/open/now">http://grwifi.net/open/now</a> and to find locations in a particular zip code you just go to http://grwifi.net/zip/xxxxx (ie. <a href="/zip/49503">http://grwifi.net/zip/49503</a>).
+    
+    Enjoy! And don't forget to email <a href="mailto:wifi@grwifi.net">wifi@grwifi.net</a> if you have comments or suggestions.
+  content: The theme of the month is 'search'. I've been meaning to add keyword and time-based searches for a while now and now you have them. The '<a href="/search">advanced search</a>' option lets you specify a whole range of options by which to search, including keywords and opening hours.
+  created_at: 2004-12-17 02:54:43 -05:00
+news_00008: 
+  permalink: wealthy-theatre-hub
+  headline: Wealthy Theatre, WiFi Hub
+  external: http://www.grcmc.org/inthemedia_20041123.php
+  user_id: 1
+  id: 8
+  extended: 
+  content: Grand Rapids Community Media Centre is currently in the midst of moving many of its operations to Wealthy St. Theatre. According to <a href="http://www.grcmc.org/inthemedia_20041123.php">this article</a> one of their plans for the location is to "wireless canopy" that would provide Internet service for the street and surrounding areas. This service may then become part of City plans for total wireless coverage.
+  created_at: 2004-12-22 15:13:58 -05:00
+news_00019: 
+  permalink: wifi-turn-off-seattle
+  headline: Seattle Coffeeshop Turns off WiFi
+  external: 
+  user_id: 1
+  id: 19
+  extended: It seems that some regulars began to find people staring into their computers and not engaging with the environment offputting. Some reports suggest this could be an act we'll see replicated. If you appreciate free WiFi in coffee shops, be sure to pull your weight, engage with other customers, and buy plenty of coffee!
+  content: WiFi Net News recently carried <a href="http://wifinetnews.com/archives/005325.html">this story of how one Seattle coffee shop has decided to switch off its WiFi at weekends</a>.
+  created_at: 2005-06-02 20:06:22 -04:00
+news_00020: 
+  permalink: site-june-2005
+  headline: "Site Updates: June 2005"
+  external: 
+  user_id: 1
+  id: 20
+  extended: 
+  content: |-
+    A few new features this month. Firstly, the sidebars on the front page have been changed. You should now see two of four sidebars which will be selected at random each time you load the page. The hope is that they'll get some more traffic to a few of the lower profile hotspots we feature. Behind this change is a whole new mechanism for sidebars which should make it much easier to add new ones, so let us know if you have ideas.</p>
+    
+    <p>I've also made it easier to navigate between news stories and finally added a comment feature for news stories. There's a lot more coming, and with all these new features piling up a new design will be coming along before too long.
+  created_at: 2005-06-09 20:30:44 -04:00
+news_00009: 
+  permalink: site-january-2005
+  headline: Site Updates January 2005
+  external: 
+  user_id: 1
+  id: 9
+  extended: |-
+    Right now, you can either search by location or use the old search mechanism&#8212;we're working on combining the two searches to give you still more control.
+    
+    For the techies among you, we've also added RDF data on all the loations listed. Look in the HTML headers for that.
+  content: "Since the site launched what we've really wanted to offer is a way of searching for wifi locations near to you. Now, thanks to the services of <a href=\"http://geocoder.us\">geocoder.us</a> that's available. If you go to <a href=\"/search\">the advanced search</a> page you can enter your address and find the 15 locations nearest to you, ordered by distance. "
+  created_at: 2005-01-08 13:26:54 -05:00
+news_00010: 
+  permalink: wired-on-wifi
+  headline: Wired Write On Coffee Shop WiFi
+  external: www.wired.com/news/mac/0,2125,66276,00.html
+  user_id: 1
+  id: 10
+  extended: 
+  content: Wired have just published an article about a software company whose office is a WiFi offering coffee shop in Seattle. Interesting reading for those following the changing work patterns that WiFi is enabling.
+  created_at: 2005-01-16 00:22:01 -05:00
+news_00021: 
+  permalink: more-google-maps
+  headline: More Google Maps Integration
+  external: 
+  user_id: 1
+  id: 21
+  extended: 
+  content: Yesterday Google announced an official interface so that programmers can make use of their mapping technology. I've updated the <a href="/gmaps">Grand Rapids WiFi google map</a> to use that interface and it can now be used. This is still experimental, so links around the site may not reflect this new map for a while, but I hope to offer search results plotted on a map and other map-based tools soon.
+  created_at: 2005-07-01 17:14:57 -04:00
+news_00022: 
+  permalink: google-maps-complete
+  headline: Complete Google Maps Integration
+  external: grwifi.net/search
+  user_id: 1
+  id: 22
+  content: As promised, I've spent more time working on google maps integration for the site, and the results are now live. Behind the scenes I've actually completely reworked the search code so that it's much easier to add on extra ways of viewing the search results and now every search on the site can be viewed on a map, with links between map view and regular view. There are a few locations missing from the map view as I haven't been able to pinpoint longitude/latitude for them, but hopefully the gaps will be filled soon.
+  created_at: 2005-07-09 23:22:37 -04:00
+news_00011: 
+  permalink: heartwell-on-wifi
+  headline: Mayor Heartwell Talks About WiFi
+  external: www.woodtv.com/Global/story.asp?S=2814842&amp;nav=0RceVF8P
+  user_id: 1
+  id: 11
+  extended: 
+  content: One of the key issues in Mayor George Heartwell's annual State Of The City address was the development of neighborhoods, and noteworthy for Grand Rapids WiFi users will be his mention of providing an infrastructure to make high-speed wireless broadband accessible to everyone. Unfortunately the full text of the speech isn't readily available online, but WoodTV is among the outlets with a story.
+  created_at: 2005-01-17 14:12:26 -05:00
+news_00012: 
+  permalink: on-comments
+  headline: On Comments
+  external: 
+  user_id: 1
+  id: 12
+  extended: 
+  content: Last week we received a comment making various accusations against a particular individual. This site is not intended as a forum for such comments and that comment has now been removed. This is not a judgement of the truthfulness or otherwise of its content. We are glad that the majority of users keep comments on this site focussed on the quality of service of wifi locations in Grand Rapids. Other grievances should be pursued through more appropriate fora.
+  created_at: 2005-01-26 13:58:45 -05:00
+news_00001: 
+  permalink: city-wide
+  headline: City Wide
+  external: www.mlive.com/business/grpress/index.ssf?/base/business-2/1097765225176220.xml
+  user_id: 1
+  id: 1
+  extended: 
+  content: The Grand Rapids Press is reporting that the city plans to spend $19,000 developing criteria for a city-wide wireless network.
+  created_at: 2004-10-14 00:00:00 -04:00
+news_00002: 
+  permalink: site-october-2004
+  headline: Site Updates October 2004
+  external: 
+  user_id: 1
+  id: 2
+  extended: 
+  content: The site's been upgraded a little. You can now use the links on the left to subscribe to XML feeds listing recently added locations and comments. If there is sufficient demand I may offer separate feeds for each too. You can also now make comments directly on the site -- just go to a location's page to make your comment.
+  created_at: 2004-10-31 00:00:00 -04:00
+news_00013: 
+  permalink: site-february-2005
+  headline: Sites Updates February 2005
+  external: 
+  user_id: 1
+  id: 13
+  extended: 
+  content: Our new feature this month is an <a href="/maps/">interactive map of Grand Rapids</a> showing all the WiFi locations in the city. Produced using software called worldkit, the map is built using flash and allows you to move around, see descriptions of the sites, and navigate to each of them. It also makes clear that the North-West side has some catching up to do!
+  created_at: 2005-02-01 00:00:00 -05:00
+news_00014: 
+  permalink: site-march-2005
+  headline: Site Updates March 2005
+  external: 
+  user_id: 1
+  id: 14
+  extended: |-
+    
+    I've extended the site's support of RDF, so not only is there now an <a href="/rss1/">RSS1</a> feed of news, there's also an <a href="/rdf/">RDF index</a> listing all the locations, and the RDF resource for each page now features a listing of comments.
+    
+    The key advantage of these new features is that it will make it much easier to integrate this site with other applications. RDF is a key component of the semantic web.
+  content: This month sees some rather techie upgrades, designed to make the site inteoperate better with others.
+  created_at: 2005-03-22 17:06:29 -05:00
+news_00003: 
+  permalink: press-attention
+  headline: Press Attention
+  external: www.mlive.com/business/grpress/index.ssf?/base/business-2/1100431042148840.xml
+  user_id: 1
+  id: 3
+  extended: 
+  content: The Grand Rapids Press has carried an article on WiFi usage in town.
+  created_at: 2004-11-14 00:00:00 -05:00
+news_00004: 
+  permalink: site-november-2004
+  headline: Site Updates November 2004
+  external: 
+  user_id: 1
+  id: 4
+  extended: 
+  content: The site now has a separate <a href="/news/">page for news</a>. It'll mostly be used for updates about this site and links to stories about local wifi. If there's interest we may add comment options to the stories. We're also now offering a <a href="/feeds/">wider range of news feeds</a>.
+  created_at: 2004-11-22 00:00:00 -05:00
+news_00015: 
+  permalink: citywide-buzz
+  headline: Buzz Around Citywide WiFi Builds
+  external: 
+  user_id: 1
+  id: 15
+  extended: 
+  content: The last couple of weeks have seen increasing discussion of plans for a citywide wireless network, as the City has begun asking firms interested in the contract to set up test networks for evaluation purposes. <a href="http://wifi.weblogsinc.com/entry/1234000867038633/">the wifi weblog</a> and <a href="http://wifinetnews.com/archives/005077.html">wifinetnews</a> have both picked up the story. The inside scoop is being carried by <a href="http://www.grhotzone.net/">the official website for the project</a>.
+  created_at: 2005-04-09 18:53:52 -04:00
+news_00016: 
+  permalink: site-may-2005
+  headline: Site News
+  external: 
+  user_id: 1
+  id: 16
+  extended: 
+  content: You may well have noticed that updates here have slowed of late. In part that's because the site has been ticking over nicely and now has most of its core functionality, but also because I've been <a href="http://jystewart.net">keeping pretty busy</a>. But things aren't going to be standing still. I've just moved the site into a new project management system, and have begun planning future updates. If you have ideas of new features that you'd like to see, now is the time to <a href="mailto:wifi@grwifi.net">get in touch</a>.
+  created_at: 2005-05-18 14:24:47 -04:00
+news_00005: 
+  permalink: press-release
+  headline: Press Release
+  external: 
+  user_id: 1
+  id: 5
+  extended: 
+  content: With the site attracting an ever increasing number of visitors and a good stack of comments and ratings accumulating I have issued a press release to a wide range of local media outlets. Let me know if you think I might have missed any! You can get the release <a href="/press/Release-20041206.pdf" type="application/pdf">here</a>.
+  created_at: 2004-12-07 14:37:20 -05:00
+news_00006: 
+  permalink: help-us
+  headline: Help Us Check Locations
+  external: 
+  user_id: 1
+  id: 6
+  extended: |-
+    we'd love it if you were able to post reviews of the following:</p>
+    
+    <ul>
+       <li><a href="/location/Big_Apple_Bagels">Big Apple Bagels</a></li>
+       <li><a href="/location/Bite">Bite</a></li>
+       <li><a href="/location/Butch's_Dry_Dock">Butch's Dry Dock</a></li>
+       <li><a href="/location/Four_Friends_Coffee_House">Four Friends Coffee House</a></li>
+       <li><a href="/location/Grand_Rapids_Public_Library,_Main_Branch">Grand Rapids Public Library</a></li>
+      <li><a href="/location/Pietro's_Italian_Restaurant">Pietro's</a></li>
+      <li><a href="/location/Discussions">Discussions</a></li>
+      <li><a href="/location/Susie's_Doughnuts_And_Coffee">Susie's Doughnuts and Coffee</a></li>
+       <li><a href="/location/skelletones">Skelletones</a></li>
+       <li><a href="/Panera_Bread_Co.,_Cascade">Panera on Cascade</a></li>
+    </ul>
+    
+    <p>Of course it's always good to have extra reviews of other places, so post away!
+  content: As you'll have noticed the number of reviews we're getting in has been rapidly increasing, but there are still a few locations marked as 'rumored' or for which there are not yet reviews. If you can help us check out more locations
+  created_at: 2004-12-10 20:03:14 -05:00
+news_00017: 
+  permalink: google-maps-experimental
+  headline: Experimental Google Maps Integration
+  external: 
+  user_id: 1
+  id: 17
+  extended: 
+  content: For some time now I've been been meaning to try hooking Grand Rapids WiFi up with Google Maps, to produce a more usable map than the one currently employed on this site. Last night I gave it a try, and the results were mixed. With all locations plotted, the result uses a lot of memory, so it'll take more work to make it something that becomes a regular feature of this site. The brave can <a href="/gmaps/">try it here</a>, and you can read a bit more about the process <a href="http://jystewart.net/process/archives/2005/05/google-maps-and-grand-rapids-wifi/">here</a>.
+  created_at: 2005-05-19 13:12:08 -04:00

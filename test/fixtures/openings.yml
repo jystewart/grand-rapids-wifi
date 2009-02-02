@@ -1,0 +1,1009 @@
+--- 
+opening_159: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 6
+  location_id: 68
+  closing_day: 6
+opening_100: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 6
+  location_id: 42
+  closing_day: 6
+opening_13: 
+  closing_time: 2000-01-02 00:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 7
+  location_id: 6
+  closing_day: 7
+opening_41: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 56
+  closing_day: 1
+opening_101: 
+  closing_time: 2000-01-01 23:00:00 +00:00
+  opening_time: 2000-01-01 13:00:00 +00:00
+  opening_day: 7
+  location_id: 42
+  closing_day: 7
+opening_14: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 50
+  closing_day: 1
+opening_70: 
+  closing_time: 2000-01-01 22:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 3
+  location_id: 39
+  closing_day: 3
+opening_42: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 2
+  location_id: 56
+  closing_day: 2
+opening_130: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 4
+  closing_day: 1
+opening_15: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 2
+  location_id: 50
+  closing_day: 2
+opening_71: 
+  closing_time: 2000-01-01 22:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 4
+  location_id: 39
+  closing_day: 4
+opening_43: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 3
+  location_id: 56
+  closing_day: 3
+opening_102: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 1
+  closing_day: 1
+opening_131: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 2
+  location_id: 4
+  closing_day: 2
+opening_16: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 3
+  location_id: 50
+  closing_day: 3
+opening_72: 
+  closing_time: 2000-01-01 22:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 5
+  location_id: 39
+  closing_day: 5
+opening_44: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 4
+  location_id: 56
+  closing_day: 4
+opening_103: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 2
+  location_id: 1
+  closing_day: 2
+opening_160: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 7
+  location_id: 68
+  closing_day: 7
+opening_132: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 3
+  location_id: 4
+  closing_day: 3
+opening_0: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 48
+  closing_day: 1
+opening_73: 
+  closing_time: 2000-01-01 20:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 6
+  location_id: 39
+  closing_day: 6
+opening_45: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 5
+  location_id: 56
+  closing_day: 5
+opening_104: 
+  closing_time: 2000-01-02 04:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 3
+  location_id: 1
+  closing_day: 3
+opening_17: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 4
+  location_id: 50
+  closing_day: 4
+opening_161: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 1
+  location_id: 89
+  closing_day: 1
+opening_133: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 4
+  location_id: 4
+  closing_day: 4
+opening_1: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-02 01:00:00 +00:00
+  opening_day: 2
+  location_id: 48
+  closing_day: 2
+opening_74: 
+  closing_time: 2000-01-01 20:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 7
+  location_id: 39
+  closing_day: 7
+opening_46: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 6
+  location_id: 56
+  closing_day: 6
+opening_105: 
+  closing_time: 2000-01-02 04:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 4
+  location_id: 1
+  closing_day: 4
+opening_18: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 5
+  location_id: 50
+  closing_day: 5
+opening_162: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 2
+  location_id: 89
+  closing_day: 2
+opening_134: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 5
+  location_id: 4
+  closing_day: 5
+opening_2: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-02 01:00:00 +00:00
+  opening_day: 3
+  location_id: 48
+  closing_day: 3
+opening_75: 
+  closing_time: 2000-01-01 23:30:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 1
+  location_id: 82
+  closing_day: 1
+opening_47: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 7
+  location_id: 56
+  closing_day: 7
+opening_106: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 5
+  location_id: 1
+  closing_day: 5
+opening_19: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 6
+  location_id: 50
+  closing_day: 6
+opening_163: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 3
+  location_id: 89
+  closing_day: 3
+opening_135: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 21:00:00 +00:00
+  opening_day: 6
+  location_id: 4
+  closing_day: 6
+opening_3: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-02 01:00:00 +00:00
+  opening_day: 4
+  location_id: 48
+  closing_day: 4
+opening_76: 
+  closing_time: 2000-01-02 00:30:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 2
+  location_id: 82
+  closing_day: 2
+opening_48: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 58
+  closing_day: 1
+opening_107: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 22:00:00 +00:00
+  opening_day: 6
+  location_id: 1
+  closing_day: 6
+opening_164: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 4
+  location_id: 89
+  closing_day: 4
+opening_136: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 46
+  closing_day: 1
+opening_4: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-02 01:00:00 +00:00
+  opening_day: 5
+  location_id: 48
+  closing_day: 5
+opening_77: 
+  closing_time: 2000-01-02 00:30:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 3
+  location_id: 82
+  closing_day: 3
+opening_49: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 2
+  location_id: 58
+  closing_day: 2
+opening_108: 
+  closing_time: 2000-01-01 19:54:28 +00:00
+  opening_time: 2000-01-01 19:54:28 +00:00
+  opening_day: 7
+  location_id: 1
+  closing_day: 7
+opening_165: 
+  closing_time: 2000-01-02 04:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 5
+  location_id: 89
+  closing_day: 5
+opening_137: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 2
+  location_id: 46
+  closing_day: 2
+opening_5: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-02 01:00:00 +00:00
+  opening_day: 6
+  location_id: 48
+  closing_day: 6
+opening_78: 
+  closing_time: 2000-01-02 00:30:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 4
+  location_id: 82
+  closing_day: 4
+opening_109: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 43
+  closing_day: 1
+opening_166: 
+  closing_time: 2000-01-02 04:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 6
+  location_id: 89
+  closing_day: 6
+opening_138: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 3
+  location_id: 46
+  closing_day: 3
+opening_6: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-02 01:00:00 +00:00
+  opening_day: 7
+  location_id: 48
+  closing_day: 7
+opening_79: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 5
+  location_id: 82
+  closing_day: 5
+opening_20: 
+  closing_time: 2000-01-02 00:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 7
+  location_id: 50
+  closing_day: 7
+opening_167: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 7
+  location_id: 89
+  closing_day: 7
+opening_139: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 4
+  location_id: 46
+  closing_day: 4
+opening_21: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 51
+  closing_day: 1
+opening_7: 
+  closing_time: 2000-01-02 00:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 6
+  closing_day: 1
+opening_50: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 3
+  location_id: 58
+  closing_day: 3
+opening_22: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 2
+  location_id: 51
+  closing_day: 2
+opening_8: 
+  closing_time: 2000-01-02 00:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 2
+  location_id: 6
+  closing_day: 2
+opening_80: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 13:00:00 +00:00
+  opening_day: 6
+  location_id: 82
+  closing_day: 6
+opening_51: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 4
+  location_id: 58
+  closing_day: 4
+opening_110: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 15:00:00 +00:00
+  opening_day: 2
+  location_id: 43
+  closing_day: 2
+opening_23: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 3
+  location_id: 51
+  closing_day: 3
+opening_9: 
+  closing_time: 2000-01-02 00:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 3
+  location_id: 6
+  closing_day: 3
+opening_52: 
+  closing_time: 2000-01-01 16:59:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 5
+  location_id: 58
+  closing_day: 5
+opening_111: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 15:00:00 +00:00
+  opening_day: 3
+  location_id: 43
+  closing_day: 3
+opening_24: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 4
+  location_id: 51
+  closing_day: 4
+opening_140: 
+  closing_time: 2000-01-02 04:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 5
+  location_id: 46
+  closing_day: 5
+opening_53: 
+  closing_time: 2000-01-01 16:59:00 +00:00
+  opening_time: 2000-01-01 16:30:00 +00:00
+  opening_day: 6
+  location_id: 58
+  closing_day: 6
+opening_112: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 15:00:00 +00:00
+  opening_day: 4
+  location_id: 43
+  closing_day: 4
+opening_25: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 5
+  location_id: 51
+  closing_day: 5
+opening_81: 
+  closing_time: 2000-01-01 21:00:00 +00:00
+  opening_time: 2000-01-01 14:30:00 +00:00
+  opening_day: 7
+  location_id: 82
+  closing_day: 7
+opening_141: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 13:00:00 +00:00
+  opening_day: 6
+  location_id: 46
+  closing_day: 6
+opening_54: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 20:00:00 +00:00
+  opening_day: 7
+  location_id: 58
+  closing_day: 7
+opening_113: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 15:00:00 +00:00
+  opening_day: 5
+  location_id: 43
+  closing_day: 5
+opening_26: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 6
+  location_id: 51
+  closing_day: 6
+opening_82: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 62
+  closing_day: 1
+opening_142: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 14:00:00 +00:00
+  opening_day: 7
+  location_id: 46
+  closing_day: 7
+opening_114: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 15:00:00 +00:00
+  opening_day: 6
+  location_id: 43
+  closing_day: 6
+opening_55: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 60
+  closing_day: 1
+opening_27: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 7
+  location_id: 51
+  closing_day: 7
+opening_83: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 19:00:00 +00:00
+  opening_day: 2
+  location_id: 62
+  closing_day: 2
+opening_143: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 47
+  closing_day: 1
+opening_115: 
+  closing_time: 2000-01-02 00:00:00 +00:00
+  opening_time: 2000-01-01 15:00:00 +00:00
+  opening_day: 7
+  location_id: 43
+  closing_day: 7
+opening_56: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 2
+  location_id: 60
+  closing_day: 2
+opening_28: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 72
+  closing_day: 1
+opening_84: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 19:00:00 +00:00
+  opening_day: 3
+  location_id: 62
+  closing_day: 3
+opening_144: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 2
+  location_id: 47
+  closing_day: 2
+opening_116: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 87
+  closing_day: 1
+opening_57: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 3
+  location_id: 60
+  closing_day: 3
+opening_29: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 2
+  location_id: 72
+  closing_day: 2
+opening_85: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 19:00:00 +00:00
+  opening_day: 4
+  location_id: 62
+  closing_day: 4
+opening_145: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 3
+  location_id: 47
+  closing_day: 3
+opening_117: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 2
+  location_id: 87
+  closing_day: 2
+opening_58: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 4
+  location_id: 60
+  closing_day: 4
+opening_86: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 17:00:00 +00:00
+  opening_day: 5
+  location_id: 62
+  closing_day: 5
+opening_146: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 4
+  location_id: 47
+  closing_day: 4
+opening_118: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 3
+  location_id: 87
+  closing_day: 3
+opening_87: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 17:00:00 +00:00
+  opening_day: 6
+  location_id: 62
+  closing_day: 6
+opening_59: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 17:00:00 +00:00
+  opening_day: 5
+  location_id: 60
+  closing_day: 5
+opening_147: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 5
+  location_id: 47
+  closing_day: 5
+opening_119: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 4
+  location_id: 87
+  closing_day: 4
+opening_88: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 1
+  location_id: 21
+  closing_day: 1
+opening_148: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 6
+  location_id: 47
+  closing_day: 6
+opening_30: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 3
+  location_id: 72
+  closing_day: 3
+opening_89: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 2
+  location_id: 21
+  closing_day: 2
+opening_149: 
+  closing_time: 2000-01-01 21:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 70
+  closing_day: 1
+opening_31: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 4
+  location_id: 72
+  closing_day: 4
+opening_32: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 5
+  location_id: 72
+  closing_day: 5
+opening_60: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 17:00:00 +00:00
+  opening_day: 6
+  location_id: 60
+  closing_day: 6
+opening_120: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 5
+  location_id: 87
+  closing_day: 5
+opening_33: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 6
+  location_id: 72
+  closing_day: 6
+opening_90: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 3
+  location_id: 21
+  closing_day: 3
+opening_61: 
+  closing_time: 2000-01-02 04:59:00 +00:00
+  opening_time: 2000-01-01 21:00:00 +00:00
+  opening_day: 7
+  location_id: 60
+  closing_day: 7
+opening_121: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 6
+  location_id: 87
+  closing_day: 6
+opening_34: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 52
+  closing_day: 1
+opening_91: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 4
+  location_id: 21
+  closing_day: 4
+opening_62: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 18
+  closing_day: 1
+opening_150: 
+  closing_time: 2000-01-01 21:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 2
+  location_id: 70
+  closing_day: 2
+opening_122: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 7
+  location_id: 87
+  closing_day: 7
+opening_35: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 2
+  location_id: 52
+  closing_day: 2
+opening_63: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 14:00:00 +00:00
+  opening_day: 2
+  location_id: 18
+  closing_day: 2
+opening_151: 
+  closing_time: 2000-01-01 21:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 3
+  location_id: 70
+  closing_day: 3
+opening_123: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 3
+  closing_day: 1
+opening_36: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 3
+  location_id: 52
+  closing_day: 3
+opening_92: 
+  closing_time: 2000-01-02 04:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 5
+  location_id: 21
+  closing_day: 5
+opening_64: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 14:00:00 +00:00
+  opening_day: 3
+  location_id: 18
+  closing_day: 3
+opening_152: 
+  closing_time: 2000-01-01 21:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 4
+  location_id: 70
+  closing_day: 4
+opening_124: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 2
+  location_id: 3
+  closing_day: 2
+opening_37: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 4
+  location_id: 52
+  closing_day: 4
+opening_93: 
+  closing_time: 2000-01-02 04:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 6
+  location_id: 21
+  closing_day: 6
+opening_65: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 14:00:00 +00:00
+  opening_day: 4
+  location_id: 18
+  closing_day: 4
+opening_153: 
+  closing_time: 2000-01-01 21:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 5
+  location_id: 70
+  closing_day: 5
+opening_125: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 3
+  location_id: 3
+  closing_day: 3
+opening_94: 
+  closing_time: 2000-01-02 03:00:00 +00:00
+  opening_time: 2000-01-01 16:00:00 +00:00
+  opening_day: 7
+  location_id: 21
+  closing_day: 7
+opening_66: 
+  closing_time: 2000-01-01 22:30:00 +00:00
+  opening_time: 2000-01-01 14:00:00 +00:00
+  opening_day: 5
+  location_id: 18
+  closing_day: 5
+opening_38: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 5
+  location_id: 52
+  closing_day: 5
+opening_154: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 68
+  closing_day: 1
+opening_126: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 4
+  location_id: 3
+  closing_day: 4
+opening_95: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 42
+  closing_day: 1
+opening_67: 
+  closing_time: 2000-01-01 22:30:00 +00:00
+  opening_time: 2000-01-01 14:00:00 +00:00
+  opening_day: 6
+  location_id: 18
+  closing_day: 6
+opening_39: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 6
+  location_id: 52
+  closing_day: 6
+opening_155: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 2
+  location_id: 68
+  closing_day: 2
+opening_127: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 5
+  location_id: 3
+  closing_day: 5
+opening_96: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 2
+  location_id: 42
+  closing_day: 2
+opening_68: 
+  closing_time: 2000-01-01 22:00:00 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 1
+  location_id: 39
+  closing_day: 1
+opening_156: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 3
+  location_id: 68
+  closing_day: 3
+opening_128: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 6
+  location_id: 3
+  closing_day: 6
+opening_97: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 3
+  location_id: 42
+  closing_day: 3
+opening_10: 
+  closing_time: 2000-01-02 00:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 4
+  location_id: 6
+  closing_day: 4
+opening_69: 
+  closing_time: 2000-01-01 22:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 2
+  location_id: 39
+  closing_day: 2
+opening_157: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 4
+  location_id: 68
+  closing_day: 4
+opening_129: 
+  closing_time: 2000-01-01 21:30:00 +00:00
+  opening_time: 2000-01-01 14:00:00 +00:00
+  opening_day: 7
+  location_id: 3
+  closing_day: 7
+opening_98: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 4
+  location_id: 42
+  closing_day: 4
+opening_11: 
+  closing_time: 2000-01-02 00:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 5
+  location_id: 6
+  closing_day: 5
+opening_158: 
+  closing_time: 2000-01-02 04:59:59 +00:00
+  opening_time: 2000-01-01 05:00:00 +00:00
+  opening_day: 5
+  location_id: 68
+  closing_day: 5
+opening_99: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:30:00 +00:00
+  opening_day: 5
+  location_id: 42
+  closing_day: 5
+opening_12: 
+  closing_time: 2000-01-02 00:00:00 +00:00
+  opening_time: 2000-01-01 12:00:00 +00:00
+  opening_day: 6
+  location_id: 6
+  closing_day: 6
+opening_40: 
+  closing_time: 2000-01-02 02:00:00 +00:00
+  opening_time: 2000-01-01 11:00:00 +00:00
+  opening_day: 7
+  location_id: 52
+  closing_day: 7

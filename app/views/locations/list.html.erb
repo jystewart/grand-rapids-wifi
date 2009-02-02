@@ -1,0 +1,22 @@
+<h2>Full List Of Wifi Hotspots</h2>
+
+<div class="hotspot-list-pagination">
+	<p><%= will_paginate @locations %></p>
+</div>
+
+<hr />
+
+<ul id="hotspot-list" style="">
+  <% @locations.each do |location| %>
+		<li>
+			<h3><%= link_to h(location.name), location_path(location) %></h3>
+	    <p><%= location.description %></p>
+			<p>Visible? <%= location.visibility %></p>
+			<p><%= link_to 'Edit', edit_location_path(location) %> | <%= link_to 'View', location_path(location) %></p>
+		</li>
+  <% end %>
+</ul>
+
+<div class="hostpot-list-pagination">
+	<p><%= will_paginate @locations %></p>
+</div>

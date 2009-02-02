@@ -1,0 +1,9 @@
+<div class="hreview">
+  <a name="comment-<%= @review.id %>"></a>
+  <span class="type hidden-metadata">wifi hotspot</span>
+  <object data="#overview" class="include" type="text/html"></object>
+  <h4><%=h @review.title %></h4>
+  <p>From the blog <span class="reviewer fn"><%=h @review.blog_name %></span> on 
+    <span class="dtreviewed" title="<%= @review.created_at.strftime("%Y%m%dT%I%M00-0500") %>"><%= @review.created_at.strftime("%a %b %d %Y at %I:%M %p") %></span></p>
+  <p><span class="summary"><%=h @review.excerpt %></span> <%= link_to 'read more...', @review.uri, :rel => 'bookmark' %></p>
+</div>

@@ -1,0 +1,15 @@
+<tr id="comment-row-<%= comment.id %>">
+  <td><%=h comment.title %></td>
+  <td><%=h truncate(comment.blog_name, 20) %></td>
+  <td><%= link_to h(comment.commentable.name), url_for(comment.commentable) %></td>
+  <td><%= comment.hide %></td>
+  <td><%= link_to 'View', comment_url(comment) %></td>
+  <td><%= button_to 'Delete', {:controller => 'comments', :action => 'destroy', :id => comment.id}, :method => 'delete' %></td>
+  <td>
+    <% unless comment.hide? %>
+      <%= button_to 'Spam', :controller => 'comments', :action => 'junk', :id => comment.id %>
+    <% else %>
+      <%= button_to 'Reprieve', :controller => 'comments', :action => 'reprieve', :id => comment.id %>
+    <% end %>
+  </td>
+</tr>

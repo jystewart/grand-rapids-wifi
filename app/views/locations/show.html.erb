@@ -1,0 +1,172 @@
+<p><%= error_messages_for :comment %></p>
+
+<div id="overview" class="hcard vcard">
+  <h2 class="org fn"><%=h @location.name %></h2>
+  
+  <p id="locationnav"><a href="#ratings">rate location</a> | <a href="#comments">read comments</a> | 
+    <a href="#comment-form">post a comment</a> | <a href="mailto:wifi@grwifi.net">send us updated info</a>
+    <% if logged_in? %> | <%= link_to 'edit', edit_location_path(@location) %><% end %>
+  </p>
+
+  <%= @map.div(:width => 300, :height => 300) unless @map.nil? %>
+
+  <% if @location.status.to_s == 'closed' %>
+    <p class="closed message">Unfortunately this hotspot is no longer operating.</p>
+  <% end %>
+
+  <p><%= @location.description %></p>
+
+  <%- unless @location.neighbourhoods.empty? -%>
+    <p>This location is considered to be in the neighbourhood: 
+    <% @location.neighbourhoods.each do |n| %>
+      <%= link_to n.name, url_for(n) %><%= ', ' unless n == @location.neighbourhoods.last %>
+    <% end %></p>
+  <%- end -%>
+
+  <dl>
+    <dt>Address: </dt>
+      <dd class="adr">
+        <span class="street-address"><%= @location.street %></span>, 
+        <span class="locality"><%= @location.city %></span> 
+        <span class="region"><%= @location.state %></span> 
+        <span class="pcode"><%= @location.zip %></span>
+      </dd>
+
+      <% unless @location.url.blank? %>
+        <dt>Website: </dt> 
+          <dd><%= location_link(@location) %></dd>
+      <% end %>
+
+      <% unless @location.email.blank? %>
+        <dt>Email: </dt> 
+          <dd><%= link_to @location.email, 'mailto:' + @location.email, :class => 'email' %></dd>
+      <% end %>
+
+      <% unless @location.phone_number.blank? %>
+        <dt>Phone: </dt> 
+          <dd class="tel"><span class="value"><%= @location.phone_number %></span></dd>
+      <% end %>
+    
+      <% if @location.ssid %>
+        <dt title="The name of the network">SSID: </dt>
+          <dd><%= @location.ssid %></dd>
+      <% end %>
+    </dl>
+
+    <% if @location.geocode %>
+      <p class="geo">
+        <span class="latitude"><%= @location.geocode.latitude %></span>
+        <span class="longitude"><%= @location.geocode.longitude %></span>
+      </p>
+    <% end %>
+
+  </div>
+
+  <% if @location.free %><p>Use of this location is <strong>free of charge</strong>.</p><% end %>
+
+  <h3>Opening Times</h3>
+
+  <dl id="opening">
+    <%- @location.openings.each do |opening| -%>
+      <dt><%= opening.opening_day_name %></dt>
+      <dd><%= time_format(opening.opening_time) %> to <%= time_format(opening.closing_time) %></dd>
+    <%- end -%>
+  </dl>
+
+  <% if @location.openings.empty? %>
+    <p>We don't currently have opening hours for this location. If you know them, please let us know!</p>
+  <% end %>
+
+  <p>Please note that while we make every effort to check our information is accurate, we cannot guarantee 
+     these opening times, and we do not have details of holiday opening times. If you find our information 
+     to be inaccurate, please <a href="mailto:wifi@grwifi.net">email the grand rapids wifi administrator</a> 
+     with updates. Please also note that we do not currently hold information where a location is open after 
+     midnight unless it's open 24hrs/day. <strong>This email address is not for contacting <%=h @location.name %></strong>.</p>
+
+  <!-- <a name="ratings"></a>
+  <% if @average[:total] %>
+     <h3>
+    <% if @average[:total] > 0 %><%= @average[:mean] %>/10 from<%- end -%> <%= @average[:total] %> Ratings
+  </h3>
+  <% else %>
+     <h3>Rate This Hotspot</h3>
+  <% end %>
+
+  <p>Add a rating</p>
+  <% form_for :vote, @vote, :url => ratings_path(:location_id => @location.permalink), 
+  :html => {:id => 'ratings-form'}  do |v| %>
+     <p><% (1..10).each do |number| %>
+             <%= v.radio_button :rating, number %> <%= number %>
+         <% end %></p>
+     <p><%= submit_tag 'Rate this location' %></p>
+  <% end %> -->
+
+
+  <a name="comments"></a>
+  <h3><%= @location.displayable_comments.size %> Comments</h3>
+
+  <% if @location.status != 'closed' %>
+     <p><%= link_to image_tag('/images/feed-icon-16x16.png', :alt => 'XML feed'), :format => 'atom' %>
+     <%= link_to 'Subscribe to a feed of comments on this hotspot', :format => 'atom' %></p>
+  <% end %>
+  <div id="comments-list">
+    <% @location.displayable_comments.each do |@review| %>
+      <% if @review.trackback %>
+        <%= render :partial => 'trackback' %>
+      <% else %>
+        <%= render :partial => '/comments/view' %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <a name="comment_form"></a>
+  <% if @location.status == 'closed' %>
+    <h3>Comments Closed</h3>
+
+    <p>We are no longer accepting comments on this location.</p>
+  <% else %>
+    <% form_for :comment, @comment, :url => comments_path, :html => {:id => 'comment-form'} do |f| %>
+       <fieldset>
+           <h3>Leave A Comment</h3>
+
+           <p>This space is for sharing comments and information relating to 
+               the wireless internet access provided at this location.</p>
+
+           <p>It is not a way of contacting <%=h @location.name %>, nor is it a forum for personal grievances.</p>
+
+           <p>Please keep your comments focussed on the quality of service provided and technical information about the location.</p>
+
+           <p>A * means a field is required. If you provide an email address we will not publish it, but if you provide a website address we will link to it.</p>
+
+           <p><label for="comment_blog_name">Your Name (*)</label>
+             <%= f.text_field :blog_name %></p>
+
+           <p><label for="comment_uri">Your Website/Email (*)</label>
+             <%= f.text_field :uri %></p>
+
+           <p><label for="comment_title">Comment Title</label>
+             <%= f.text_field :title %></p>
+
+           <p><label for="comment_excerpt">Comment (*)</label>
+
+             <%= f.text_area :excerpt %></p>
+            <%= f.hidden_field :commentable_type, :value => 'Location' %>
+            <%= f.hidden_field :commentable_id, :value => @location.id %>
+           <p><%= submit_tag 'Add Comment' %></p>
+       </fieldset>
+     <% end %>
+
+   <% end %>
+
+<%- content_for :javascript do -%>
+	<%= javascript_include_tag 'jquery-form', 'jquery-color', 'location-comment', :cache => 'location' %> 
+<%- end -%>
+<%- content_for :extra_headers do -%>
+	<%= auto_discovery_link_tag :atom, {:controller => 'feed', :action => 'index'}, {:title => SITE_NAME + ' Atom Feed'} %>
+  <%= auto_discovery_link_tag :atom, {:format => 'atom'}, {:title => 'Feed of Comments On This Location'} %>
+  <%= auto_discovery_link_tag :rdf, {:format => 'rdf'}, {:title => 'RDF Representation Of This Location'} %>
+	<%- unless @location.geocode.nil? -%>
+  	<meta name="geo.position" content="<%= @location.geocode.latitude %>; <%= @location.geocode.longitude %>" />
+	<%- end -%>
+<%- end -%>
+<%- content_for :title do -%><%=h @location.name %> (wireless hotspot) : <%= SITE_NAME %> <%- end -%>

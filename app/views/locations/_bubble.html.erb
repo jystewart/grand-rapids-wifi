@@ -1,0 +1,5 @@
+<h3 class="mapbubble"><%= link_to @location.name, location_path(@location) %></h3>
+
+<p><%= truncate(@location.description, 40, '...') %>
+	
+<br /><%= link_to 'more...', location_path(@location) %></p>

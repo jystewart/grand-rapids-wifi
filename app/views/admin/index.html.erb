@@ -1,0 +1,45 @@
+<h2>Welcome To <%= SITE_NAME %> Admin</h2>
+
+<p>There are currently <%= @live_locations %> locations live (of <%= @location_count %>), 
+	and <%= @comment_count %> comments (of which <%= @spam_comments %> appear to be spam).</p>
+
+<div class="admin-box">
+	<h3><%= link_to 'Pending Locations', locations_path %></h3>
+
+	<ul>
+	<% @locations.each do |location| %>
+	  <li><%= link_to location.name, location_path(location) %> 
+	      (<%= link_to 'Edit', edit_location_path(location) %>)
+	  <br /><%= location.created_at %></li>
+	<% end %>
+	</ul>
+	
+	<p><%= link_to 'Add Location', new_location_path %></p>
+</div>
+
+<div class="admin-box">
+	<h3><%= link_to 'Recent News Stories', :controller => 'news' %></h3>
+
+	<ul>
+		<%- @news.each do |story| -%>
+		<li><%= link_to story.headline, news_path(story) %></li>
+		<%- end -%>
+	</ul>
+	<p><%= link_to 'Add Story', new_news_path %></p>
+</div>
+
+<div class="admin-box">
+	<h3><%= link_to 'Recent Comments', comments_path %></h3>
+	<ul>
+		<%- @comments.each do |comment| -%>
+			<li>
+				<%= link_to "#{comment.title} by #{comment.blog_name}", comment_path(comment) %>
+				<% unless comment.hide? %>
+	        <%= button_to 'Spam', junk_comment_path(comment) %>
+	      <% else %>
+	        <%= button_to 'Reprieve', reprieve_comment_path(comment) %>
+	      <% end %>
+			</li>
+		<%- end -%>
+	</ul>
+</div>

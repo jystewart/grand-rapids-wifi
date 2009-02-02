@@ -1,0 +1,17 @@
+<h2>Grand Rapids WiFi News : 
+  <%= Date::MONTHNAMES[params[:month].to_i] %> <%= params[:year] %></h2>
+
+<div class="hfeed">
+<% for story in @stories %>
+    <div class="story hentry">
+        <h3><%= link_to h(story.headline), {:action => 'story', :id => story.permalink}, :class => 'bookmark entry-title' %></h3>
+        <p class="entry-content"><%= story.content %></p>
+        <p>Published <span class="published" title="<%= story.created_at.strftime('%Y-%M-%dT%H:%i:%s') %>">
+          <%= story.created_at.strftime('%D') %>
+        </span> : <%= story.displayable_comments.size %> Comments  : <%= link_to 'Read More...', :action => 'story', :id => story.permalink %>
+        <% if logged_in? %> : <%= link_to 'Edit', :action => 'edit', :id => story.permalink %><% end %></p>
+    </div>
+<% end %>  
+</div>
+
+<%= render :partial => 'archives' %>

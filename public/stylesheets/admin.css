@@ -1,0 +1,25 @@
+h1 {
+	border-bottom: 1px solid black;
+	padding-bottom: 0.5em;
+}
+.admin-box {
+	border: 2px solid black;
+	margin: 0px 1em;
+	padding: 0px 1em;
+	width: 40%;
+	float: left;
+}
+label {
+	font-weight: bold;
+}
+#admin-navigation li {
+	display: inline;
+	margin-right: 3em;
+}
+#admin-navigation {
+	border-bottom: 1px solid black;
+	padding-bottom: 1.5em;
+}
+a {
+	text-decoration: underline;
+}

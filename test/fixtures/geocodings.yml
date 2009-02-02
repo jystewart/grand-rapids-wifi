@@ -1,0 +1,325 @@
+--- 
+geocoding_73: 
+  :geocodable_type: Location
+  :geocode: 73
+  :geocodable_id: 25
+geocoding_10: 
+  :geocodable_type: Location
+  :geocode: 10
+  :geocodable_id: 8
+geocoding_31: 
+  :geocodable_type: Location
+  :geocode: 31
+  :geocodable_id: 14
+geocoding_52: 
+  :geocodable_type: Location
+  :geocode: 52
+  :geocodable_id: 62
+geocoding_74: 
+  :geocodable_type: Location
+  :geocode: 74
+  :geocodable_id: 4
+geocoding_11: 
+  :geocodable_type: Location
+  :geocode: 11
+  :geocodable_id: 29
+geocoding_32: 
+  :geocodable_type: Location
+  :geocode: 32
+  :geocodable_id: 56
+geocoding_53: 
+  :geocodable_type: Location
+  :geocode: 53
+  :geocodable_id: 83
+geocoding_75: 
+  :geocodable_type: Location
+  :geocode: 75
+  :geocodable_id: 67
+geocoding_12: 
+  :geocodable_type: Location
+  :geocode: 12
+  :geocodable_id: 51
+geocoding_33: 
+  :geocodable_type: Location
+  :geocode: 33
+  :geocodable_id: 77
+geocoding_54: 
+  :geocodable_type: Location
+  :geocode: 54
+  :geocodable_id: 21
+geocoding_76: 
+  :geocodable_type: Location
+  :geocode: 76
+  :geocodable_id: 89
+geocoding_13: 
+  :geocodable_type: Location
+  :geocode: 13
+  :geocodable_id: 72
+geocoding_34: 
+  :geocodable_type: Location
+  :geocode: 34
+  :geocodable_id: 98
+geocoding_55: 
+  :geocodable_type: Location
+  :geocode: 55
+  :geocodable_id: 42
+geocoding_77: 
+  :geocodable_type: Location
+  :geocode: 77
+  :geocodable_id: 68
+geocoding_35: 
+  :geocodable_type: Location
+  :geocode: 35
+  :geocodable_id: 15
+geocoding_56: 
+  :geocodable_type: Location
+  :geocode: 56
+  :geocodable_id: 63
+geocoding_14: 
+  :geocodable_type: Location
+  :geocode: 14
+  :geocodable_id: 10
+geocoding_80: 
+  :geocodable_type: Location
+  :geocode: 80
+  :geocodable_id: 47
+geocoding_78: 
+  :geocodable_type: Location
+  :geocode: 78
+  :geocodable_id: 70
+geocoding_57: 
+  :geocodable_type: Location
+  :geocode: 57
+  :geocodable_id: 84
+geocoding_15: 
+  :geocodable_type: Location
+  :geocode: 15
+  :geocodable_id: 9
+geocoding_36: 
+  :geocodable_type: Location
+  :geocode: 36
+  :geocodable_id: 57
+geocoding_81: 
+  :geocodable_type: Location
+  :geocode: 81
+  :geocodable_id: 5
+geocoding_79: 
+  :geocodable_type: Location
+  :geocode: 79
+  :geocodable_id: 26
+geocoding_16: 
+  :geocodable_type: Location
+  :geocode: 16
+  :geocodable_id: 52
+geocoding_37: 
+  :geocodable_type: Location
+  :geocode: 37
+  :geocodable_id: 80
+geocoding_60: 
+  :geocodable_type: Location
+  :geocode: 60
+  :geocodable_id: 43
+geocoding_58: 
+  :geocodable_type: Location
+  :geocode: 58
+  :geocodable_id: 100
+geocoding_17: 
+  :geocodable_type: Location
+  :geocode: 17
+  :geocodable_id: 73
+geocoding_38: 
+  :geocodable_type: Location
+  :geocode: 38
+  :geocodable_id: 78
+geocoding_61: 
+  :geocodable_type: Location
+  :geocode: 61
+  :geocodable_id: 64
+geocoding_59: 
+  :geocodable_type: Location
+  :geocode: 59
+  :geocodable_id: 1
+geocoding_18: 
+  :geocodable_type: Location
+  :geocode: 18
+  :geocodable_id: 94
+geocoding_40: 
+  :geocodable_type: Location
+  :geocode: 40
+  :geocodable_id: 81
+geocoding_39: 
+  :geocodable_type: Location
+  :geocode: 39
+  :geocodable_id: 99
+geocoding_1: 
+  :geocodable_type: Location
+  :geocode: 1
+  :geocodable_id: 48
+geocoding_20: 
+  :geocodable_type: Location
+  :geocode: 20
+  :geocodable_id: 53
+geocoding_19: 
+  :geocodable_type: Location
+  :geocode: 19
+  :geocodable_id: 11
+geocoding_41: 
+  :geocodable_type: Location
+  :geocode: 41
+  :geocodable_id: 58
+geocoding_62: 
+  :geocodable_type: Location
+  :geocode: 62
+  :geocodable_id: 85
+geocoding_2: 
+  :geocodable_type: Location
+  :geocode: 2
+  :geocodable_id: 92
+geocoding_21: 
+  :geocodable_type: Location
+  :geocode: 21
+  :geocodable_id: 74
+geocoding_42: 
+  :geocodable_type: Location
+  :geocode: 42
+  :geocodable_id: 79
+geocoding_63: 
+  :geocodable_type: Location
+  :geocode: 63
+  :geocodable_id: 2
+geocoding_3: 
+  :geocodable_type: Location
+  :geocode: 3
+  :geocodable_id: 69
+geocoding_22: 
+  :geocodable_type: Location
+  :geocode: 22
+  :geocodable_id: 12
+geocoding_43: 
+  :geocodable_type: Location
+  :geocode: 43
+  :geocodable_id: 17
+geocoding_64: 
+  :geocodable_type: Location
+  :geocode: 64
+  :geocodable_id: 44
+geocoding_4: 
+  :geocodable_type: Location
+  :geocode: 4
+  :geocodable_id: 6
+geocoding_23: 
+  :geocodable_type: Location
+  :geocode: 23
+  :geocodable_id: 54
+geocoding_44: 
+  :geocodable_type: Location
+  :geocode: 44
+  :geocodable_id: 38
+geocoding_65: 
+  :geocodable_type: Location
+  :geocode: 65
+  :geocodable_id: 65
+geocoding_5: 
+  :geocodable_type: Location
+  :geocode: 5
+  :geocodable_id: 27
+geocoding_24: 
+  :geocodable_type: Location
+  :geocode: 24
+  :geocodable_id: 75
+geocoding_45: 
+  :geocodable_type: Location
+  :geocode: 45
+  :geocodable_id: 60
+geocoding_66: 
+  :geocodable_type: Location
+  :geocode: 66
+  :geocodable_id: 86
+geocoding_6: 
+  :geocodable_type: Location
+  :geocode: 6
+  :geocodable_id: 7
+geocoding_67: 
+  :geocodable_type: Location
+  :geocode: 67
+  :geocodable_id: 66
+geocoding_46: 
+  :geocodable_type: Location
+  :geocode: 46
+  :geocodable_id: 18
+geocoding_7: 
+  :geocodable_type: Location
+  :geocode: 7
+  :geocodable_id: 50
+geocoding_25: 
+  :geocodable_type: Location
+  :geocode: 25
+  :geocodable_id: 112
+geocoding_70: 
+  :geocodable_type: Location
+  :geocode: 70
+  :geocodable_id: 87
+geocoding_68: 
+  :geocodable_type: Location
+  :geocode: 68
+  :geocodable_id: 3
+geocoding_8: 
+  :geocodable_type: Location
+  :geocode: 8
+  :geocodable_id: 71
+geocoding_26: 
+  :geocodable_type: Location
+  :geocode: 26
+  :geocodable_id: 13
+geocoding_47: 
+  :geocodable_type: Location
+  :geocode: 47
+  :geocodable_id: 40
+geocoding_71: 
+  :geocodable_type: Location
+  :geocode: 71
+  :geocodable_id: 103
+geocoding_69: 
+  :geocodable_type: Location
+  :geocode: 69
+  :geocodable_id: 102
+geocoding_9: 
+  :geocodable_type: Location
+  :geocode: 9
+  :geocodable_id: 49
+geocoding_27: 
+  :geocodable_type: Location
+  :geocode: 27
+  :geocodable_id: 55
+geocoding_50: 
+  :geocodable_type: Location
+  :geocode: 50
+  :geocodable_id: 82
+geocoding_48: 
+  :geocodable_type: Location
+  :geocode: 48
+  :geocodable_id: 61
+geocoding_72: 
+  :geocodable_type: Location
+  :geocode: 72
+  :geocodable_id: 46
+geocoding_28: 
+  :geocodable_type: Location
+  :geocode: 28
+  :geocodable_id: 76
+geocoding_49: 
+  :geocodable_type: Location
+  :geocode: 49
+  :geocodable_id: 39
+geocoding_30: 
+  :geocodable_type: Location
+  :geocode: 30
+  :geocodable_id: 113
+geocoding_29: 
+  :geocodable_type: Location
+  :geocode: 29
+  :geocodable_id: 97
+geocoding_51: 
+  :geocodable_type: Location
+  :geocode: 51
+  :geocodable_id: 41

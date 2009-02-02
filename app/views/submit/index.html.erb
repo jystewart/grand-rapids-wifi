@@ -1,0 +1,98 @@
+<%- form_tag :action => 'preview' do -%>
+<fieldset id="submitter">
+  <legend><h3>Your Details</h3></legend>
+
+<%= error_messages_for :submitter %>
+
+<p>Please provide us with a few details about yourself. This is useful so we can ensure submissions are genuine or in case we need to check any details. Locations which are private residences will only be listed if the person submitting its details is the network owner/operator.</p>
+
+  <p><label for="submitter_name">Your Name</label>
+    <%= text_field 'submitter', 'name' %></p>
+
+  <p><label>Your Email Address</label>
+    <%= text_field 'submitter', 'email' %></p>
+
+  <p><label>Your connection with this location?</label>
+    <%= text_field 'submitter', 'connection' %></p>
+</fieldset>
+
+<%= error_messages_for :location %>
+
+<fieldset id="general">
+<legend><h3>Hotspot Details</h3></legend>
+<p>Please provide all the details of this location that you can. When providing us with a description, please try to be objective.</p>
+
+<p><label for="location_status">Is this a location you know to work (proven) or that you've heard may have wifi (rumored)?</label>
+  <br /><%= select 'location', 'status', ['rumored', 'proven'] %></p>
+
+<p><label for="location_name">Location Name</label>
+  <%= text_field 'location', 'name' %></p>
+
+<p><label for="location_ssid">Is access here free?</label>
+  <%= radio_button 'location', 'free', 'Yes' %> Yes 
+  <%= radio_button 'location', 'free', 'No' %> No</p>
+
+<p><label for="location_ssid">SSID/Network Name</label>
+  <%= text_field 'location', 'ssid' %>
+<br /><span>(for information, even if not needed for access)</span></p>
+
+<p><label for="location_street">Street Address</label>
+  <%= text_field 'location', 'street' %></p>
+
+<p><label for="location_city">City</label>
+  <%= text_field 'location', 'city' %></p>
+
+<p><label for="location_state">State</label>
+    <input type="hidden" name="location[state]" value="MI" />MI</p>
+
+<p><label for="location_zip">Zip Code</label>
+  <%= text_field 'location', 'zip', { :size => '6' } %></p>
+
+<p><label for="location_description">Brief Description</label>
+  <%= text_area 'location', 'description', { :cols => 40, :rows => 4} %></p>
+
+<p><label for="location_url">Website</label>
+  http:// <%= text_field 'location', 'url' %></p>
+
+<p><label for="location_email">Email Address</label>
+  <%= text_field 'location', 'email' %></p>
+
+<p><label for="location_phone_number">Phone Number</label>
+  <%= text_field 'location', 'phone_number' %></p>
+</fieldset>
+
+<fieldset id="opening">
+<legend><h3>Hours of Operation</h3></legend>
+
+<p>Enter hours of operation using the form below. Examples:</p>
+
+<dl id="opening-hours-explanation">
+	<dt>If the location is open on Mondays from 7am to 7pm select:</dt>
+	<dd>"'Monday' 07:00 to Monday 19:00"</dd>
+	<dt>If it is open on Saturday from 12 noon to 2 am select:</dt>
+	<dd>"Saturday 12:00 to Sunday 02:00".</dd>
+</dl>
+
+<ul style="clear: both" id="opening-times">
+	<%- 7.times { |time| @location.openings.build } if @location.openings.empty? -%>
+	<%- @location.openings.each_with_index do |opening, index| -%>
+		<li>
+			<%= select_tag "location[openings][#{index}][opening_day]", days_for_select(opening.opening_day) %>
+			<%= select_hour opening.opening_time, :discard_type => true, :prefix => "location[openings][#{index}][opening_hour]" %>
+			<%= select_minute opening.opening_time, :discard_type => true, :prefix => "location[openings][#{index}][opening_minute]", :minute_step => 15 %>
+			to <%= select_tag "location[openings][#{index}][closing_day]", days_for_select(opening.closing_day) %>
+			<%= select_hour opening.closing_time, :discard_type => true, :prefix => "location[openings][#{index}][closing_hour]" %>
+			<%= select_minute opening.closing_time, :discard_type => true, :prefix => "location[openings][#{index}][closing_minute]", :minute_step => 15 %>
+		</li>
+	<%- end -%>
+</ul>
+<p><a href="#" id="add-new-time">Add more business hours</a></p>
+
+<%- content_for :javascript do -%>
+<%= javascript_include_tag 'jquery', 'new-time' %>
+<%- end -%>
+
+</fieldset>
+
+<%= submit_tag 'Submit Location' %>
+<%- end -%>

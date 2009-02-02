@@ -1,0 +1,19 @@
+<h2>Full List Of Wifi Hotspots</h2>
+
+<div class="hotspot-list-pagination">
+	<p><%= will_paginate @locations %></p>
+  <p><a href="/location/map">View as a map</a>.</p>
+</div>
+
+<hr />
+
+<ul id="hotspot-list" style="">
+  <% @locations.each do |location| %>
+    <%= render :partial => 'location', :locals => { :location => location } %>
+  <% end %>
+</ul>
+
+<div class="hostpot-list-pagination">
+	<p><%= will_paginate @locations %></p>
+  <p><a href="/location/map">View as a map</a>.</p>
+</div>

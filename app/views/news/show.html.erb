@@ -1,0 +1,64 @@
+<div class="hfeed">
+  <div class="hentry">
+  	<h2 class="entry-title"><%=h @story.headline %></h2>
+  	<p>
+			<span class="published" title="<%= @story.created_at.to_s(:uf) %>"><%= @story.created_at.strftime('%D') %></span> : 
+    	<%= link_to 'Permalink', {:action => 'story', :id => @story.permalink}, :class => 'bookmark entry-title' %>
+    	<% if logged_in? %> : <%= link_to 'Edit', :action => 'edit', :id => @story.permalink %><% end %>
+		</p>
+  	<div class="entry-content">
+    	<p><%= @story.content %></p>
+    	<p><%= format_extended @story.extended %></p>
+  	</div>
+	</div>
+
+	<hr />
+
+	<h3><%= @story.displayable_comments.size %> Comments</h3>
+
+	<% @story.displayable_comments.each do |@review| %>
+  	<% if @review.trackback %>
+    	<%= render :partial => 'location/trackback' %>
+  	<% else %>
+    	<%= render :partial => 'comments/view' %>
+  	<% end %>
+	<% end %>
+
+	<hr />
+
+	<% form_for :comment, @comment, :url => comments_url, :html => {:id => 'comment-form'} do |f| %>
+		<h4>Add A Comment</h4>
+		<fieldset>
+			<p><%= error_messages_for :comment %></p>
+
+			<p><label for="comment_blog_name">Your Name</label>
+			  <%= f.text_field :blog_name %></p>
+  
+			<p><label for="comment_uri">Your Website/Email</label>
+			  <%= f.text_field :uri %></p>
+
+			<p><label for="comment_title">Comment Title</label>
+			  <%= f.text_field :title %></p>
+
+			<p><label for="comment_excerpt">Comment</label>
+			  <%= f.text_area :excerpt %></p>
+			  <%= f.hidden_field :commentable_type, :value => 'News' %>
+			  <%= f.hidden_field :commentable_id, :value => @story.id %>
+  
+			<p><%= submit_tag 'Add Comment'%></p>
+		</fieldset>
+	<% end %>
+</div>
+
+<%= render :partial => 'archives' %>
+
+<%- content_for :javascript do -%>
+<%= javascript_include_tag 'jquery', 'jquery-form', 'jquery-color' %> 
+<script type="text/javascript" charset="utf-8">
+	jQuery(document).ready(function() {
+		jQuery("#comment-form").ajaxForm({
+		    dataType: 'script',
+		    beforeSend: function(xhr) {xhr.setRequestHeader("Accept", "text/javascript");}
+		});
+</script>
+<%- end -%>

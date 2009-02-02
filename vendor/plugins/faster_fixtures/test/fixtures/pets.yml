@@ -1,0 +1,17 @@
+bobs_dog:
+  id: 1
+  person_id: 1
+  name: lassie
+  species: big dog
+  
+bobs_cat:
+  id: 2
+  person_id: 1
+  name: felix
+  species: cat
+  
+alices_parrot:
+  id: 3
+  person_id: 2
+  name: Pieces of eight
+  species: lesser striped parrot

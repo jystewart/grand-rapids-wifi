@@ -1,0 +1,38 @@
+<h2>Comment On: <%= @comment.commentable.class %> 
+  <% if @comment.commentable.class == Location %>
+    <em><%= @comment.commentable.name %></em>
+  <% else %>
+    <em><%= @comment.commentable.headline %></em>
+  <% end %>
+</h2>
+
+<dl>
+  <dt>Posted By:</dt>
+  <dd><%= @comment.blog_name %></dd>
+  <dt>Posted At:</dt>
+  <dd><%= @comment.created_at %></dd>
+  <dt>User IP:</dt>
+  <dd><%= @comment.user_ip || 'None Given' %></dd>
+  <dt>Trackback?</dt>
+  <dd><%= @comment.trackback %></dd>
+  <dt>Hide?</dt>
+  <dd><%= @comment.hide %></dd>
+  <dt>URI</dt>
+  <dd><%= @comment.uri %></dd>
+</dl>
+
+<h3>Title: <%= @comment.title %></h3>
+<h3>Content:</h3>
+
+<p><%= @comment.excerpt %></p>
+
+<h3>Actions</h3>
+
+<p>
+  <% if @comment.hide == 0 %>
+    <%= button_to 'Spam', :controller => 'comments', :action => 'junk', :id => @comment.id %>
+  <% else %>
+    <%= button_to 'Reprieve', :controller => 'comments', :action => 'reprieve', :id => @comment.id %>
+  <% end %> | 
+  <%= button_to 'Delete', comment_url(@comment), :method => 'delete', :confirm => 'Are you sure?', :delete => true %>
+</p>

@@ -1,0 +1,165 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--
+
+    Methods
+
+  -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Methods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="rdoc-style.css" type="text/css" />
+  <base target="docwin" />
+</head>
+<body>
+<div id="index">
+  <h1 class="section-bar">Methods</h1>
+  <div id="index-entries">
+    <a href="classes/AuthenticatedSystem.html#M000127">access_denied (AuthenticatedSystem)</a><br />
+    <a href="classes/LocationSweeper.html#M000066">after_create (LocationSweeper)</a><br />
+    <a href="classes/CommentSweeper.html#M000069">after_create (CommentSweeper)</a><br />
+    <a href="classes/NewsSweeper.html#M000090">after_create (NewsSweeper)</a><br />
+    <a href="classes/NewsSweeper.html#M000092">after_destroy (NewsSweeper)</a><br />
+    <a href="classes/LocationSweeper.html#M000068">after_destroy (LocationSweeper)</a><br />
+    <a href="classes/CommentObserver.html#M000032">after_save (CommentObserver)</a><br />
+    <a href="classes/LocationSweeper.html#M000067">after_update (LocationSweeper)</a><br />
+    <a href="classes/NewsSweeper.html#M000091">after_update (NewsSweeper)</a><br />
+    <a href="classes/Comment.html#M000014">akismet_options (Comment)</a><br />
+    <a href="classes/NewsController.html#M000072">archive (NewsController)</a><br />
+    <a href="classes/AuthenticatedTestHelper.html#M000120">assert_difference (AuthenticatedTestHelper)</a><br />
+    <a href="classes/AuthenticatedTestHelper.html#M000121">assert_no_difference (AuthenticatedTestHelper)</a><br />
+    <a href="classes/User.html#M000036">authenticate (User)</a><br />
+    <a href="classes/User.html#M000039">authenticated? (User)</a><br />
+    <a href="classes/News.html#M000064">author (News)</a><br />
+    <a href="classes/AuthenticatedTestHelper.html#M000119">authorize_as (AuthenticatedTestHelper)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000125">authorized? (AuthenticatedSystem)</a><br />
+    <a href="classes/ApplicationController.html#M000054">build_map (ApplicationController)</a><br />
+    <a href="classes/CommentsController.html#M000085">bulk (CommentsController)</a><br />
+    <a href="classes/LocationHelper.html#M000109">bus_routes (LocationHelper)</a><br />
+    <a href="classes/Akismet.html#M000010">callAkismet (Akismet)</a><br />
+    <a href="classes/Capistrano/SCM/Subversion.html#M000115">checkout_tag (Capistrano::SCM::Subversion)</a><br />
+    <a href="classes/Opening.html#M000056">closing_day_name (Opening)</a><br />
+    <a href="classes/AdminNotifier.html#M000094">comment (AdminNotifier)</a><br />
+    <a href="classes/Akismet.html#M000007">commentCheck (Akismet)</a><br />
+    <a href="classes/FeedController.html#M000050">comments (FeedController)</a><br />
+    <a href="classes/SubmitController.html#M000019">complete (SubmitController)</a><br />
+    <a href="classes/SessionsController.html#M000034">create (SessionsController)</a><br />
+    <a href="classes/RatingsController.html#M000063">create (RatingsController)</a><br />
+    <a href="classes/LocationController.html#M000103">create (LocationController)</a><br />
+    <a href="classes/NewsController.html#M000076">create (NewsController)</a><br />
+    <a href="classes/CommentsController.html#M000082">create (CommentsController)</a><br />
+    <a href="classes/UsersController.html#M000048">create (UsersController)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000123">current_user (AuthenticatedSystem)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000124">current_user= (AuthenticatedSystem)</a><br />
+    <a href="classes/ApplicationHelper.html#M000134">days_for_select (ApplicationHelper)</a><br />
+    <a href="classes/CommentsController.html#M000088">destroy (CommentsController)</a><br />
+    <a href="classes/SessionsController.html#M000035">destroy (SessionsController)</a><br />
+    <a href="classes/LocationController.html#M000106">destroy (LocationController)</a><br />
+    <a href="classes/NewsController.html#M000078">destroy (NewsController)</a><br />
+    <a href="classes/LocationController.html#M000104">edit (LocationController)</a><br />
+    <a href="classes/CommentsController.html#M000083">edit (CommentsController)</a><br />
+    <a href="classes/User.html#M000037">encrypt (User)</a><br />
+    <a href="classes/User.html#M000038">encrypt (User)</a><br />
+    <a href="classes/User.html#M000045">encrypt_password (User)</a><br />
+    <a href="classes/LocationController.html#M000100">feed (LocationController)</a><br />
+    <a href="classes/Location.html#M000030">find_similar (Location)</a><br />
+    <a href="classes/User.html#M000044">forget_me (User)</a><br />
+    <a href="classes/NewsHelper.html#M000107">format_extended (NewsHelper)</a><br />
+    <a href="classes/ApplicationHelper.html#M000135">google_analytics (ApplicationHelper)</a><br />
+    <a href="classes/Akismet.html#M000006">hasVerifiedKey (Akismet)</a><br />
+    <a href="classes/Location.html#M000029">highly_rated (Location)</a><br />
+    <a href="classes/SidebarController.html#M000058">highly_rated (SidebarController)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000130">included (AuthenticatedSystem)</a><br />
+    <a href="classes/CommentsController.html#M000079">index (CommentsController)</a><br />
+    <a href="classes/WelcomeController.html#M000070">index (WelcomeController)</a><br />
+    <a href="classes/AdminController.html#M000002">index (AdminController)</a><br />
+    <a href="classes/NewsController.html#M000071">index (NewsController)</a><br />
+    <a href="classes/FeedController.html#M000053">index (FeedController)</a><br />
+    <a href="classes/LocationController.html#M000095">index (LocationController)</a><br />
+    <a href="classes/RatingsController.html#M000062">index (RatingsController)</a><br />
+    <a href="classes/SubmitController.html#M000017">index (SubmitController)</a><br />
+    <a href="classes/CommentsController.html#M000086">junk (CommentsController)</a><br />
+    <a href="classes/SidebarController.html#M000059">least_comments (SidebarController)</a><br />
+    <a href="classes/Location.html#M000028">least_comments (Location)</a><br />
+    <a href="classes/LocationController.html#M000096">list (LocationController)</a><br />
+    <a href="classes/CommentsController.html#M000089">load_comment (CommentsController)</a><br />
+    <a href="classes/LocationHelper.html#M000110">location_link (LocationHelper)</a><br />
+    <a href="classes/FeedController.html#M000051">locations (FeedController)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000122">logged_in? (AuthenticatedSystem)</a><br />
+    <a href="classes/AuthenticatedTestHelper.html#M000118">login_as (AuthenticatedTestHelper)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000132">login_from_basic_auth (AuthenticatedSystem)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000133">login_from_cookie (AuthenticatedSystem)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000131">login_from_session (AuthenticatedSystem)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000126">login_required (AuthenticatedSystem)</a><br />
+    <a href="classes/LocationController.html#M000097">map (LocationController)</a><br />
+    <a href="classes/SearchHelper.html#M000113">map_empty? (SearchHelper)</a><br />
+    <a href="classes/Comment.html#M000011">mark_as_ham (Comment)</a><br />
+    <a href="classes/Comment.html#M000012">mark_as_spam (Comment)</a><br />
+    <a href="classes/ApplicationHelper.html#M000138">midpoint (ApplicationHelper)</a><br />
+    <a href="classes/SidebarController.html#M000060">most_comments (SidebarController)</a><br />
+    <a href="classes/Location.html#M000027">most_comments (Location)</a><br />
+    <a href="classes/ApplicationHelper.html#M000139">my_select_time (ApplicationHelper)</a><br />
+    <a href="classes/Location.html#M000023">neighbourhoods= (Location)</a><br />
+    <a href="classes/SessionsController.html#M000033">new (SessionsController)</a><br />
+    <a href="classes/LocationController.html#M000102">new (LocationController)</a><br />
+    <a href="classes/CommentsController.html#M000081">new (CommentsController)</a><br />
+    <a href="classes/Akismet.html#M000003">new (Akismet)</a><br />
+    <a href="classes/NewsController.html#M000075">new (NewsController)</a><br />
+    <a href="classes/UsersController.html#M000047">new (UsersController)</a><br />
+    <a href="classes/FeedController.html#M000052">news (FeedController)</a><br />
+    <a href="classes/Location.html#M000025">open_now (Location)</a><br />
+    <a href="classes/Opening.html#M000055">opening_day_name (Opening)</a><br />
+    <a href="classes/Location.html#M000022">openings= (Location)</a><br />
+    <a href="classes/SidebarController.html#M000057">options (SidebarController)</a><br />
+    <a href="classes/SearchHelper.html#M000114">other_type (SearchHelper)</a><br />
+    <a href="classes/User.html#M000046">password_required? (User)</a><br />
+    <a href="classes/SubmitController.html#M000018">preview (SubmitController)</a><br />
+    <a href="classes/ApplicationHelper.html#M000136">random_sidebar (ApplicationHelper)</a><br />
+    <a href="classes/LocationController.html#M000101">rdf (LocationController)</a><br />
+    <a href="classes/SidebarController.html#M000061">recent_comments (SidebarController)</a><br />
+    <a href="classes/Location.html#M000026">recent_comments (Location)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000129">redirect_back_or_default (AuthenticatedSystem)</a><br />
+    <a href="classes/Capistrano/Configuration.html#M000117">release_path (Capistrano::Configuration)</a><br />
+    <a href="classes/User.html#M000041">remember_me (User)</a><br />
+    <a href="classes/User.html#M000042">remember_me_for (User)</a><br />
+    <a href="classes/User.html#M000043">remember_me_until (User)</a><br />
+    <a href="classes/User.html#M000040">remember_token? (User)</a><br />
+    <a href="classes/CommentsController.html#M000087">reprieve (CommentsController)</a><br />
+    <a href="classes/SearchController.html#M000049">results (SearchController)</a><br />
+    <a href="classes/Location.html#M000024">search (Location)</a><br />
+    <a href="classes/LocationHelper.html#M000111">select_neighbourhood (LocationHelper)</a><br />
+    <a href="classes/ApplicationHelper.html#M000137">select_zip (ApplicationHelper)</a><br />
+    <a href="classes/Akismet.html#M000004">setProxy (Akismet)</a><br />
+    <a href="classes/LocationHelper.html#M000112">setup_neighbourhoods (LocationHelper)</a><br />
+    <a href="classes/NewsController.html#M000074">show (NewsController)</a><br />
+    <a href="classes/LocationController.html#M000099">show (LocationController)</a><br />
+    <a href="classes/CommentsController.html#M000080">show (CommentsController)</a><br />
+    <a href="classes/NeighbourhoodsController.html#M000001">show (NeighbourhoodsController)</a><br />
+    <a href="classes/Comment.html#M000013">spam_check (Comment)</a><br />
+    <a href="classes/AuthenticatedSystem.html#M000128">store_location (AuthenticatedSystem)</a><br />
+    <a href="classes/NewsController.html#M000073">story (NewsController)</a><br />
+    <a href="classes/AdminNotifier.html#M000093">submission (AdminNotifier)</a><br />
+    <a href="classes/Akismet.html#M000009">submitHam (Akismet)</a><br />
+    <a href="classes/Akismet.html#M000008">submitSpam (Akismet)</a><br />
+    <a href="classes/Capistrano/Configuration.html#M000116">tag_path (Capistrano::Configuration)</a><br />
+    <a href="classes/SubmitController.html#M000020">thankyou (SubmitController)</a><br />
+    <a href="classes/LocationHelper.html#M000108">time_format (LocationHelper)</a><br />
+    <a href="classes/News.html#M000065">to_param (News)</a><br />
+    <a href="classes/Neighbourhood.html#M000021">to_param (Neighbourhood)</a><br />
+    <a href="classes/Location.html#M000031">to_param (Location)</a><br />
+    <a href="classes/NewsController.html#M000077">update (NewsController)</a><br />
+    <a href="classes/LocationController.html#M000105">update (LocationController)</a><br />
+    <a href="classes/CommentsController.html#M000084">update (CommentsController)</a><br />
+    <a href="classes/Comment.html#M000015">valid_commentable (Comment)</a><br />
+    <a href="classes/Comment.html#M000016">valid_ip_address (Comment)</a><br />
+    <a href="classes/Akismet.html#M000005">verifyAPIKey (Akismet)</a><br />
+    <a href="classes/LocationController.html#M000098">view (LocationController)</a><br />
+  </div>
+</div>
+</body>
+</html>

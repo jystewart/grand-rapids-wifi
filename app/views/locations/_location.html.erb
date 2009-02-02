@@ -1,0 +1,13 @@
+<li>
+	<h3><%= link_to h(location.name), location_path(location) %></h3>
+    <p><%= location.description %></p>
+    <dl>
+        <dt>Cost:</dt>
+            <dd><% if location.free %>Access is free<% else %>There may be a cost to use this hotspot<% end %></dd>
+        <dt>Address: </dt>
+            <dd class="adr"><span class="street-address"><%= location.street %></span>, <span class="locality"><%= location.city %></span> <span class="region"><%= location.state %></span> <span class="pcode"><%= location.zip %></span></dd>
+        <% if location.url and ! location.url.empty? %><dt>Website: </dt> 
+            <dd><%= link_to location.url, location.url, :class => 'url' %></dd><% end %>
+    </dl>
+    <p><%= link_to 'View more...', location_path(location) %></p>
+</li>

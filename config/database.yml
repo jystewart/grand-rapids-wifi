@@ -1,0 +1,13 @@
+development:
+  adapter: mysql
+  host: localhost
+  username: root
+  password: 
+  database: wifi_development
+
+test:
+  adapter: mysql
+  host: localhost
+  username: root
+  password: 
+  database: wifi_test

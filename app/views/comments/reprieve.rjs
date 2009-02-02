@@ -1,0 +1,4 @@
+# page['#comment-row-' + @comment.id.to_s].setAttribute('id', '#comment-row-' + @comment.id.to_s + '-redundant');
+# page['#comment-row-' + @comment.id.to_s + '-redundant'].after render(:partial => 'table_row.html.erb', :locals => {:comment => @comment});
+# page['#comment-row-' + @comment.id.to_s + '-redundant'].remove();
+page << "window.location.reload()";

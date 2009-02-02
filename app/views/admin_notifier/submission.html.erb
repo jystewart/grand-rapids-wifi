@@ -1,0 +1,14 @@
+A new location has been added to <%= SITE_NAME %>:
+
+<%= @location.name %>
+<%= @location.street%> <%= @location.city %> <%= @location.zip %>
+
+By:
+
+<%= @submitter.name %>
+<%= @submitter.email %>
+<%= @submitter.connection %>
+
+Preview it at: <%= location_url(@location) %>
+
+Edit it at: <%= edit_location_url(@location) %>

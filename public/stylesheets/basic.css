@@ -1,0 +1,234 @@
+body {
+  font-family: serif;
+  background-image: url(/images/calder.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+
+#container {
+  overflow: hidden;
+}
+
+#footer {
+  margin-top: 1em;
+  padding-top: 1em;
+  padding-bottom: 0.6em;
+  border-top: 1px solid black;
+  clear: both;
+  text-align: center;
+}
+
+#content {
+  margin-left: 18%;
+  margin-top: 60px;
+}
+
+#content h2 {
+  padding-bottom: 0px;
+  margin-bottom: 3px;
+}
+#content p {
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 0.75em;
+}
+
+#navigation {
+  position: absolute;
+  top: 100px;
+  border-right: 1px solid black;
+  width: 15%;
+  padding: 0.5%;
+  /*margin-left: -83%;*/
+}
+
+.hreview object {
+  width: 0px;
+  height: 0px;
+}
+
+dt {
+  float: left;
+  clear: left;
+  font-weight: bold;
+  width: 6em;
+}
+
+#navigation {
+  text-align: center;
+}
+#navigation ul li h3 {
+  margin-top: 0.75em;
+}
+#navigation ul {
+  text-align: left;
+  list-style: none;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+#navigation ul ul {
+  margin-left: 1em;
+}
+.reviewer {
+  font-style: italic;
+}
+
+.hreview {
+  padding-top: 10px;
+  border-bottom: 1px solid black;
+  max-width: 600px;
+}
+.hreview h4 {
+  margin: 0px;
+}
+.hreview p {
+  margin-top: 3px;
+}
+
+#comment-form label {
+  font-weight: bold;
+  float: left;
+  clear: both;
+  width: 12em;
+}
+#map-div, #map {
+  border: 1px solid grey; 
+  background-color: lightblue; 
+  overflow: hidden; 
+  width: 300px; 
+  height: 300px; 
+  float: right
+}
+div.results div#map {
+  width:  700px;
+  height:  500px;
+  float:  none;
+}
+#content p {
+  max-width: 600px;
+}
+#comment-form input[type="submit"] {
+  margin-left: 18em;
+}
+h2.org {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+#locationnav {
+  margin-top: 3px;
+  padding-top: 0px;
+  margin-bottom: 15px;
+  padding-bottom: 0px;
+}
+a img {
+  border: 0px;
+}
+#searchbox {
+  position: absolute; 
+  top: 5px; 
+  right: 15px; 
+  text-align: center; 
+  border: 1px dotted black; 
+  padding: 0.25em 1em;
+}
+.message {
+  color: green;
+}
+#hotspot-list {
+  list-style: none;
+}
+#hotspot-list li {
+  border-bottom: 1px solid black;
+  padding-top: 1em;
+}
+#hotspot-list h3 a {
+  color: black;
+  text-decoration: none;
+}
+#hotspot-list h3 a:hover {
+  text-decoration: underline;
+}
+.story {
+  border-bottom: 1px solid black;
+  max-width: 600px;
+}
+.story h3 {
+  padding-bottom: 0px;
+  margin-bottom: 3px;
+}
+.story h3 a {
+  text-decoration: none;
+  color: black;
+}
+.story p {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+.hcard .geo {
+  display: none;
+}
+#overview p.closed {
+  border: 1px solid red; 
+  padding: 5px; 
+  width: 400px; 
+  font-weight: bold; 
+  color: red;
+}
+h3.mapbubble {
+  font-size: 100%; 
+  padding: 0px; 
+  margin: 0px;
+}
+.hidden-metadata {
+  display: none;
+}
+div.comment-methods {
+  padding-bottom: 0.5em;
+}
+div.comment-methods form {
+  display: inline;
+}
+div.comment-methods button {
+  display: inline;
+}
+div.comment-methods form div {
+  display:  inline;
+}
+div.hfeed {
+  width: 600px;
+  float: left;
+}
+div#news-archives {
+  padding-top: 20px;
+  margin-left: 620px;
+}
+div#news-archives ul {
+  list-style: none;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+div.hentry {
+  width: 600px;
+}
+div.hotspot-list-pagination {
+  margin-top: 30px; 
+  font-size: 120%; 
+  margin-left: 40px;
+}
+#hostpot-list {
+  margin-top: 0px; 
+  padding-top: 0px;
+}
+#hotspot-list li {
+  padding-top: 0px;
+}
+#opening-hours-explanation dt {
+	float: none; 
+	clear: none; 	
+	width: auto; 
+	font-weight: normal;
+}
+#opening-hours-explanation dd {
+	font-style: italic;
+}

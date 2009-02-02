@@ -1,0 +1,7 @@
+bob:
+  id: 1
+  name: Robert Roberts
+  hobby_id: 1
+alice:
+  id: 2
+  name: Alice Roberts

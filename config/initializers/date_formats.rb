@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:uf] = '%Y-%m-%dT%H:%M:%S'

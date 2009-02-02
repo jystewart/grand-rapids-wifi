@@ -1,0 +1,12 @@
+<%- form_tag :controller => 'search', :action => 'results' do  -%>
+    <p>Find your nearest hotspots:
+        <br />
+        <label for="location_zip" class="hidden-metadata">Zip Code: </label>
+        <%= select_zip %>
+        <input type="submit" value="Search" />
+    </p>
+    <p><a href="/open/now">spots open now</a> | 
+            <%= link_to 'map', :controller => 'location', :action => 'map' %>
+        <br /><%= link_to 'advanced search', :controller => 'search' %> | 
+            <%= link_to 'full list', :controller => 'location' %></p>
+<% end %>

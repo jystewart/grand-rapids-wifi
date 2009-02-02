@@ -1,0 +1,6 @@
+production:
+  adapter: mysql
+  database: wifi_production
+  username: 
+  password: 
+  socket: /tmp/mysql.sock

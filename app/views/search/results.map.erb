@@ -1,0 +1,12 @@
+<h2>Your Search Results</h2>
+
+<p>(<em><a href="/search/results?search<%= other_type %>">View These Results As A List</a></em>)</p>
+
+<% if map_empty? %>
+<p>Either your search returned no results or we don't have the precise location of the results. Click above to view the results
+    as a list, or <%= link_to 'here', :controller => 'search' %> to search again.</p>
+<% end %>
+
+<div class="results">
+  <%= @map.div %>
+</div>

@@ -1,0 +1,44 @@
+<div id="content">
+    <%= render :partial => 'shared/searchbox' %>
+    
+    <div>
+        <h2>Latest Updates</h2>
+
+        <ul id="locations">
+          <% @locations.each do |location| %>
+          <li class="vcard"><%= link_to h(location.name), location_path(location), :class => 'url fn org' %>
+              <br /><span class="adr">
+                <span class="street-address"><%= location.street %></span>, 
+                <span class="locality">Grand Rapids</span>
+                <span class="region hidden-metadata">MI</span>
+                <span class="postal-code"><%= location.zip %></span>
+              </span></li>
+          <% end %>
+        </ul>
+    </div>
+
+    <div>
+        <h2>Recent News</h2>
+
+        <ul id="news">
+          <% @stories.each do |story| %>
+          <li class="hentry">
+            <%= link_to h(story.headline), {:controller => 'news', :action => 'story', :id => story.permalink}, 
+							:class => 'bookmark entry-title' %> 
+            (<span class="published" title="<%= story.created_at.to_s(:uf) %>"><%= story.created_at.strftime('%D') %></span>)
+						<br /><span class="entry-content"><%= story.content %></span>
+						<%- if story.comments.empty? -%>
+							<br /><%= link_to 'Post a comment', news_url(story.permalink) %>
+						<%- else -%>
+							<br /><%= link_to pluralize(story.comments.size, 'comment', 'comments'), news_url(story.permalink) %>
+						<%- end -%>
+					</li>
+          <% end %>
+        </ul>
+    </div>
+</div>
+
+<div id="sidebars">
+    <%= random_sidebar %>
+    <%= random_sidebar %>
+</div>

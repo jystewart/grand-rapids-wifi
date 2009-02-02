@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <%= stylesheet_link_tag 'basic' %>
+  <%= auto_discovery_link_tag :atom, {:controller => 'news', :action => 'index', :format => 'atom'}, 
+		{:title => 'News Story Atom Feed'} %>
+
+  <% if @map %>
+		<%= javascript_include_tag 'jquery' %>
+    <%= Mapstraction.header(:google) %>
+		<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+			map = new Mapstraction("map","google");
+			map.addSmallControls();
+		});
+		</script>
+  <% end %>
+
+  <title><%= SITE_NAME %>: Wireless Hotspots in Grand Rapids Michigan</title>
+</head>
+<body>
+
+    <div id="container">
+        <h1><%= link_to image_tag('/images/grwifi.png', :alt => SITE_NAME + ' Logo'), :controller => 'welcome' %></h1>
+
+        <% if flash[:notice] %><p class="message"><%= flash[:notice] %></p></div><% end %>
+
+        <div id="searchbox"><%= render :partial => 'shared/searchbox.html.erb' %></div>
+
+        <div id="content">
+            <%= @content_for_layout %>
+        </div>
+
+        <%= render :partial => 'shared/navigation.html.erb' %>
+    </div>
+
+		<%= google_analytics %>
+</body>
+</html>
