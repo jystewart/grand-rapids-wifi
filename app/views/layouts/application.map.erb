@@ -29,7 +29,7 @@
         <div id="searchbox"><%= render :partial => 'shared/searchbox.html.erb' %></div>
 
         <div id="content">
-            <%= @content_for_layout %>
+            <%= yield %>
         </div>
 
         <%= render :partial => 'shared/navigation.html.erb' %>
