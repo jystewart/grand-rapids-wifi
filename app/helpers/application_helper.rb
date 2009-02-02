@@ -19,12 +19,8 @@ module ApplicationHelper
   end
 
   def random_sidebar
-    @sidebars_used = Array.new if ! @sidebars_used
-    sidebars = SidebarController.options
-    options = sidebars - @sidebars_used
-    to_use = options[rand(options.size - 1)]
-    @sidebars_used.push(to_use)
-    render_component :controller => 'sidebar', :action => to_use
+    @sidebar_title, @sidebar_locations = Sidebar.random
+    render :partial => 'shared/sidebar'
   end
   
   def select_zip

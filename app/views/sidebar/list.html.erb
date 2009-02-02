@@ -1,9 +1,0 @@
-<div class="sidebar">
-  <h3><%=h @sidebar_title %></h3>
-
-  <ul>
-    <% for location in @locations %>
-      <li><%= link_to h(location.name), location_path(location) %></li>
-    <% end %>
-  </ul>
-</div>
