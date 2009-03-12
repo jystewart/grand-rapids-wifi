@@ -10,11 +10,9 @@
 		<%= javascript_include_tag 'jquery' %>
     <%= Mapstraction.header(:google) %>
 		<script type="text/javascript" charset="utf-8">
-		$(document).ready(function(){
-			map = new Mapstraction("map","google");
-			map.addSmallControls();
-		});
+
 		</script>
+		<%= @map.to_html %>
   <% end %>
 
   <title><%= SITE_NAME %>: Wireless Hotspots in Grand Rapids Michigan</title>
