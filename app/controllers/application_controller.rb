@@ -11,27 +11,28 @@ class ApplicationController < ActionController::Base
     
       @map = Mapstraction.new('map', :google)
       @map.control_init(:small => true)
-
-      if locations.size > 1 
+      
+      mappables = locations.reject { |l| l.geocode.nil? }
+      
+      if mappables.size > 1 
         longitude = Geocode.average(:longitude)
         latitude = Geocode.average(:latitude)
-        sorted_latitudes = locations.collect(&:geocode).compact.collect(&:latitude).sort
-        sorted_longitudes = locations.collect(&:geocode).compact.collect(&:longitude).sort
-        @map.center_zoom_on_bounds_init([[sorted_latitudes.first, sorted_longitudes.first], 
-          [sorted_latitudes.last, sorted_longitudes.last]])
-      elsif locations.first.nil? or locations.first.geocode.nil?
+        sorted_latitudes = mappables.collect(&:geocode).compact.collect(&:latitude).sort
+        sorted_longitudes = mappables.collect(&:geocode).compact.collect(&:longitude).sort
+        @map.center_zoom_on_bounds_init([[sorted_latitudes.first, sorted_longitudes.first], [sorted_latitudes.last, sorted_longitudes.last]])
+      elsif mappables.empty? or mappables.first.geocode.nil?
         return
       else
-        longitude = locations.first.geocode.longitude
-        latitude = locations.first.geocode.latitude
+        longitude = mappables.first.geocode.longitude
+        latitude = mappables.first.geocode.latitude
         @map.center_zoom_init([latitude, longitude], 14)
       end
 
-      locations.each do |@location|
-        unless @location.nil? or @location.geocode.nil?
-          @map.marker_init(Marker.new([@location.geocode.latitude, @location.geocode.longitude], 
-            :label => @location.name, :info_bubble => render_to_string(:partial => 'locations/bubble.html.erb')))
-        end
+      mappables.each do |location|
+        info_bubble = render_to_string(
+          :partial => 'locations/bubble.html.erb', :locals => {:location => location}
+        )
+        @map.marker_init(Marker.new([location.geocode.latitude, location.geocode.longitude], :label => location.name, :info_bubble => info_bubble))
       end
     end
 end
