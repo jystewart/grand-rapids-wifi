@@ -110,14 +110,14 @@ class LocationsController < ApplicationController
   
   private
   def load_location
-    if ! params[:id].blank? and params[:id].match(/^\d+$/)
+    if params[:id] and params[:id].match(/^\d+$/)
       @location = Location.find(params[:id])
       if params[:format] and params[:format] != 'html'
         redirect_to location_url(@location, :format => params[:format]), :status => 301 and return
       else
         redirect_to location_url(@location), :status => 301 and return
       end
-    elsif logged_in? and ! params[:id].blank?
+    elsif logged_in? and params[:id]
       @location = Location.find(:first, :conditions => {:permalink => params[:id]})
     else
       @location = Location.find(:first, 

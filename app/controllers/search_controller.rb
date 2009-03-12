@@ -12,6 +12,7 @@ class SearchController < ApplicationController
     
     if params[:format] and params[:format] == 'map'
       build_map @locations
+      response.headers['Content-Type'] = 'text/html; charset=utf-8'
       render and return
     end
     
