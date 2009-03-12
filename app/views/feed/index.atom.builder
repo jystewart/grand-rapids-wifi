@@ -19,15 +19,15 @@ xml.feed "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host}/fee
     xml.entry do
       case entry
       when Location
-        xml << render(:partial => 'location/location', :type => :builder, :locals => {:entry => entry})
+        xml << render(:partial => 'locations/location', :format => :atom, :locals => {:entry => entry})
       when Comment
         if entry.commentable_type == 'Location'
-          xml << render(:partial => 'comments/location', :locals => {:entry => entry})
+          xml << render(:partial => 'comments/location', :format => :atom, :locals => {:entry => entry})
         elsif entry.commentable_type == 'News'
-          xml << render(:partial => 'comments/news', :locals => {:entry => entry})
+          xml << render(:partial => 'comments/news', :format => :atom, :locals => {:entry => entry})
         end
       when News
-        xml << render(:partial => 'news/story', :locals => {:entry => entry})
+        xml << render(:partial => 'news/story', :format => :atom, :locals => {:entry => entry})
       end
     end
   end
