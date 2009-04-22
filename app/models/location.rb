@@ -36,7 +36,7 @@ class Location < ActiveRecord::Base
   def openings=(opening_list)
     openings.delete_all
     opening_list.each do |key, new_opening|
-      if new_opening['opening_hour']
+      if new_opening['opening_hour'] and new_opening['opening_minute'] and new_opening['closing_hour'] and new_opening['closing_minute']
         new_opening['opening_time'] = new_opening.delete('opening_hour') + ':' + new_opening.delete('opening_minute') + ':00'
         new_opening['closing_time'] = new_opening.delete('closing_hour') + ':' + new_opening.delete('closing_minute') + ':00'
       end
