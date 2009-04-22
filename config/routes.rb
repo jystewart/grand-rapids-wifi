@@ -35,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.archive 'news/archive/:year/:month', :controller => 'news', :action => 'archive'
 
-  map.connect 'rdf', :controller => 'location', :action => 'index', :format => 'rdf'
+  map.connect 'rdf', :controller => 'locations', :action => 'index', :format => 'rdf'
 
   # map.connect '/location/view/:id.:format', :controller => 'location', :action => 'view'
   # map.connect '/location/:id.:format', :controller => 'location', :action => 'view'
