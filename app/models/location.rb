@@ -111,24 +111,11 @@ class Location < ActiveRecord::Base
   end
 
   def self.most_comments(limit = 5)
-    self.find_by_sql(['SELECT locations.name,
-      locations.permalink,
-      COUNT(comments.id) AS comments
-    FROM locations LEFT JOIN comments
-    ON locations.id = comments.commentable_id
-    WHERE comments.commentable_type = \'Location\'
-    GROUP BY name
-    ORDER BY comments DESC LIMIT ?', limit])
+    all(:select => 'name, permalink, comments_count', :order => 'comments_count DESC', :limit => limit, :group => 'name')
   end
 
   def self.least_comments(limit = 5)
-    self.find_by_sql(['SELECT locations.name,
-      locations.permalink,
-      COUNT(comments.id) AS comments
-    FROM locations LEFT JOIN comments
-    ON locations.id = comments.commentable_id
-    GROUP BY name
-    ORDER BY comments ASC LIMIT ?', limit])
+    all(:select => 'name, permalink, comments_count', :order => 'comments_count ASC', :limit => limit, :group => 'name')
   end
 
   def self.highly_rated(limit = 5)

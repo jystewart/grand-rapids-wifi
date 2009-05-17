@@ -3,7 +3,7 @@ require 'ipaddr'
 
 class Comment < ActiveRecord::Base
 
-  belongs_to :commentable, :polymorphic => true
+  belongs_to :commentable, :polymorphic => true, :counter_cache => true
   alias_attribute :updated_at, :created_at
 
   validates_presence_of :excerpt
