@@ -7,9 +7,14 @@ class MoreIndices < ActiveRecord::Migration
     add_index :locations_neighbourhoods, :neighbourhood_id
     
     change_column :comments, :commentable_type, :string, :limit => 24
+    
+    add_index :news, :created_at
+    add_index :locations, :updated_at
   end
 
   def self.down
+    remove_index :locations, :updated_at
+    remove_index :news, :created_at
     change_column :comments, :commentable_type, :string
     remove_index :locations_neighbourhoods, :neighbourhood_id
     remove_index :openings, :opening_day
