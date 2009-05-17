@@ -117,13 +117,12 @@ class LocationsController < ApplicationController
       else
         redirect_to location_url(@location), :status => 301 and return
       end
-    elsif logged_in? and params[:id]
-      @location = Location.find(:first, :conditions => {:permalink => params[:id]})
-    else
-      @location = Location.find(:first, 
-        :conditions => ['permalink = ? AND status IN (?, ?, ?)', params[:id], 'proven', 'rumored', 'closed'])
+    elsif params[:id]
+      conditions = {:permalink => params[:id]}
+      conditions[:status] = ['proven', 'rumored', 'closed'] unless logged_in?
+      @location = Location.first(:conditions => conditions, :include => [:geocoding, :neighbourhoods, :openings])
     end
     
-    render(:file => "#{RAILS_ROOT}/public/404.html", :status => "404 Not Found") if @location.nil?
+    render_404 if @location.nil?
   end
 end
