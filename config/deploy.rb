@@ -1,19 +1,19 @@
-set :application, "wifi"
+set :application, "grwifi"
 
 set :scm, :git
 set :repository,  "git@github.com:jystewart/grand-rapids-wifi.git"
 set :branch, "master"
 
-role :web, "grwifi.net"
-role :app, "grwifi.net"
-role :db, "grwifi.net", :primary => true
+role :web, "jystewart.vm.bytemark.co.uk"
+role :app, "jystewart.vm.bytemark.co.uk"
+role :db, "jystewart.vm.bytemark.co.uk", :primary => true
 
-set :deploy_to, "/home/grwifi"
+set :deploy_to, "/home/#{application}"
 
 namespace :deploy do
-  desc "Restart thin"
+  desc "Restart passenger"
   task :restart, :roles => :web do
-    "thin -C /etc/thin/wifi.thin restart"
+    "touch #{current_path}/tmp/restart.txt"
   end
 end
 
