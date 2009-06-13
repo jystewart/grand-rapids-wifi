@@ -19,10 +19,8 @@ end
 
 desc "Link in the production configuration"
 task :link_config do
-  run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 end
 
-desc "After updating the code"
-task :after_update, :roles => :app do
-  link_config
-end
+before 'deploy:migrate', "link_config"
+before 'deploy:restart', "link_config"
