@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: locations
+#
+#  id             :integer(4)      not null, primary key
+#  name           :string(255)
+#  street         :string(255)
+#  city           :string(255)
+#  state          :string(2)
+#  zip            :string(10)
+#  description    :text
+#  url            :string(255)
+#  status         :string(10)
+#  visibility     :string(3)       default("no"), not null
+#  created_at     :datetime        not null
+#  email          :string(128)
+#  permalink      :string(32)
+#  ssid           :string(32)
+#  free           :boolean(1)
+#  phone_number   :string(20)
+#  updated_at     :datetime
+#  country        :string(255)
+#  comments_count :integer(4)      default(0), not null
+#
+
 --- 
 location_00048: 
   visibility: "yes"

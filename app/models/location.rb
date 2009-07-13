@@ -1,7 +1,48 @@
+# == Schema Information
+#
+# Table name: locations
+#
+#  id             :integer(4)      not null, primary key
+#  name           :string(255)
+#  street         :string(255)
+#  city           :string(255)
+#  state          :string(2)
+#  zip            :string(10)
+#  description    :text
+#  url            :string(255)
+#  status         :string(10)
+#  visibility     :string(3)       default("no"), not null
+#  created_at     :datetime        not null
+#  email          :string(128)
+#  permalink      :string(32)
+#  ssid           :string(32)
+#  free           :boolean(1)
+#  phone_number   :string(20)
+#  updated_at     :datetime
+#  country        :string(255)
+#  comments_count :integer(4)      default(0), not null
+#
+
 class Location < ActiveRecord::Base
-  attr_accessor :distance
+  
   acts_as_geocodable :address => {:street => :street, :locality => :city, :region => 'MI', 
     :postal_code => :zip, :country => :country}, :normalize_address => false
+    
+  define_index do
+    indexes name
+    indexes description
+    indexes street
+
+    has zip
+    has free
+    has geocoding.geocode(:id), :as => :geocode_id
+    has 'RADIANS(geocodes.latitude)', :as => :latitude, :type => :float
+    has 'RADIANS(geocodes.longitude)', :as => :longitude, :type => :float
+    
+    where "visibility = \'yes\'"
+  end
+  
+  attr_accessor :distance
     
   sends_pings
 
@@ -26,8 +67,9 @@ class Location < ActiveRecord::Base
   validates_inclusion_of :visibility, :in => %w( yes no ), :allow_nil => false
   validates_inclusion_of :status, :in => %w(rumored proven closed)
   
-  delegate :latitude, :to => :geocode
-  delegate :longitude, :to => :geocode
+  named_scope :zip_codes, :group => 'zip', :select => 'zip', :order => 'zip'
+  # delegate :latitude, :to => :geocode
+  # delegate :longitude, :to => :geocode
   
   alias_attribute :title, :name
   
@@ -53,97 +95,54 @@ class Location < ActiveRecord::Base
     return
   end
 
-  def self.search(location = HashWithIndifferentAccess.new, date = nil, keywords = nil)
-    options = { :group => 'locations.id' }
-    cond = Caboose::EZ::Condition.new
-    cond << ['visibility = ?', 'yes']
-    cond << ['zip = ?', location[:zip]] unless location[:zip].blank?
-    cond << 'free = 1' if location[:free] == 1
-    
-    if keywords.is_a?(String)
-      cond << ['description LIKE ?', '%' + keywords + '%']
-    elsif keywords.is_a?(Array)
-      keywords[0].split(' ').each { |keyword| cond << ['description LIKE ?', '%' + keyword + '%'] }
+  class <<self
+    def open_now
+      all(:include => :openings, :conditions => 
+        ['visibility = ? AND ? BETWEEN openings.opening_time AND openings.closing_time AND 
+        ? BETWEEN openings.opening_day AND openings.closing_day', 
+        'yes', Time.now.strftime('%H:%M'), Time.now.wday])
     end
 
-    days = %w(monday tuesday wednesday thursday friday saturday sunday)
-    if date.is_a?(Hash) and days.include?(date['day'])
-      options[:include] ||= []
-      options[:include] << :openings
-      
-      day_index = days.index(date['day']) + 1
-      time = date['hour'].to_s + ':' + date['minute'].to_s + ':00'
-
-      cond << ['? BETWEEN openings.opening_day and openings.closing_day', day_index]
-      cond << ['? BETWEEN openings.opening_time AND openings.closing_time', time]
+    def recent_comments(limit = 5)
+      find_by_sql(['SELECT locations.id, locations.name, comments.blog_name AS blog_name, permalink
+      FROM comments,locations
+      WHERE
+        comments.commentable_type = \'Location\' AND
+        comments.commentable_id = locations.id AND
+        comments.hide != 1
+      GROUP BY locations.id
+      ORDER BY comments.created_at DESC, comments.id DESC LIMIT ?', limit])
     end
 
-    options[:conditions] = cond.to_sql
-    
-    unless location[:address].blank?
-      options[:origin] = location[:address]
-      options[:order] = 'distance ASC'
+    def most_comments(limit = 5)
+      all(:select => 'name, permalink, comments_count', :order => 'comments_count DESC', :limit => limit, :group => 'name')
     end
-    
-    @locations = find(:all, options)
-  end
 
-  def self.open_now
-    find(:all, :include => :openings, :conditions => 
-      ['visibility = ? AND ? BETWEEN openings.opening_time AND openings.closing_time AND 
-      ? BETWEEN openings.opening_day AND openings.closing_day', 
-      'yes', Time.now.strftime('%H:%M'), Time.now.wday])
-  end
+    def least_comments(limit = 5)
+      all(:select => 'name, permalink, comments_count', :order => 'comments_count ASC', :limit => limit, :group => 'name')
+    end
 
-  def self.recent_comments(limit = 5)
-    self.find_by_sql(['SELECT
-      locations.id,
-      locations.name,
-      comments.blog_name AS blog_name,
-      permalink
-    FROM comments,locations
-    WHERE
-      comments.commentable_type = \'Location\' AND
-      comments.commentable_id = locations.id AND
-      comments.hide != 1
-    GROUP BY locations.id
-    ORDER BY comments.created_at DESC, comments.id DESC LIMIT ?', limit])
-  end
+    def highly_rated(limit = 5)
+      find_by_sql(['SELECT locations.permalink, locations.name, locations.id AS id,
+          SUM(rating)/COUNT(rating) AS average, COUNT(rating) AS votes
+        FROM locations, votes
+        WHERE 
+          votes.location_id = locations.id
+        GROUP BY votes.location_id 
+        HAVING votes > 7
+        ORDER BY average DESC LIMIT ?', limit])
+    end
 
-  def self.most_comments(limit = 5)
-    all(:select => 'name, permalink, comments_count', :order => 'comments_count DESC', :limit => limit, :group => 'name')
-  end
-
-  def self.least_comments(limit = 5)
-    all(:select => 'name, permalink, comments_count', :order => 'comments_count ASC', :limit => limit, :group => 'name')
-  end
-
-  def self.highly_rated(limit = 5)
-    self.find_by_sql(['SELECT 
-        locations.permalink,
-        locations.name,
-        locations.id AS id,
-        SUM(rating)/COUNT(rating) AS average,
-        COUNT(rating) AS votes
-      FROM locations, votes
-      WHERE 
-        votes.location_id = locations.id
-      GROUP BY votes.location_id 
-      HAVING votes > 7
-      ORDER BY average DESC LIMIT ?', limit])
-  end
-
-  def self.find_similar(name)
-    self.find_by_sql(["SELECT
-        MATCH (name, street) AGAINST (?) AS relevance,
-        locations.*
-    FROM
-      locations
-    WHERE
-      MATCH(name, street) AGAINST (?) OR
-      SUBSTRING(name, 1, 5) SOUNDS LIKE SUBSTRING(?, 1 ,5)
-    ORDER BY relevance DESC
-    LIMIT 5", name, name, name])
+    def find_similar(name)
+      find_by_sql(["SELECT MATCH (name, street) AGAINST (?) AS relevance, locations.*
+      FROM
+        locations
+      WHERE
+        MATCH(name, street) AGAINST (?) OR
+        SUBSTRING(name, 1, 5) SOUNDS LIKE SUBSTRING(?, 1 ,5)
+      ORDER BY relevance DESC
+      LIMIT 5", name, name, name])
+    end
   end
 
   def to_param

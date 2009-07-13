@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: openings
+#
+#  id           :integer(4)      not null, primary key
+#  location_id  :integer(4)
+#  opening_day  :integer(4)
+#  closing_day  :integer(4)
+#  opening_time :time
+#  closing_time :time
+#
+
 class Opening < ActiveRecord::Base
   belongs_to :location
   validates_presence_of :opening_day, :opening_time, :closing_day, :closing_time

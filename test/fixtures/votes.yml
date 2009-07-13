@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: votes
+#
+#  id          :integer(4)      not null, primary key
+#  location_id :integer(2)
+#  rating      :integer(1)
+#  voter       :string(15)
+#  created_at  :datetime        not null
+#  aspect_id   :integer(4)
+#
+
 --- 
 vote_00012: 
   rating: 10

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: news
+#
+#  id             :integer(4)      not null, primary key
+#  headline       :string(255)
+#  content        :text(16777215)
+#  external       :string(255)
+#  created_at     :datetime
+#  extended       :text(16777215)
+#  permalink      :string(32)
+#  user_id        :integer(4)
+#  comments_count :integer(4)      default(0), not null
+#
+
 class News < ActiveRecord::Base
   
   sends_pings

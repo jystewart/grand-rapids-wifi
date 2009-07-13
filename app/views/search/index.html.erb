@@ -1,10 +1,19 @@
-<%- form_tag :action => 'results' do -%>
+<%- form_tag search_results_path, :method => :get do -%>
 
 <p class="error">If you would prefer a complete list of locations, please use <a href="/locations">this link</a>.</p>
 
+<h3>Keywords</h3>
+
+<p>Entering text in this box will restrict your search to locations with those keywords in their names or descriptions:</p>
+
+<fieldset id="keywords">
+  <label for="keyword_box">Keywords: </label>
+  <%= text_field_tag 'q', '', :size => 60 %>
+</fieldset>
+
 <h3>Search By Distance</h3>
 
-<p>Please enter an address below to find locations sorted by their distance from you.</p>
+<p>Please enter an address below to find locations within 2 miles.</p>
 <p><em>(eg. 1234 Lake Drive SE, Grand Rapids, MI 49506)</em></p>
 <fieldset>
 <label for="address">Address: </label>
@@ -15,17 +24,7 @@
 
 <p>Please check this box if you want to limit your search to free-to-use hotspots.</p>
 <fieldset>
-
-<p><label for="free">Free-to-use only: </label> <%= check_box 'location', 'free' %></p>
-</fieldset>
-
-<h3>Keywords</h3>
-
-<p>Entering text in this box will restrict your search to locations with those keywords in their names or descriptions:</p>
-
-<fieldset id="keywords">
-  <label for="keyword_box">Keywords: </label>
-  <%= text_field 'keywords', '', :size => 60 %>
+  <p><label for="free">Free-to-use only: </label> <%= check_box 'location', 'free' %></p>
 </fieldset>
 
 <h3>Zip Code</h3>
@@ -34,19 +33,7 @@
 
 <fieldset id="zipfields">
   <label for="zip_code">Zip Code: </label>
-  <%= collection_select 'location', 'zip', Location.find(:all, :group => 'zip'), 'zip', 'zip', {:prompt => '--select--' }%>
-</fieldset>
-
-<h3>Opening Hours</h3>
-
-<p>Select a day and time to restrict your search to locations open at that particular time.</p>
-
-<fieldset id="datetime">
-  <label for="day">Day: </label>
-  <%= select 'date', 'day', ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].collect { |day| [day, day.downcase] }, :include_blank => true %>
-  <label for="time">Time: </label>
-  <%= select_time nil, {:include_blank => true, :minute_step => 15} %>
-
+  <%= collection_select 'location', 'zip', Location.zip_codes, 'zip', 'zip', {:prompt => '--select--' }%>
 </fieldset>
 
 <p><label for="action">Results Format:</label> <%= radio_button 'format', '', 'text' %> Standard <%= radio_button 'format', '', 'map' %> Map</p>

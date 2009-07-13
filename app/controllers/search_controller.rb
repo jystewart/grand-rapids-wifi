@@ -5,9 +5,24 @@ class SearchController < ApplicationController
     if params[:open] == 'now'
       @locations = Location.open_now
     else
+      params[:q] ||= '*'
       params[:location] ||= {}
       params[:location][:zip] ||= params[:zip]
-      @locations = Location.search(params[:location], params[:date], params[:keyword])
+      opts = {:with => {}}
+      
+      if params[:location][:zip]
+        opts[:with][:zip] = params[:location][:zip]
+      end
+      
+      unless params[:location][:address].blank?
+        from = Geocode.geocoder.locate(params[:location][:address]).coordinates.map(&:to_radians)
+        opts[:geo] = from
+        opts[:with]['@geodist'] = 0.0..(10 * 1610.0)
+      end
+      
+      opts[:with][:free] = 1 if params[:location][:free]
+      
+      @locations = Location.search params[:q], opts
     end
     
     if params[:format] and params[:format] == 'map'

@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer(4)      not null, primary key
+#  created_at       :datetime        not null
+#  title            :string(255)
+#  uri              :string(255)
+#  blog_name        :string(255)
+#  excerpt          :text(16777215)
+#  user_ip          :string(15)
+#  trackback        :boolean(1)
+#  hide             :boolean(1)
+#  commentable_type :string(24)
+#  commentable_id   :integer(4)
+#  sent_to_akismet  :boolean(1)
+#
+
 require 'akismet'
 require 'ipaddr'
 
