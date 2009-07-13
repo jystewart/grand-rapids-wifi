@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :login_required, :except => :create
+  before_filter :authenticate, :except => :create
   before_filter :load_comment, :except => [:index, :new, :create, :bulk]
 
   verify :method => :post, :only => :create, :redirect_to => {:controller => 'welcome', :action => 'index'}

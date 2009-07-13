@@ -4,7 +4,7 @@
   	<p>
 			<span class="published" title="<%= @story.created_at.to_s(:uf) %>"><%= @story.created_at.strftime('%D') %></span> : 
     	<%= link_to 'Permalink', {:action => 'story', :id => @story.permalink}, :class => 'bookmark entry-title' %>
-    	<% if logged_in? %> : <%= link_to 'Edit', :action => 'edit', :id => @story.permalink %><% end %>
+    	<% if signed_in? %> : <%= link_to 'Edit', :action => 'edit', :id => @story.permalink %><% end %>
 		</p>
   	<div class="entry-content">
     	<p><%= @story.content %></p>

@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
   verify :params => :id, :only => :rate, :redirect_to => {:action => :index}
   verify :params => :vote, :only => :rate, :redirect_to => :back
 
-  before_filter :login_required, :except => [:index, :map, :show, :feed, :rdf, :view]
+  before_filter :authenticate, :except => [:index, :map, :show, :feed, :rdf, :view]
   before_filter :load_location, :except => [:index, :list, :map, :create, :new]
 
   # layout 'admin', :only => [:view, :feed, :list]
@@ -119,7 +119,7 @@ class LocationsController < ApplicationController
       end
     elsif params[:id]
       conditions = {:permalink => params[:id]}
-      conditions[:status] = ['proven', 'rumored', 'closed'] unless logged_in?
+      conditions[:status] = ['proven', 'rumored', 'closed'] unless signed_in?
       @location = Location.first(:conditions => conditions, :include => [:geocoding, :neighbourhoods, :openings])
     end
     

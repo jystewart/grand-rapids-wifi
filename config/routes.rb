@@ -10,10 +10,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
-  map.connect '', :controller => "welcome"
   map.admin '/admin', :controller => 'admin'
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 
   map.resources :comments, :member => {:junk => :post, :reprieve => :post}, :collection => {:bulk => :post}
   map.resources :ratings
@@ -37,6 +34,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'rdf', :controller => 'locations', :action => 'index', :format => 'rdf'
 
+  map.root :controller => "welcome"
   # map.connect '/location/view/:id.:format', :controller => 'location', :action => 'view'
   # map.connect '/location/:id.:format', :controller => 'location', :action => 'view'
     

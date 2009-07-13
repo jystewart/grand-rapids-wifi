@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   
-  before_filter :login_required, :only => ['new', 'create', 'edit', 'update', 'destroy'],
+  before_filter :authenticate, :only => ['new', 'create', 'edit', 'update', 'destroy'],
          :redirect_to => { :action => :index }
   before_filter :archive_list, :only => [:index, :archive, :story, :show]
   before_filter :load_story, :only => [:edit, :show, :destroy, :update]

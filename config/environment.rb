@@ -20,6 +20,7 @@ Rails::Initializer.run do |config|
   # config.gem "flickraw"
   config.gem "graticule"
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'thoughtbot-clearance', :lib => 'clearance', :source => 'http://gems.github.com', :version => '> 0.6.1'
 end
 
 # Include your application configuration below

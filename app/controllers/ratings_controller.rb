@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-  before_filter :login_required, :only => 'index'
+  before_filter :authenticate, :only => 'index'
   verify :params => :vote, :only => :create, :redirect => :back
 
   def index

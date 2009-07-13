@@ -5,7 +5,7 @@
   
   <p id="locationnav"><a href="#ratings">rate location</a> | <a href="#comments">read comments</a> | 
     <a href="#comment-form">post a comment</a> | <a href="mailto:wifi@grwifi.net">send us updated info</a>
-    <% if logged_in? %> | <%= link_to 'edit', edit_location_path(@location) %><% end %>
+    <% if signed_in? %> | <%= link_to 'edit', edit_location_path(@location) %><% end %>
   </p>
 
   <%= @map.div(:width => 300, :height => 300) unless @map.nil? %>
