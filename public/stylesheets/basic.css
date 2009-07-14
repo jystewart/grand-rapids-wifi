@@ -132,8 +132,11 @@ a img {
   border: 1px dotted black; 
   padding: 0.25em 1em;
 }
-.message {
-  color: green;
+#content p.message {
+  font-weight: bold;
+  background-color: #90EE90;
+  border: 1px solid #006400;
+  padding: 1em;
 }
 #hotspot-list {
   list-style: none;

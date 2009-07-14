@@ -23,11 +23,10 @@
     <div id="container">
         <h1><%= link_to image_tag('grwifi.png', :alt => "#{SITE_NAME} Logo"), '/' %></h1>
 
-        <% if flash[:notice] %><p class="message"><%= flash[:notice] %></p></div><% end %>
-
         <div id="searchbox"><%= render :partial => 'shared/searchbox' %></div>
 
         <div id="content">
+            <% if flash[:notice] %><p class="message"><%= flash[:notice] %></p><% end %>
             <%= yield %>
         </div>
 
