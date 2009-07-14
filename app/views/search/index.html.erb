@@ -2,41 +2,55 @@
 
 <p class="error">If you would prefer a complete list of locations, please use <a href="/locations">this link</a>.</p>
 
-<h3>Keywords</h3>
-
-<p>Entering text in this box will restrict your search to locations with those keywords in their names or descriptions:</p>
-
 <fieldset id="keywords">
-  <label for="keyword_box">Keywords: </label>
+  <legend>Enter some keywords to begin your search</legend>
+  <label for="keyword_box">Search: </label>
   <%= text_field_tag 'q', '', :size => 60 %>
+  <%= submit_tag 'Search Now' %>
 </fieldset>
 
-<h3>Search By Distance</h3>
 
-<p>Please enter an address below to find locations within 2 miles.</p>
-<p><em>(eg. 1234 Lake Drive SE, Grand Rapids, MI 49506)</em></p>
 <fieldset>
-<label for="address">Address: </label>
+  <legend>Limit by Distance</legend>
+  <p>Enter an address below to limit to locations within 2 miles.</p>
+  <p><em>(eg. 1234 Lake Drive SE, Grand Rapids, MI 49506)</em></p>
+  
+  <label for="address">Address: </label>
   <%= text_field 'location', 'address', :size => 60 %>
 </fieldset>
 
-<h3>Cost</h3>
-
-<p>Please check this box if you want to limit your search to free-to-use hotspots.</p>
 <fieldset>
+  <legend>Limit by Cost</legend>
+  <p>Please check this box if you want to limit your search to free-to-use hotspots.</p>
   <p><label for="free">Free-to-use only: </label> <%= check_box 'location', 'free' %></p>
 </fieldset>
 
-<h3>Zip Code</h3>
 
-<p>Selecting a zip code from the options below will restrict your search to locations in that zip code. If a zip code is not listed it means we do not currently have any locations listed in that area.</p>
 
 <fieldset id="zipfields">
+  <legend>Limit by Zip Code</legend>
+
+  <p>Selecting a zip code from the options below will restrict your search to locations in that zip code. If a zip code is not listed it means we do not currently have any locations listed in that area.</p>
   <label for="zip_code">Zip Code: </label>
   <%= collection_select 'location', 'zip', Location.zip_codes, 'zip', 'zip', {:prompt => '--select--' }%>
 </fieldset>
 
-<p><label for="action">Results Format:</label> <%= radio_button 'format', '', 'text' %> Standard <%= radio_button 'format', '', 'map' %> Map</p>
+<fieldset>
+  <legend>Format</legend>
+  <p>How would you like to view your results?</p>
+  <%= radio_button 'format', '', 'text' %> Standard <%= radio_button 'format', '', 'map' %> Map
+</fieldset>
 
 <p><%= submit_tag 'Search' %></p>
 <%- end -%>
+
+<% content_for :extra_headers do %>
+  <style type="text/css" media="screen">
+    fieldset {
+      margin-bottom: 1.5em;
+    }
+    legend {
+      font-weight: bold;
+    }
+  </style>
+<% end %>

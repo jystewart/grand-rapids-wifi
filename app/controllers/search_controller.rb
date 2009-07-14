@@ -5,13 +5,38 @@ class SearchController < ApplicationController
     if params[:open] == 'now'
       @locations = Location.open_now
     else
-      params[:q] ||= '*'
+      query, options = build_query
+      @locations = Location.search(query, options)
+    end
+    
+    if @locations.empty?
+      flash.now[:notice] = "Your search didn't return any results, please try again."
+      render :action => 'index' and return
+    end
+    
+    respond_to do |wants|
+      wants.map {
+        build_map @locations
+        response.headers['Content-Type'] = 'text/html; charset=utf-8'
+      }
+      wants.html
+      wants.atom
+      wants.json { render :json => @locations.to_json }
+      wants.xml { render :xml => @locations.to_xml(:include => :openings) }
+    end
+  end  
+  
+  protected
+    def build_query
       params[:location] ||= {}
-      params[:location][:zip] ||= params[:zip]
+      if params[:zip]
+        params[:location][:zip] ||= params[:zip]
+      end
       opts = {:with => {}}
       
       if params[:location][:zip]
         opts[:with][:zip] = params[:location][:zip]
+        params[:q] ||= params[:location][:zip]
       end
       
       unless params[:location][:address].blank?
@@ -21,21 +46,6 @@ class SearchController < ApplicationController
       end
       
       opts[:with][:free] = 1 if params[:location][:free]
-      
-      @locations = Location.search params[:q], opts
+      return params[:q], opts
     end
-    
-    if params[:format] and params[:format] == 'map'
-      build_map @locations
-      response.headers['Content-Type'] = 'text/html; charset=utf-8'
-      render and return
-    end
-    
-    respond_to do |wants|
-      wants.html
-      wants.json { render :json => @locations.to_json }
-      wants.xml { render :xml => @locations.to_xml(:include => :openings) }
-    end
-
-  end  
 end

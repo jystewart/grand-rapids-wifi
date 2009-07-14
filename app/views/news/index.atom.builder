@@ -15,9 +15,7 @@ xml.feed "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host}/fee
   for entry in @stories
 
     xml.entry do
-  
-			xml << render(:partial => 'story', :locals => {:entry => entry})
-			
+      xml << render(:partial => 'story', :locals => {:entry => entry})
     end
   end   
 end

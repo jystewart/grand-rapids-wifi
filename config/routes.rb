@@ -34,7 +34,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'rdf', :controller => 'locations', :action => 'index', :format => 'rdf'
 
-  map.search_results '/search/results', :controller => 'search', :action => 'results'
+  map.search_results '/search/results.:format', :controller => 'search', :action => 'results'
   map.root :controller => "welcome"
   # map.connect '/location/view/:id.:format', :controller => 'location', :action => 'view'
   # map.connect '/location/:id.:format', :controller => 'location', :action => 'view'

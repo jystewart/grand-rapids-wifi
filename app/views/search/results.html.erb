@@ -1,9 +1,9 @@
 <h2>Your Search Results</h2>
 
-<% if @locations %>
-<p>(<em><a href="/search/results?search<%= other_type %>">View These Results On A Map</a></em>)</p>
+<% if @locations and @locations.any? %>
+  <p>(<em><%= link_to 'View These Results On A Map', params.merge(:format => :map) %></em>)</p>
 
-<ul id="hotspot-list">
-  <%= render :collection => @locations, :partial => 'locations/location' %>
-</ul>
+  <ul id="hotspot-list">
+    <%= render :collection => @locations, :partial => 'locations/location' %>
+  </ul>
 <% end %>

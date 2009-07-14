@@ -32,6 +32,8 @@ class Location < ActiveRecord::Base
     indexes name
     indexes description
     indexes street
+    indexes city
+    indexes zip
 
     has zip
     has free
@@ -67,7 +69,7 @@ class Location < ActiveRecord::Base
   validates_inclusion_of :visibility, :in => %w( yes no ), :allow_nil => false
   validates_inclusion_of :status, :in => %w(rumored proven closed)
   
-  named_scope :zip_codes, :group => 'zip', :select => 'zip', :order => 'zip'
+  named_scope :zip_codes, :group => 'zip', :select => 'zip', :order => 'zip', :conditions => ['zip IS NOT NULL AND visibility = ?', 'yes']
   # delegate :latitude, :to => :geocode
   # delegate :longitude, :to => :geocode
   
