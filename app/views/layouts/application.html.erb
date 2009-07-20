@@ -26,8 +26,13 @@
         <div id="searchbox"><%= render :partial => 'shared/searchbox' %></div>
 
         <div id="content">
-            <% if flash[:notice] %><p class="message"><%= flash[:notice] %></p><% end %>
-            <%= yield %>
+          <div id="flash">
+            <% flash.each do |key, value| -%>
+              <div class="flash" id="flash_<%= key -%>"><%= html_escape(value) %></div>
+            <% end -%>
+          </div>
+          
+          <%= yield %>
         </div>
 
         <%= render :partial => 'shared/navigation' %>

@@ -25,3 +25,5 @@ Rails::Initializer.run do |config|
 end
 
 # Include your application configuration below
+HOST='grwifi.net'
+DO_NOT_REPLY='donotreply@grwifi.net'

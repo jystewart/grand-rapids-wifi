@@ -1,7 +1,7 @@
 <h2>New location</h2>
 
-<%- form_tag :action => 'create' do -%>
-  <%= render :partial => 'form' %>
+<%- form_for(@location) do |form| -%>
+  <%= render form %>
   <%= submit_tag "Create" %>
 <% end %>
 

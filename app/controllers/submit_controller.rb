@@ -4,6 +4,7 @@ class SubmitController < ApplicationController
   def index
     @location = Location.new
     @submitter = Submitter.new
+    7.times { |time| @location.openings.build }
   end
   
   def preview

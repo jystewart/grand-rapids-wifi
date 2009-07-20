@@ -18,17 +18,17 @@ ActiveRecord::Schema.define(:version => 20090713191457) do
   end
 
   create_table "comments", :force => true do |t|
-    t.datetime "created_at",                                              :null => false
-    t.string   "title"
-    t.string   "uri"
-    t.string   "blog_name"
-    t.text     "excerpt",          :limit => 16777215
-    t.string   "user_ip",          :limit => 15
-    t.boolean  "trackback"
-    t.boolean  "hide",                                 :default => false
-    t.string   "commentable_type", :limit => 24
-    t.integer  "commentable_id"
-    t.boolean  "sent_to_akismet"
+    t.timestamp "created_at",                                              :null => false
+    t.string    "title"
+    t.string    "uri"
+    t.string    "blog_name"
+    t.text      "excerpt",          :limit => 16777215
+    t.string    "user_ip",          :limit => 15
+    t.boolean   "trackback"
+    t.boolean   "hide",                                 :default => false
+    t.string    "commentable_type", :limit => 24
+    t.integer   "commentable_id"
+    t.boolean   "sent_to_akismet"
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
@@ -61,30 +61,32 @@ ActiveRecord::Schema.define(:version => 20090713191457) do
   add_index "geocodings", ["geocode_id"], :name => "geocodings_geocode_id_index"
 
   create_table "locations", :force => true do |t|
-    t.string   "name"
-    t.string   "street"
-    t.string   "city"
-    t.string   "state",          :limit => 2
-    t.string   "zip",            :limit => 10
-    t.text     "description"
-    t.string   "url"
-    t.string   "status",         :limit => 10
-    t.string   "visibility",     :limit => 3,   :default => "no", :null => false
-    t.datetime "created_at",                                      :null => false
-    t.string   "email",          :limit => 128
-    t.string   "permalink",      :limit => 32
-    t.string   "ssid",           :limit => 32
-    t.boolean  "free"
-    t.string   "phone_number",   :limit => 20
-    t.datetime "updated_at"
-    t.string   "country"
-    t.integer  "comments_count",                :default => 0,    :null => false
+    t.string    "name"
+    t.string    "street"
+    t.string    "city"
+    t.string    "state",          :limit => 2
+    t.string    "zip",            :limit => 10
+    t.text      "description"
+    t.string    "url"
+    t.string    "status",         :limit => 10
+    t.string    "visibility",     :limit => 3,   :default => "no", :null => false
+    t.timestamp "created_at",                                      :null => false
+    t.string    "email",          :limit => 128
+    t.string    "permalink",      :limit => 32
+    t.string    "ssid",           :limit => 32
+    t.boolean   "free"
+    t.string    "phone_number",   :limit => 20
+    t.datetime  "updated_at"
+    t.string    "country"
+    t.integer   "comments_count",                :default => 0,    :null => false
   end
 
+  add_index "locations", ["name", "street"], :name => "location_ident"
   add_index "locations", ["permalink"], :name => "index_locations_on_slug"
   add_index "locations", ["permalink"], :name => "slug", :unique => true
   add_index "locations", ["permalink"], :name => "slug_3"
   add_index "locations", ["status"], :name => "index_locations_on_status"
+  add_index "locations", ["updated_at"], :name => "index_locations_on_updated_at"
   add_index "locations", ["visibility"], :name => "index_locations_on_visibility"
   add_index "locations", ["zip"], :name => "index_locations_on_zip"
 
@@ -113,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20090713191457) do
     t.integer  "comments_count",                     :default => 0, :null => false
   end
 
+  add_index "news", ["created_at"], :name => "index_news_on_created_at"
   add_index "news", ["permalink"], :name => "index_news_on_slug"
   add_index "news", ["permalink"], :name => "slug", :unique => true
 
@@ -160,11 +163,11 @@ ActiveRecord::Schema.define(:version => 20090713191457) do
   add_index "users", ["token"], :name => "index_users_on_token"
 
   create_table "votes", :force => true do |t|
-    t.integer  "location_id", :limit => 2
-    t.integer  "rating",      :limit => 1
-    t.string   "voter",       :limit => 15
-    t.datetime "created_at",                :null => false
-    t.integer  "aspect_id"
+    t.integer   "location_id", :limit => 2
+    t.integer   "rating",      :limit => 1
+    t.string    "voter",       :limit => 15
+    t.timestamp "created_at",                :null => false
+    t.integer   "aspect_id"
   end
 
   add_index "votes", ["location_id"], :name => "vote_location"

@@ -59,7 +59,10 @@ class Location < ActiveRecord::Base
     :as => :commentable, :conditions => 'hide = 0', :order => 'created_at ASC'
   has_many :pings, :as => :pingable, :order => 'created_at ASC'
   has_many :openings, :order => 'opening_day'
+  accepts_nested_attributes_for :openings, :allow_destroy => true, :reject_if => proc { |attrs| attrs['opening_day'].blank? }
+
   has_and_belongs_to_many :neighbourhoods
+  accepts_nested_attributes_for :neighbourhoods
 
   validates_presence_of :name
   validates_presence_of :status
@@ -76,18 +79,7 @@ class Location < ActiveRecord::Base
   alias_attribute :title, :name
   
   has_permalink :name
-  
-  def openings=(opening_list)
-    openings.delete_all
-    opening_list.each do |key, new_opening|
-      if new_opening['opening_hour'] and new_opening['opening_minute'] and new_opening['closing_hour'] and new_opening['closing_minute']
-        new_opening['opening_time'] = new_opening.delete('opening_hour') + ':' + new_opening.delete('opening_minute') + ':00'
-        new_opening['closing_time'] = new_opening.delete('closing_hour') + ':' + new_opening.delete('closing_minute') + ':00'
-      end
-      self.openings.build(new_opening)
-    end
-  end
-  
+
   def neighbourhoods=(n_list)
     neighbourhoods.clear
     n_list.each do |neighbourhood|

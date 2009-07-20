@@ -2,49 +2,49 @@
 
 <!--[form:location]-->
 <p><label for="location_name">Name</label><br/>
-<%= text_field 'location', 'name'  %></p>
+<%= form.text_field 'name'  %></p>
 
 <p><label for="location_street">Street</label><br/>
-<%= text_field 'location', 'street'  %></p>
+<%= form.text_field 'street'  %></p>
 
 <p><label for="location_city">City</label><br/>
-<%= text_field 'location', 'city'  %></p>
+<%= form.text_field 'city'  %></p>
 
 <p><label for="location_state">State</label><br/>
-<%= text_field 'location', 'state'  %></p>
+<%= form.text_field 'state'  %></p>
 
 <p><label for="location_zip">Zip</label><br/>
-<%= text_field 'location', 'zip'  %></p>
+<%= form.text_field 'zip'  %></p>
 
 <p><label for="location_country">Country</label><br/>
-<%= text_field 'location', 'country'  %></p>
+<%= form.text_field 'country'  %></p>
 
 <p><label for="location_description">Description</label><br/>
 <%= text_area 'location', 'description'  %></p>
 
 <p><label for="location_url">Url</label><br/>
-<%= text_field 'location', 'url'  %></p>
+<%= form.text_field :url  %></p>
 
 <p><label for="location_status">Status</label><br/>
-	<%= select 'location', 'status', [['proven', 'proven'], ['closed', 'closed'], ['rumored', 'rumored']] %></p>
+	<%= form.select :status, [['proven', 'proven'], ['closed', 'closed'], ['rumored', 'rumored']] %></p>
 
 <p><label for="location_visibility">Visibility</label><br/>
-<%= text_field 'location', 'visibility'  %></p>
+<%= form.text_field :visibility  %></p>
 
 <p><label for="location_email">Email</label><br/>
-<%= text_field 'location', 'email'  %></p>
+<%= form.text_field :email  %></p>
 
 <p><label for="location_permalink">Permalink</label><br/>
-<%= text_field 'location', 'permalink'  %></p>
+<%= form.text_field :permalink  %></p>
 
 <p><label for="location_ssid">SSID</label><br/>
-<%= text_field 'location', 'ssid'  %></p>
+<%= form.text_field :ssid  %></p>
 
 <p><label for="location_free">Free</label><br/>
-	<%= select 'location', 'free', [['false', 'false'], ['true', 'true']] %></p>
+	<%= form.select :free, %W(false true) %></p>
 
 <p><label for="location_phone_number">Phone number</label><br/>
-<%= text_field 'location', 'phone_number'  %></p>
+<%= form.text_field :phone_number %></p>
 
 <h2>Neighbourhoods</h2>
 
@@ -56,17 +56,15 @@
 <h2>Openings</h2>
 
 <ul id="opening-times">
-	<%- @location.openings.build if @location.openings.empty? -%>
-	<%- @location.openings.each_with_index do |opening, index| -%>
-		<li>
-			<%= select_tag "location[openings][#{index}][opening_day]", days_for_select(opening.opening_day) %>
-			<%= select_hour opening.opening_time, :discard_type => true, :prefix => "location[openings][#{index}][opening_hour]" %>
-			<%= select_minute opening.opening_time, :discard_type => true, :prefix => "location[openings][#{index}][opening_minute]", :minute_step => 15 %>
-			to <%= select_tag "location[openings][#{index}][closing_day]", days_for_select(opening.closing_day) %>
-			<%= select_hour opening.closing_time, :discard_type => true, :prefix => "location[openings][#{index}][closing_hour]" %>
-			<%= select_minute opening.closing_time, :discard_type => true, :prefix => "location[openings][#{index}][closing_minute]", :minute_step => 15 %>
-		</li>
-	<%- end -%>
+	<% form.fields_for :openings do |openings_form| %>
+    <li>
+      <%= openings_form.select :opening_day, %w(monday tuesday wednesday thursday friday saturday sunday) %>
+      <%= openings_form.time_select :opening_time, :minute_step => 15, :ignore_date => true, :include_seconds => false %>
+      to 
+      <%= openings_form.select :closing_day, %w(monday tuesday wednesday thursday friday saturday sunday) %>
+      <%= openings_form.time_select :closing_time, :minute_step => 15, :ignore_date => true, :include_seconds => false %>
+    </li>
+  <%- end -%>
 </ul>
 
 <%- content_for :javascript do -%>

@@ -77,6 +77,7 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
+    @location.openings.build
     render :layout => 'admin'
   end
 
@@ -90,6 +91,7 @@ class LocationsController < ApplicationController
   end
 
   def edit
+    @location.openings.build
     render :layout => 'admin'
   end
   
