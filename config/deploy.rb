@@ -9,6 +9,7 @@ role :app, "jystewart.vm.bytemark.co.uk"
 role :db, "jystewart.vm.bytemark.co.uk", :primary => true
 
 set :deploy_to, "/home/#{application}"
+set :rails_env, "production"
 
 namespace :deploy do
   desc "Restart passenger"
