@@ -33,15 +33,16 @@ class Location < ActiveRecord::Base
     indexes description
     indexes street
     indexes city
-    indexes zip
+    indexes :zip
 
-    has zip
+    # has :zip
     has free
     has geocoding.geocode(:id), :as => :geocode_id
     has 'RADIANS(geocodes.latitude)', :as => :latitude, :type => :float
     has 'RADIANS(geocodes.longitude)', :as => :longitude, :type => :float
     
     where "visibility = \'yes\'"
+    set_property :delta => :delayed
   end
   
   attr_accessor :distance

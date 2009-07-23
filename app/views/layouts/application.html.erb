@@ -20,24 +20,24 @@
 </head>
 <body>
 
-    <div id="container">
-        <h1><%= link_to image_tag('grwifi.png', :alt => "#{SITE_NAME} Logo"), '/' %></h1>
+  <div id="container">
+      <h1><%= link_to image_tag('grwifi.png', :alt => "#{SITE_NAME} Logo"), '/' %></h1>
 
-        <div id="searchbox"><%= render :partial => 'shared/searchbox' %></div>
+      <div id="searchbox"><%= render :partial => 'shared/searchbox' %></div>
 
-        <div id="content">
-          <div id="flash">
-            <% flash.each do |key, value| -%>
-              <div class="flash" id="flash_<%= key -%>"><%= html_escape(value) %></div>
-            <% end -%>
-          </div>
-          
-          <%= yield %>
+      <div id="content">
+        <div id="flash">
+          <% flash.each do |key, value| -%>
+            <div class="flash" id="flash_<%= key -%>"><%= html_escape(value) %></div>
+          <% end -%>
         </div>
+        
+        <%= yield %>
+      </div>
 
-        <%= render :partial => 'shared/navigation' %>
-    </div>
+      <%= render :partial => 'shared/navigation' %>
+  </div>
 
-		<%= google_analytics %>
+  <%= google_analytics %>
 </body>
 </html>

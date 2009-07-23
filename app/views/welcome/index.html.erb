@@ -24,15 +24,15 @@
           <% @stories.each do |story| %>
           <li class="hentry">
             <%= link_to h(story.headline), {:controller => 'news', :action => 'story', :id => story.permalink}, 
-							:class => 'bookmark entry-title' %> 
+              :class => 'bookmark entry-title' %> 
             (<span class="published" title="<%= story.created_at.to_s(:uf) %>"><%= story.created_at.strftime('%D') %></span>)
-						<br /><span class="entry-content"><%= story.content %></span>
-						<%- if story.comments.empty? -%>
-							<br /><%= link_to 'Post a comment', news_url(story.permalink) %>
-						<%- else -%>
-							<br /><%= link_to pluralize(story.comments.size, 'comment', 'comments'), news_url(story.permalink) %>
-						<%- end -%>
-					</li>
+            <br /><span class="entry-content"><%= story.content %></span>
+            <%- if story.comments.empty? -%>
+              <br /><%= link_to 'Post a comment', news_url(story.permalink) %>
+            <%- else -%>
+              <br /><%= link_to pluralize(story.comments.size, 'comment', 'comments'), news_url(story.permalink) %>
+            <%- end -%>
+          </li>
           <% end %>
         </ul>
     </div>
