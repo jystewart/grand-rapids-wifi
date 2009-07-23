@@ -38,9 +38,9 @@ xml.rdf :RDF, "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host
         xml.dc :subject, 'Hotspots'
         
         if entry.geocode
-          xml.geo :lat, entry.latitude
-          xml.geo :long, entry.longitude
-          xml.georss :point, entry.latitude.to_s + ' ' + entry.longitude.to_s
+          xml.geo :lat, entry.geocode.latitude
+          xml.geo :long, entry.geocode.longitude
+          xml.georss :point, entry.geocode.latitude.to_s + ' ' + entry.geocode.longitude.to_s
         end
       end
     
