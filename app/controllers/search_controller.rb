@@ -6,6 +6,7 @@ class SearchController < ApplicationController
       @locations = Location.open_now
     else
       query, options = build_query
+      options.merge!({:per_page => 15, :page => params[:page]})
       @locations = Location.search(query, options)
     end
     
