@@ -141,6 +141,6 @@ class Location < ActiveRecord::Base
   end
 
   def to_param
-    self.permalink
+    self.permalink || self.name.parameterize.to_s
   end
 end
