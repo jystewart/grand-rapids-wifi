@@ -4,8 +4,7 @@ require 'xmlrpc/client'
 
 class ApplicationController < ActionController::Base
   include Clearance::Authentication
-  include ExceptionNotifiable
-
+  
   protected
     def build_map(locations)
     
