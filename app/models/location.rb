@@ -74,8 +74,8 @@ class Location < ActiveRecord::Base
   validates_inclusion_of :status, :in => %w(rumored proven closed)
   
   named_scope :zip_codes, :group => 'zip', :select => 'zip', :order => 'zip', :conditions => ['zip IS NOT NULL AND visibility = ?', 'yes']
-  # delegate :latitude, :to => :geocode
-  # delegate :longitude, :to => :geocode
+  delegate :latitude, :to => :geocode
+  delegate :longitude, :to => :geocode
   
   alias_attribute :title, :name
   
