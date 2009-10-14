@@ -3,13 +3,17 @@
 <% if @locations and @locations.any? %>
   <p>(<em><%= link_to 'View These Results On A Map', params.merge(:format => :map) %></em>)</p>
 
-  <%= page_entries_info @locations %>
+  <% if @locations.respond_to?(:total_pages) %>
+    <%= page_entries_info @locations %>
+  <% end %>
   
   <ul id="hotspot-list">
     <%= render :collection => @locations, :partial => 'locations/location' %>
   </ul>
   
-  <%= will_paginate @locations %>
+  <% if @locations.respond_to?(:total_pages) %>
+    <%= will_paginate @locations %>
+  <% end %>
 <% end %>
 
 <% content_for :extra_headers do %>
