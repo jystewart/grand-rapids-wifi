@@ -49,7 +49,24 @@ namespace :deploy do
   end
 end
 
-after 'deploy:symlink', "link:config"
+namespace :sphinx do
+  desc "Generate the ThinkingSphinx configuration file"
+  task :configure do
+    run "cd #{release_path} && RAILS_ENV=#{rails_env} rake thinking_sphinx:configure"
+  end
+  
+  task :link_indices do
+    run <<-CMD
+      rm -fr #{release_path}/db/sphinx &&
+      ln -nfs #{shared_path}/sphinx #{release_path}/db/sphinx
+    CMD
+  end
+end
+
+after 'deploy:update_code', "link:config"
+after "deploy:update_code", "sphinx:link_indices"
+after "deploy:update_code", "sphinx:configure"
+
 after "deploy:start", "delayed_job:start" 
 after "deploy:stop", "delayed_job:stop" 
 after "deploy:restart", "delayed_job:restart"
