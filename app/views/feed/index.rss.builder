@@ -19,8 +19,8 @@ xml.rdf :RDF, "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host
         for entry in @entries
           xml.rdf :li, 'resource' => location_url(entry) if entry.class == Location
           xml.rdf :li, 'resource' => url_for(:only_path => false, :controller => 'news', :action => 'show', :id => entry.permalink) if entry.class == News
-          xml.rdf :li, 'resource' => url_for(:only_path => false, :controller => 'news', :action => 'show', :id => entry.commentable.permalink) if entry.class == Comment and entry.commentable_type == 'News'
-          xml.rdf :li, 'resource' => location_url(entry.commentable, :anchor => 'comment' + entry.id.to_s) if entry.class == Comment and entry.commentable_type == 'Location'
+          xml.rdf :li, 'resource' => url_for(:only_path => false, :controller => 'news', :action => 'show', :id => entry.commentable.permalink) if entry.is_a?(Comment) and entry.commentable.is_a?(News)
+          xml.rdf :li, 'resource' => location_url(entry.commentable, :anchor => 'comment' + entry.id.to_s) if entry.is_a?(Comment) and entry.commentable.is_a?(Location)
         end
       end
     end
