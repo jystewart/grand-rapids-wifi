@@ -25,6 +25,8 @@ class SearchController < ApplicationController
       wants.json { render :json => @locations.to_json }
       wants.xml { render :xml => @locations.to_xml(:include => :openings) }
     end
+  rescue ThinkingSphinx::ConnectionError
+    render :text => "Sorry, our search is temporarily not working. We will have it back asap."
   end  
   
   protected
