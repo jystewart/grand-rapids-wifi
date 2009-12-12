@@ -38,7 +38,7 @@
 <fieldset>
   <legend>Format</legend>
   <p>How would you like to view your results?</p>
-  <%= radio_button 'format', '', 'text' %> Standard <%= radio_button 'format', '', 'map' %> Map
+  <%= radio_button_tag 'format', 'text' %> Standard <%= radio_button_tag 'format', 'map' %> Map
 </fieldset>
 
 <p><%= submit_tag 'Search' %></p>
