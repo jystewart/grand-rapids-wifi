@@ -12,7 +12,7 @@ class SearchController < ApplicationController
     
     if @locations.empty?
       flash.now[:notice] = "Your search didn't return any results, please try again."
-      render :action => 'index' and return
+      render :action => 'index', :format => :html and return
     end
     
     respond_to do |wants|
