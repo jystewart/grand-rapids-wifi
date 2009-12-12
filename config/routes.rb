@@ -15,7 +15,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :comments, :member => {:junk => :post, :reprieve => :post}, :collection => {:bulk => :post}
   map.resources :ratings
   map.resources :news, :collection => {:archive => :get}
-  map.resources :users
 
   map.resources :locations, :collection => {:map => :get, :list => :get}
 
