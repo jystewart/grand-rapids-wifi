@@ -4,7 +4,7 @@
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'
 
-RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -19,8 +19,8 @@ Rails::Initializer.run do |config|
   
   # config.gem "flickraw"
   config.gem "graticule"
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
-  config.gem 'thoughtbot-clearance', :lib => 'clearance', :source => 'http://gems.github.com', :version => '> 0.6.1'
+  config.gem 'will_paginate', :source => 'http://gemcutter.org'
+  config.gem 'clearance', :source => 'http://gemcutter.org', :version => '> 0.6.1'
   config.gem 'freelancing-god-thinking-sphinx', :lib => 'thinking_sphinx', :version => '>1.2.0'
 end
 
