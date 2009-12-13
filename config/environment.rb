@@ -21,7 +21,9 @@ Rails::Initializer.run do |config|
   config.gem "graticule"
   config.gem 'will_paginate', :source => 'http://gemcutter.org'
   config.gem 'clearance', :source => 'http://gemcutter.org', :version => '> 0.6.1'
-  config.gem 'freelancing-god-thinking-sphinx', :lib => 'thinking_sphinx', :version => '>1.2.0'
+  config.gem "thinking-sphinx", :lib => 'thinking_sphinx', :source => 'http://gemcutter.org', :version => '>= 1.3.8'
+  config.gem 'ts-delayed-delta', :lib => 'thinking_sphinx/deltas/delayed_delta', :version => '>= 1.0.0', :source  => 'http://gemcutter.org'
+
 end
 
 # Include your application configuration below

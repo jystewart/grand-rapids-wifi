@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090713191457) do
+ActiveRecord::Schema.define(:version => 20090723153811) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name",       :limit => 31
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(:version => 20090713191457) do
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["hide"], :name => "index_comments_on_hide"
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.string   "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "geocodes", :force => true do |t|
     t.decimal "latitude",    :precision => 15, :scale => 12
@@ -79,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20090713191457) do
     t.datetime  "updated_at"
     t.string    "country"
     t.integer   "comments_count",                :default => 0,    :null => false
+    t.boolean   "delta",                         :default => true, :null => false
   end
 
   add_index "locations", ["name", "street"], :name => "location_ident"
