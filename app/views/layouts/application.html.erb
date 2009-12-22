@@ -6,15 +6,15 @@
   <%= auto_discovery_link_tag :atom, {:controller => 'news', :action => 'index', :format => 'atom'}, {:title => 'News Story Atom Feed'} %>
 
   <% if @map %>
-		<%= javascript_include_tag 'jquery' %>
-		<!-- header -->
-	  <%= Mapstraction.header(:google) %>
-	  <!-- /header -->
-		<%= @map.to_html %>
+    <%= javascript_include_tag 'jquery' %>
+    <!-- header -->
+    <%= Mapstraction.header(:google) %>
+    <!-- /header -->
+    <%= @map.to_html %>
   <% end %>
 
-	<%= yield :javascript %>
-	<%= yield :extra_headers %>
+  <%= yield :javascript %>
+  <%= yield :extra_headers %>
 
   <title><% title = yield :page_title %> <%= title || "#{SITE_NAME}: Wireless Hotspots in Grand Rapids Michigan" %></title>
 </head>

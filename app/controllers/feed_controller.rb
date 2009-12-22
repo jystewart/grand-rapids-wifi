@@ -1,5 +1,4 @@
 class FeedController < ApplicationController
-  #before_filter :discern_type
   caches_page :comments
   caches_page :locations
   caches_page :news

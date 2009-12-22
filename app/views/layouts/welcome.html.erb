@@ -15,7 +15,11 @@
 
     <h1><img src="/images/grwifi.png" title="<%= SITE_NAME %>" alt="<%= SITE_NAME %> Listings" /></h1>
 
-    <% if flash[:message] %><p class="message"><%= flash[:message] %></p></div><% end %>
+    <div id="flash">
+      <% flash.each do |key, value| -%>
+        <div class="flash" id="flash_<%= key -%>"><%= html_escape(value) %></div>
+      <% end -%>
+    </div>
 
     <div id="container">
         <%= yield %>

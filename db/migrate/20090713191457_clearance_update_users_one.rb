@@ -1,4 +1,4 @@
-class ClearanceUpdateUsers < ActiveRecord::Migration
+class ClearanceUpdateUsersOne < ActiveRecord::Migration
   def self.up
     change_table(:users) do |t|
       t.string :encrypted_password, :limit => 128

@@ -11,6 +11,11 @@ class Sidebar
     options = @@options.keys - @@used
     this_option = options[rand(options.size - 1)]
     @@used << this_option
-    return @@options[this_option][:title], Location.send(@@options[this_option][:method])
+    selected = @@options[this_option]
+    if selected
+      return selected[:title], Location.send(selected[:method])
+    else
+      return nil
+    end
   end
 end

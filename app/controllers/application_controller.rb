@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   include Clearance::Authentication
   include ErrorRenderers
   
+  before_filter :authenticate, :if => proc { |c| c.is_a?(Clearance::UsersController) }
+  
   protected
     def build_map(locations)
     
