@@ -1,6 +1,0 @@
---- 
-cwd: /home/grwifi/current
-port: 1090
-environment: production
-pid_file: log/mongrel.pid
-servers: 1

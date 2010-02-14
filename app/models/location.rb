@@ -42,7 +42,7 @@ class Location < ActiveRecord::Base
     has 'RADIANS(geocodes.longitude)', :as => :longitude, :type => :float
     
     where "visibility = \'yes\'"
-    set_property :delta => :delayed
+    # set_property :delta => :delayed
   end
   
   attr_accessor :distance
