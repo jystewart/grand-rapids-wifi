@@ -10,20 +10,20 @@ class SearchController < ApplicationController
       @locations = Location.search(query, options)
     end
     
-    if @locations.empty?
-      flash.now[:notice] = "Your search didn't return any results, please try again."
-      render :action => 'index', :format => :html and return
-    end
-    
     respond_to do |wants|
-      wants.map {
-        build_map @locations
-        response.headers['Content-Type'] = 'text/html; charset=utf-8'
-      }
-      wants.html
-      wants.atom
-      wants.json { render :json => @locations.to_json }
-      wants.xml { render :xml => @locations.to_xml(:include => :openings) }
+      if @locations.any?
+        wants.map {
+          build_map @locations
+          response.headers['Content-Type'] = 'text/html; charset=utf-8'
+        }
+        wants.html
+        wants.atom
+        wants.json { render :json => @locations.to_json }
+        wants.xml { render :xml => @locations.to_xml(:include => :openings) }
+      else
+        flash.now[:notice] = "Your search didn't return any results, please try again."
+        wants.any(:html, :map) { render :action => 'index.html' }
+      end
     end
   rescue ThinkingSphinx::ConnectionError
     render :text => "Sorry, our search is temporarily not working. We will have it back asap."

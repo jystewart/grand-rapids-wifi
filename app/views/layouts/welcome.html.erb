@@ -15,21 +15,21 @@
 
     <h1><img src="/images/grwifi.png" title="<%= SITE_NAME %>" alt="<%= SITE_NAME %> Listings" /></h1>
 
-    <div id="flash">
-      <% flash.each do |key, value| -%>
-        <div class="flash" id="flash_<%= key -%>"><%= html_escape(value) %></div>
-      <% end -%>
-    </div>
-
     <div id="container">
-        <%= yield %>
-        <%= render :partial => 'shared/navigation' %>
+      <div id="flash">
+        <% flash.each do |key, value| -%>
+          <div class="flash" id="flash_<%= key -%>"><%= html_escape(value) %></div>
+        <% end -%>
+      </div>
+      
+      <%= yield %>
+      <%= render :partial => 'shared/navigation' %>
     </div>
 
     <div id="footer">
         <p>Grand Rapids WiFi is developed and maintained by <a href="http://jystewart.net/process/">James Stewart</a>. 
         He is available for hire.</p>
     </div>
-		<%= google_analytics %>
+    <%= google_analytics %>
 </body>
 </html>

@@ -4,35 +4,35 @@
 <head>
   <%= stylesheet_link_tag 'basic' %>
   <%= auto_discovery_link_tag :atom, {:controller => 'news', :action => 'index', :format => 'atom'}, 
-		{:title => 'News Story Atom Feed'} %>
+    {:title => 'News Story Atom Feed'} %>
 
   <% if @map %>
-		<%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'jquery' %>
     <%= Mapstraction.header(:google) %>
-		<script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8">
 
-		</script>
-		<%= @map.to_html %>
+    </script>
+    <%= @map.to_html %>
   <% end %>
 
   <title><%= SITE_NAME %>: Wireless Hotspots in Grand Rapids Michigan</title>
 </head>
 <body>
+  <div id="container">
+    <h1>
+      <%= link_to image_tag('/images/grwifi.png', :alt => SITE_NAME + ' Logo'), :controller => 'welcome' %>
+    </h1>
+    <div id="searchbox"><%= render :partial => 'shared/searchbox.html.erb' %></div>
 
-    <div id="container">
-        <h1><%= link_to image_tag('/images/grwifi.png', :alt => SITE_NAME + ' Logo'), :controller => 'welcome' %></h1>
-
-        <% if flash[:notice] %><p class="message"><%= flash[:notice] %></p></div><% end %>
-
-        <div id="searchbox"><%= render :partial => 'shared/searchbox.html.erb' %></div>
-
-        <div id="content">
-            <%= yield %>
-        </div>
-
-        <%= render :partial => 'shared/navigation.html.erb' %>
+    <div id="content">
+      <% if flash[:notice] %><p class="message"><%= flash[:notice] %></p><% end %>
+            
+      <%= yield %>
     </div>
 
-		<%= google_analytics %>
+    <%= render :partial => 'shared/navigation.html.erb' %>
+  </div>
+
+  <%= google_analytics %>
 </body>
 </html>
