@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/helper'
 
-class CatcherTest < Test::Unit::TestCase
+class ActionControllerCatcherTest < Test::Unit::TestCase
 
   include DefinesConstants
 
@@ -17,7 +17,7 @@ class CatcherTest < Test::Unit::TestCase
 
   def build_controller_class(&definition)
     returning Class.new(ActionController::Base) do |klass|
-      klass.__send__(:include, HoptoadNotifier::Catcher)
+      klass.__send__(:include, HoptoadNotifier::Rails::ActionControllerCatcher)
       klass.class_eval(&definition) if definition
       define_constant('HoptoadTestController', klass)
     end
@@ -43,9 +43,19 @@ class CatcherTest < Test::Unit::TestCase
     assert_sent_hash params, '/notice/request/params'
     assert_sent_element params['controller'], '/notice/request/component'
     assert_sent_element params['action'], '/notice/request/action'
-    assert_sent_element "#{request.protocol}#{request.host}#{request.request_uri}",
-                        '/notice/request/url'
+    assert_sent_element url_from_request(request), '/notice/request/url'
     assert_sent_hash request.env, '/notice/request/cgi-data'
+  end
+
+  def url_from_request(request)
+    url = "#{request.protocol}#{request.host}"
+
+    unless [80, 443].include?(request.port)
+      url << ":#{request.port}"
+    end
+
+    url << request.request_uri
+    url
   end
 
   def sender
@@ -80,6 +90,9 @@ class CatcherTest < Test::Unit::TestCase
       else
         opts[:request].env["HTTP_USER_AGENT"] = opts[:user_agent]
       end
+    end
+    if opts[:port]
+      opts[:request].port = opts[:port]
     end
     klass.consider_all_requests_local = opts[:all_local]
     klass.local                       = opts[:local]
@@ -159,7 +172,7 @@ class CatcherTest < Test::Unit::TestCase
 
   should "not create actions from Hoptoad methods" do
     controller = build_controller_class.new
-    assert_equal [], HoptoadNotifier::Catcher.instance_methods
+    assert_equal [], HoptoadNotifier::Rails::ActionControllerCatcher.instance_methods
   end
 
   should "ignore exceptions when user agent is being ignored by regular expression" do
@@ -198,9 +211,21 @@ class CatcherTest < Test::Unit::TestCase
     assert_sent_request_info_for controller.request
   end
 
+  should "send request data for manual notification with non-standard port" do
+    params = { 'controller' => "hoptoad_test", 'action' => "index" }
+    controller = process_action_with_manual_notification(:params => params, :port => 81)
+    assert_sent_request_info_for controller.request
+  end
+
   should "send request data for automatic notification" do
     params = { 'controller' => "hoptoad_test", 'action' => "index" }
     controller = process_action_with_automatic_notification(:params => params)
+    assert_sent_request_info_for controller.request
+  end
+
+  should "send request data for automatic notification with non-standard port" do
+    params = { 'controller' => "hoptoad_test", 'action' => "index" }
+    controller = process_action_with_automatic_notification(:params => params, :port => 81)
     assert_sent_request_info_for controller.request
   end
 

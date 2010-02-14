@@ -63,14 +63,23 @@ class NoticeTest < Test::Unit::TestCase
     notice_from_exception = build_notice(:exception => exception)
 
 
-    assert_equal notice_from_exception.backtrace,
-                 backtrace,
+    assert_equal backtrace,
+                 notice_from_exception.backtrace,
                  "backtrace was not correctly set from an exception"
 
     notice_from_hash = build_notice(:backtrace => array)
-    assert_equal notice_from_hash.backtrace,
-                 backtrace,
+    assert_equal backtrace,
+                 notice_from_hash.backtrace,
                  "backtrace was not correctly set from a hash"
+  end
+
+  should "pass its backtrace filters for parsing" do
+    backtrace_array = ['my/file/backtrace:3']
+    exception = build_exception
+    exception.set_backtrace(backtrace_array)
+    HoptoadNotifier::Backtrace.expects(:parse).with(backtrace_array, {:filters => 'foo'})
+
+    notice = HoptoadNotifier::Notice.new({:exception => exception, :backtrace_filters => 'foo'})
   end
 
   should "set the error class from an exception or hash" do
@@ -124,8 +133,8 @@ class NoticeTest < Test::Unit::TestCase
   end
 
   should "set sensible defaults without an exception" do
-    backtrace = HoptoadNotifier::Backtrace.parse(caller)
-    notice = build_notice
+    backtrace = HoptoadNotifier::Backtrace.parse(build_backtrace_array)
+    notice = build_notice(:backtrace => build_backtrace_array)
 
     assert_equal 'Notification', notice.error_message
     assert_array_starts_with backtrace.lines, notice.backtrace.lines
@@ -134,7 +143,8 @@ class NoticeTest < Test::Unit::TestCase
   end
 
   should "use the caller as the backtrace for an exception without a backtrace" do
-    backtrace = HoptoadNotifier::Backtrace.parse(caller)
+    filters = HoptoadNotifier::Configuration.new.backtrace_filters
+    backtrace = HoptoadNotifier::Backtrace.parse(caller, :filters => filters)
     notice = build_notice(:exception => StandardError.new('error'), :backtrace => nil)
 
     assert_array_starts_with backtrace.lines, notice.backtrace.lines
@@ -142,16 +152,16 @@ class NoticeTest < Test::Unit::TestCase
 
   should "convert unserializable objects to strings" do
     assert_serializes_hash(:parameters)
+    assert_serializes_hash(:cgi_data)
+    assert_serializes_hash(:session_data)
   end
 
   should "filter parameters" do
-    filters = %w(abc def)
-    params  = { 'abc' => "123", 'def' => "456", 'ghi' => "789" }
+    assert_filters_hash(:parameters)
+  end
 
-    notice = build_notice(:params_filters => filters, :parameters => params)
-
-    assert_equal({ 'abc' => "[FILTERED]", 'def' => "[FILTERED]", 'ghi' => "789" },
-                 notice.parameters)
+  should "filter cgi data" do
+    assert_filters_hash(:cgi_data)
   end
 
   context "a Notice turned into XML" do
@@ -286,6 +296,31 @@ class NoticeTest < Test::Unit::TestCase
     end
   end
 
+  should "ignore RecordNotFound error by default" do
+    notice = build_notice(:error_class => 'ActiveRecord::RecordNotFound')
+    assert notice.ignore?
+  end
+
+  should "ignore RoutingError error by default" do
+    notice = build_notice(:error_class => 'ActionController::RoutingError')
+    assert notice.ignore?
+  end
+
+  should "ignore InvalidAuthenticityToken error by default" do
+    notice = build_notice(:error_class => 'ActionController::InvalidAuthenticityToken')
+    assert notice.ignore?
+  end
+
+  should "ignore TamperedWithCookie error by default" do
+    notice = build_notice(:error_class => 'CGI::Session::CookieStore::TamperedWithCookie')
+    assert notice.ignore?
+  end
+
+  should "ignore UnknownAction error by default" do
+    notice = build_notice(:error_class => 'ActionController::UnknownAction')
+    assert notice.ignore?
+  end
+
   should "act like a hash" do
     notice = build_notice(:error_message => 'some message')
     assert_equal notice.error_message, notice[:error_message]
@@ -295,6 +330,27 @@ class NoticeTest < Test::Unit::TestCase
     params = { 'one' => 'two' }
     notice = build_notice(:parameters => params)
     assert_equal params, notice[:request][:params]
+  end
+
+  should "ensure #to_hash is called on objects that support it" do
+    assert_nothing_raised do
+      build_notice(:session => { :object => stub(:to_hash => {}) })
+    end
+  end
+
+  should "extract data from a rack environment hash" do
+    # TODO: extract session data
+    # TODO: extract controller
+    # TODO: extract action
+    url = "https://subdomain.happylane.com:100/test/file.rb?var=value&var2=value2"
+    parameters = { 'var' => 'value', 'var2' => 'value2' }
+    env = Rack::MockRequest.env_for(url)
+
+    notice = build_notice(:rack_env => env)
+
+    assert_equal url, notice.url
+    assert_equal parameters, notice.parameters
+    assert_equal 'GET', notice.cgi_data['REQUEST_METHOD']
   end
 
   def assert_accepts_exception_attribute(attribute, args = {}, &block)
@@ -338,5 +394,24 @@ class NoticeTest < Test::Unit::TestCase
     schema = Nokogiri::XML::Schema.new(IO.read(xsd_path))
     errors = schema.validate(document)
     assert errors.empty?, errors.collect{|e| e.message }.join
+  end
+
+  def assert_filters_hash(attribute)
+    filters  = %w(abc def)
+    original = { 'abc' => "123", 'def' => "456", 'ghi' => "789", 'nested' => { 'abc' => '100' } }
+    filtered = { 'abc'    => "[FILTERED]",
+                 'def'    => "[FILTERED]",
+                 'ghi'    => "789",
+                 'nested' => { 'abc' => '[FILTERED]' } }
+
+    notice = build_notice(:params_filters => filters, attribute => original)
+
+    assert_equal(filtered,
+                 notice.send(attribute))
+  end
+
+  def build_backtrace_array
+    ["app/models/user.rb:13:in `magic'",
+      "app/controllers/users_controller.rb:8:in `index'"]
   end
 end

@@ -3,11 +3,11 @@ module HoptoadNotifier
   class Configuration
 
     OPTIONS = [:api_key, :backtrace_filters, :development_environments,
-        :development_lookup, :environment_filters, :environment_name, :host,
+        :development_lookup, :environment_name, :host,
         :http_open_timeout, :http_read_timeout, :ignore, :ignore_by_filters,
         :ignore_user_agent, :notifier_name, :notifier_url, :notifier_version,
         :params_filters, :project_root, :port, :protocol, :proxy_host,
-        :proxy_pass, :proxy_port, :proxy_user, :secure].freeze
+        :proxy_pass, :proxy_port, :proxy_user, :secure, :framework].freeze
 
     # The API key for your project, found on the project edit form.
     attr_accessor :api_key
@@ -44,10 +44,6 @@ module HoptoadNotifier
     # By default, all "password" attributes will have their contents replaced.
     attr_reader :params_filters
 
-    # A list of environment keys that should be filtered out of what is send to Hoptoad.
-    # Empty by default.
-    attr_reader :environment_filters
-
     # A list of filters for cleaning and pruning the backtrace. See #filter_backtrace.
     attr_reader :backtrace_filters
 
@@ -81,11 +77,17 @@ module HoptoadNotifier
     # The url of the notifier library being used to send notifications
     attr_accessor :notifier_url
 
+    # The logger used by HoptoadNotifier
+    attr_accessor :logger
+
+    # The framework HoptoadNotifier is configured to use
+    attr_accessor :framework
+
     DEFAULT_PARAMS_FILTERS = %w(password password_confirmation).freeze
 
     DEFAULT_BACKTRACE_FILTERS = [
       lambda { |line|
-        if defined?(HoptoadNotifier.configuration.project_root)
+        if defined?(HoptoadNotifier.configuration.project_root) && HoptoadNotifier.configuration.project_root.to_s != '' 
           line.gsub(/#{HoptoadNotifier.configuration.project_root}/, "[PROJECT_ROOT]")
         else
           line
@@ -108,10 +110,6 @@ module HoptoadNotifier
                       'CGI::Session::CookieStore::TamperedWithCookie',
                       'ActionController::UnknownAction']
 
-    # Some of these don't exist for Rails 1.2.*, so we have to consider that.
-    IGNORE_DEFAULT.map!{|e| eval(e) rescue nil }.compact!
-    IGNORE_DEFAULT.freeze
-
     alias_method :secure?, :secure
 
     def initialize
@@ -120,16 +118,16 @@ module HoptoadNotifier
       @http_open_timeout        = 2
       @http_read_timeout        = 5
       @params_filters           = DEFAULT_PARAMS_FILTERS.dup
-      @environment_filters      = []
       @backtrace_filters        = DEFAULT_BACKTRACE_FILTERS.dup
       @ignore_by_filters        = []
       @ignore                   = IGNORE_DEFAULT.dup
       @ignore_user_agent        = []
-      @development_environments = %w(development test)
+      @development_environments = %w(development test cucumber)
       @development_lookup       = true
       @notifier_name            = 'Hoptoad Notifier'
       @notifier_version         = VERSION
       @notifier_url             = 'http://hoptoadapp.com'
+      @framework                = 'Standalone'
     end
 
     # Takes a block and adds it to the list of backtrace filters. When the filters
@@ -212,6 +210,11 @@ module HoptoadNotifier
       else
         'http'
       end
+    end
+
+    def environment_filters
+      warn 'config.environment_filters has been deprecated and has no effect.'
+      []
     end
 
     private

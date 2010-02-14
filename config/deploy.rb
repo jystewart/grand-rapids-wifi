@@ -8,7 +8,7 @@ role :web, "jystewart.vm.bytemark.co.uk"
 role :app, "jystewart.vm.bytemark.co.uk"
 role :db, "jystewart.vm.bytemark.co.uk", :primary => true
 
-set :deploy_to, "/home/#{application}"
+set :deploy_to, "/var/www/grwifi.net"
 set :rails_env, "production"
 
 namespace :deploy do
