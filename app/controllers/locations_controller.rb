@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
   # layout 'admin', :only => [:view, :feed, :list]
 
   cache_sweeper :location_sweeper
-  caches_page :index
+  # caches_page :index
   caches_page :map
   caches_page :show
   
