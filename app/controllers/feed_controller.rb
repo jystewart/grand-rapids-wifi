@@ -6,6 +6,8 @@ class FeedController < ApplicationController
 
   def comments
     @entries = Comment.find(:all, :limit => 10, :conditions => 'hide = 0', :order => 'created_at DESC')
+    @entries = @entries.reject { |c| c.commentable.nil? }
+    
     respond_to do |wants|
       wants.html { redirect_to '/about/feeds' and return }
       wants.atom
@@ -28,6 +30,7 @@ class FeedController < ApplicationController
     entries.concat(Comment.find(:all, :limit => 10, :conditions => 'hide = 0', :order => 'created_at DESC'))
     entries.concat(News.find(:all, :limit => 10, :order => 'created_at DESC'))
     @entries = entries.sort { |x, y| y.created_at <=> x.created_at }
+    
     respond_to do |wants|
       wants.atom
       wants.rss
