@@ -67,7 +67,7 @@ after 'deploy:update_code', "link:config"
 after "deploy:update_code", "sphinx:link_indices"
 after "deploy:update_code", "sphinx:configure"
 
-after "deploy:start", "delayed_job:start" 
-after "deploy:stop", "delayed_job:stop" 
-after "deploy:restart", "delayed_job:restart"
+# after "deploy:start", "delayed_job:start" 
+# after "deploy:stop", "delayed_job:stop" 
+# after "deploy:restart", "delayed_job:restart"
 
