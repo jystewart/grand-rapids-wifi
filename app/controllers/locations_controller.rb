@@ -32,6 +32,8 @@ class LocationsController < ApplicationController
       wants.rdf { render :layout => false }
       wants.rss { redirect_to locations_url(:format => :atom), :status => 301 }
     end
+  rescue WillPaginate::InvalidPage
+    redirect_to locations_url(:page => 1)
   end
   
   def list
