@@ -25,7 +25,7 @@ class SearchController < ApplicationController
         wants.any(:html, :map) { render :action => 'index.html' }
       end
     end
-  rescue ThinkingSphinx::ConnectionError
+  rescue ThinkingSphinx::ConnectionError, Riddle::ConnectionError
     render :text => "Sorry, our search is temporarily not working. We will have it back asap."
   end  
   
