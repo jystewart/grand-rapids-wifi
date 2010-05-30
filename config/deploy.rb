@@ -63,10 +63,31 @@ namespace :sphinx do
   end
 end
 
+namespace :bundler do
+  task :create_symlink, :roles => :app do
+    shared_dir = File.join(shared_path, 'bundle')
+    release_dir = File.join(current_release, '.bundle')
+    run("mkdir -p #{shared_dir} && ln -s #{shared_dir} #{release_dir}")
+  end
+  
+  task :bundle_new_release, :roles => :app do
+    bundler.create_symlink
+    run "cd #{release_path} && /opt/ruby-enterprise/bin/bundle install --relock"
+  end
+  
+  task :lock, :roles => :app do
+    run "cd #{current_release} && /opt/ruby-enterprise/bin/bundle lock;"
+  end
+  
+  task :unlock, :roles => :app do
+    run "cd #{current_release} && /opt/ruby-enterprise/bin/bundle unlock;"
+  end
+end
+
 after 'deploy:update_code', "link:config"
 after "deploy:update_code", "sphinx:link_indices"
 after "deploy:update_code", "sphinx:configure"
-
+after "deploy:update_code", "bundler:bundle_new_release"
 # after "deploy:start", "delayed_job:start" 
 # after "deploy:stop", "delayed_job:stop" 
 # after "deploy:restart", "delayed_job:restart"
