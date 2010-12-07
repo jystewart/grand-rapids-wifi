@@ -1,6 +1,4 @@
-config/database.yml
-tmp/*
-log/*
-db/schema.rb
-coverage
-doc/api
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*

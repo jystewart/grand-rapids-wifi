@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091219042658) do
+ActiveRecord::Schema.define(:version => 20100530162657) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name",       :limit => 31
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20091219042658) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "geocodes", :force => true do |t|
     t.decimal "latitude",    :precision => 15, :scale => 12

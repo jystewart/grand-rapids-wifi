@@ -1,0 +1,14 @@
+development:
+  adapter: mysql
+  database: wifi_development
+  username: root
+  password: 
+
+test: &TEST
+  adapter: mysql
+  database: wifi_test
+  username: root
+  password: 
+    
+cucumber:
+  <<: *TEST
