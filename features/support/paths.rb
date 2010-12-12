@@ -4,12 +4,12 @@ module NavigationHelpers
     
     when /the homepage/i
       root_path
-    when /the sign up page/i
-      new_user_path
-    when /the sign in page/i
-      new_session_path
-    when /the password reset request page/i
-      new_password_path
+    when /the (.+?) sign in page/
+      send("new_#{$1}_session_path")
+    when /the (.+?) sign up page/
+      send("new_#{$1}_registration_path")
+    when /the (.+?) new password page/
+      send("new_#{$1}_password_path")
     
     # Add more page name => path mappings here
     
