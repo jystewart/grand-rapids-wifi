@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def google_analytics
-    return unless RAILS_ENV == 'production'
+    return unless Rails.env.production?
     '<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
     <script type="text/javascript">
     <!--

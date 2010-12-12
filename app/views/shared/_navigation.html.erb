@@ -3,26 +3,32 @@
     <p>Opportunities for wireless internet access are fast increasing. Grand Rapids WiFi (grwifi.net) provides details of (mostly) free wireless hotspots in Grand Rapids, MI.</p>
     <hr />
     <ul>
-        <li><h3>about grwifi</h3>
-            <ul>
-                <li><%= link_to 'news', :controller => 'news' %></li>
-                <li><%= link_to 'background', :controller => 'about' %></li>
-                <li><%= link_to 'local links', :controller => 'about', :action => 'links' %></li>
-            </ul></li>
-        <li><h3>take part</h3>
-            <ul>
-                <li><%= link_to 'submit hotspot', :controller => 'submit' %></li>
-                <li><%= link_to 'using wifi', :controller => 'about', :action => 'help' %></li>
-            </ul></li>
-        <li><h3><%= link_to image_tag('/images/feed-icon-16x16.png', :alt => 'XML feed'), :controller => 'feed' %> feeds</h3>
-            <ul>
-                <li><%= link_to 'What is this?', :controller => 'about', :action => 'feeds' %></li>
-                <li><%= link_to image_tag('/images/atompixel.png', :alt => 'Atom Feed'), :controller => 'feed' %></li>
-                <li><%= link_to image_tag('/images/rss1.gif', :alt => 'RSS 1 Feed'), :controller => 'feed' %></li>
-           </ul></li>
+      <li>
+        <h3>about grwifi</h3>
+        <ul>
+            <li><%= link_to 'news', {:controller => '/news', :action => 'index'} %></li>
+            <li><%= link_to 'background', about_path %></li>
+            <li><%= link_to 'local links', links_path %></li>
+        </ul>
+      </li>
+      <li>
+        <h3>take part</h3>
+        <ul>
+            <li><%= link_to 'submit hotspot', new_submission_path %></li>
+            <li><%= link_to 'using wifi', help_path %></li>
+        </ul>
+      </li>
+      <li>
+        <h3><%= link_to image_tag('/images/feed-icon-16x16.png', :alt => 'XML feed'), :controller => '/feed' %> feeds</h3>
+        <ul>
+            <li><%= link_to 'What is this?', feeds_info_path %></li>
+            <li><%= link_to image_tag('/images/atompixel.png', :alt => 'Atom Feed'), :controller => '/feed' %></li>
+            <li><%= link_to image_tag('/images/rss1.gif', :alt => 'RSS 1 Feed'), :controller => '/feed' %></li>
+       </ul>
+      </li>
     </ul>
 
-		<% if RAILS_ENV == 'production' %>
+		<% if Rails.env.production? %>
      <p><script type="text/javascript" src="http://embed.technorati.com/embed/dzdzsz6zf4.js"> </script></p>
      <!--[if IE]>
      <p><script type="text/javascript">

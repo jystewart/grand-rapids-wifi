@@ -33,6 +33,9 @@ class Comment < ActiveRecord::Base
   before_create :spam_check
   
   attr_accessor :user_agent
+  
+  scope :hidden, where(:hide => true)
+  scope :visible, where(:hide => false)
 
   def mark_as_ham
     akismet = Akismet.new(AKISMET_KEY, ROOT_URL)

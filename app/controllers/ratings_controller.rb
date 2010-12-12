@@ -1,14 +1,12 @@
 class RatingsController < ApplicationController
-  before_filter :authenticate, :only => 'index'
-  verify :params => :vote, :only => :create, :redirect => :back
-
+  before_filter :authenticate_administrator!, :only => 'index'
+  before_filter :block_bad_referers, :only => :create
+  
   def index
-    @ratings = Vote.find(:all, :order => 'entered_at DESC', :include => :location)
+    @ratings = Vote.listings
   end
 
   def create
-    render :nothing => true, :status => 403 and return if request.env['HTTP_REFERER'].nil?
-
     @location = Location.find_by_permalink(params[:location_id])
     @rating = @location.votes.create(:rating => params[:vote]['rating'], :voter => request.remote_ip)
 

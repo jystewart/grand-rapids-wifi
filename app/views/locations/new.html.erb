@@ -1,8 +1,8 @@
 <h2>New location</h2>
 
-<%- form_for(@location) do |form| -%>
-  <%= render form %>
-  <%= submit_tag "Create" %>
-<% end %>
+<%- semantic_form_for(@location) do |form| -%>
+  <%= render :partial => 'inputs', :locals => {:f => form} %>
+<%- end -%>
 
-<%= link_to 'Back', :action => 'list' %>
+<p><%= link_to 'Show', @location %></p>
+

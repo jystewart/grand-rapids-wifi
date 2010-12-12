@@ -3,27 +3,38 @@
 <html>
 <head>
   <%= javascript_include_tag 'jquery' %> 
-  <%= stylesheet_link_tag 'scaffold', 'admin', :cache => true %>
+  <%= stylesheet_link_tag 'admin', 'formtastic', 'formtastic_changes', :cache => 'admin' %>
   <%= yield :javascript %>
 </head>
 <body>
+  <div id="container">
+    <div id="app-header">
+      <h1><%= SITE_NAME %> <%= link_to 'Admin', admin_path %></h1>
+      <div role="navigation">
+        <% if administrator_signed_in? %>
+          <ul class="navigation">
+            <li><%= link_to 'Admin Home', admin_path %></li>
+            <li><%= link_to 'Comments', comments_path %></li>
+            <li><%= link_to 'Locations', list_locations_path %></li>
+            <li><%= link_to 'News', :controller => 'news' %></li>
+            <li><%= link_to 'Sign out', destroy_administrator_session_path %></li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
 
-  <h1><%= SITE_NAME %> <%= link_to 'Admin', admin_path %></h1>
-  <ul id="admin-navigation">
-    <li><%= link_to 'Admin Home', admin_path %></li>
-    <li><%= link_to 'Comments', comments_path %></li>
-    <li><%= link_to 'Locations', list_locations_path %></li>
-    <li><%= link_to 'News', :controller => 'news' %></li>
-    <li><%= link_to 'Logout', sign_out_path %></li>
-  </ul>
+    <div id="main-content">
+      <div id="content-area">
+        <% flash.each do |key, value| -%>
+          <p class="<%= k %> flash-<%= k %>"><%= v %></p>
+        <% end -%>
 
-  <div id="flash">
-    <% flash.each do |key, value| -%>
-      <div class="flash" id="flash_<%= key -%>"><%= html_escape(value) %></div>
-    <% end -%>
-  </div>
-
-  <%= yield %>
-
-</body>
+        <%= yield %>
+      </div>
+    </div>
+    <div id="footer">
+      &copy; 2010 <a href="http://www.ketlai.co.uk">Ket Lai Ltd</a>.
+    </div>
+    <%= yield :extra_javascript %>
+  </body>
 </html>

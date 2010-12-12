@@ -22,7 +22,7 @@ class News < ActiveRecord::Base
   validates_presence_of :content
   validates_presence_of :headline
 
-  belongs_to :user
+  belongs_to :administrator
   has_many :comments, :as => :commentable, :order => 'created_at ASC'
   has_many :displayable_comments, :class_name => 'Comment', 
     :as => :commentable, :conditions => 'hide = 0', :order => 'created_at ASC'
@@ -31,11 +31,14 @@ class News < ActiveRecord::Base
   alias_attribute :updated_at, :created_at
   alias_attribute :title, :headline
   alias_attribute :name, :headline
-  
+
+  scope :between, proc { |start, finish| where('created_at BETWEEN ? AND ?', start, finish) }
+  default_scope order('created_at DESC')
+
   has_permalink :headline
   
   def author
-    user.login
+    administrator.to_s
   end
   
   def to_param

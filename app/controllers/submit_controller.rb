@@ -1,5 +1,4 @@
 class SubmitController < ApplicationController
-  verify :method => :post, :only => [ :preview, :complete ], :redirect_to => { :action => :index }
   
   def index
     @location = Location.new

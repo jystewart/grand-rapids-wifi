@@ -12,7 +12,7 @@ module LocationsHelper
   
   def location_link(location)
     url = location.url.match(/^http/) ? location.url : "http://#{location.url}"
-    link_to truncate(url, 40), url, :class => 'url'
+    link_to truncate(url, :length => 40), url, :class => 'url'
   end
   
   def select_neighbourhood(location, index)
@@ -24,6 +24,36 @@ module LocationsHelper
   def setup_neighbourhoods
     if @location.neighbourhoods.empty?
       2.times { @location.neighbourhoods.build }
+    end
+  end
+  
+  def static_map_for(location)
+    the_params = {
+      :f => 'q',
+      :z => 14,
+      :iwloc => 'A',
+      :hl => 'en',
+      :size => '300x300',
+      :maptype => 'roadmap',
+      :sensor => true,
+      :zoom => 14
+    }
+    
+    
+    if location.geocode
+      the_params[:center] = "#{location.geocode.latitude},#{location.geocode.longitude}"
+      the_params[:q] = "#{location.geocode.latitude},#{location.geocode.longitude}"
+      the_params[:markers] = "size:large|color:red|#{location.geocode.latitude},#{location.geocode.longitude}"
+    else
+      the_params[:center] = location.full_address
+      the_params[:q] = location.full_address
+      the_params[:markers] = "size:large|color:red|#{location.full_address}"
+    end
+
+    content_tag(:div, :id => 'map') do
+      link_to "http://maps.google.co.uk/maps?#{the_params.to_param}" do
+        image_tag("http://maps.google.com/maps/api/staticmap?#{the_params.to_param}")
+      end
     end
   end
 end

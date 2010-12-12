@@ -1,14 +1,16 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
-require 'xmlrpc/client'
-
+# require 'xmlrpc/client'
+require 'error_renderers'
 class ApplicationController < ActionController::Base
-  include Clearance::Authentication
   include ErrorRenderers
   
-  before_filter :authenticate, :if => proc { |c| c.is_a?(Clearance::UsersController) }
-  
   protected
+  
+    def block_bad_referers
+      render :nothing => true, :status => 403 and return false unless request.env['HTTP_REFERER']
+    end
+  
     def build_map(locations)
     
       @map = Mapstraction.new('map', :google)

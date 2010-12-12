@@ -1,6 +1,6 @@
 <tr id="comment-row-<%= comment.id %>">
   <td><%=h comment.title %></td>
-  <td><%=h truncate(comment.blog_name, 20) %></td>
+  <td><%=h truncate(comment.blog_name, :length => 20) %></td>
   <td><%= link_to h(comment.commentable.name), url_for(comment.commentable) %></td>
   <td><%= comment.hide %></td>
   <td><%= link_to 'View', comment_url(comment) %></td>

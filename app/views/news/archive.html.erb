@@ -9,7 +9,7 @@
         <p>Published <span class="published" title="<%= story.created_at.strftime('%Y-%M-%dT%H:%i:%s') %>">
           <%= story.created_at.strftime('%D') %>
         </span> : <%= story.displayable_comments.size %> Comments  : <%= link_to 'Read More...', :action => 'story', :id => story.permalink %>
-        <% if signed_in? %> : <%= link_to 'Edit', :action => 'edit', :id => story.permalink %><% end %></p>
+        <% if administrator_signed_in? %> : <%= link_to 'Edit', :action => 'edit', :id => story.permalink %><% end %></p>
     </div>
 <% end %>  
 </div>

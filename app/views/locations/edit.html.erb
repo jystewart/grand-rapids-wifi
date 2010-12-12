@@ -1,10 +1,8 @@
 <h2>Editing location <%= @location.name %></h2>
 
-<%- form_for(@location) do |form| -%>
-  <%= render form %>
-  <%= submit_tag 'Edit' %>
+<%- semantic_form_for(@location) do |form| -%>
+  <%= render :partial => 'inputs', :locals => {:f => form} %>
 <%- end -%>
 
-<p><%= link_to 'Show', @location %> |
-<%= link_to 'Back', :action => 'list' %></p>
+<p><%= link_to 'Show', @location %> | <%= link_to 'Back', locations_path %></p>
 

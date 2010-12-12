@@ -6,7 +6,7 @@
   <p>by <span class="reviewer fn"><%=h @review.blog_name %></span> on 
     <span class="dtreviewed" title="<%= @review.created_at.strftime("%Y%m%dT%I%M00-0500") %>"><%= @review.created_at.strftime("%a %b %d %Y at %I:%M %p") %></span></p>
   <p class="description"><%=h @review.excerpt %></p>
-  <% if signed_in? %>
+  <% if administrator_signed_in? %>
   <div class="comment-methods"><%= link_to 'Edit', :controller => 'comments', :action => 'edit', :id => @review.id %> | 
     <%= button_to 'Delete', {:controller => 'comments', :action => 'destroy', :id => @review.id}, :method => 'delete' %> | 
     <%= button_to 'Mark as Spam', :controller => 'comments', :action => 'junk', :id => @review.id %></div>

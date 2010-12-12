@@ -41,7 +41,7 @@ class Location < ActiveRecord::Base
     has 'RADIANS(geocodes.latitude)', :as => :latitude, :type => :float
     has 'RADIANS(geocodes.longitude)', :as => :longitude, :type => :float
     
-    where "visibility = \'yes\'"
+    where "is_visible = 1"
     # set_property :delta => :delayed
   end
   
@@ -70,10 +70,20 @@ class Location < ActiveRecord::Base
   validates_presence_of :street
   validates_format_of :zip, :with => /\d{5}/, :if => Proc.new { |l| l.country == 'USA' }
   validates_uniqueness_of :permalink, :on => :save
-  validates_inclusion_of :visibility, :in => %w( yes no ), :allow_nil => false
   validates_inclusion_of :status, :in => %w(rumored proven closed)
   
-  named_scope :zip_codes, :group => 'zip', :select => 'zip', :order => 'zip', :conditions => ['zip IS NOT NULL AND visibility = ?', 'yes']
+  scope :zip_codes, group('zip').select('zip').order('zip').where(['zip IS NOT NULL AND is_visible = ?', true])
+  scope :to_list, where(:is_visible => true, :status => %W(proven rumoured)).order('name')
+  scope :latest_visible, limit(3).where(:status => 'proven', :is_visibile => true).order('updated_at DESC')
+  scope :visible, where(:is_visible => true)
+  scope :active, where(:status => ['proven', 'rumored'])
+
+  scope :for_widgets, select('name, permalink, comments_count').group('name')
+  scope :least_comments, proc { |the_limit| for_widget.order('comments_count ASC').limit(the_limit) }
+  scope :most_comments, proc { |the_limit| for_widget.order('comments_count DESC').limit(the_limit) }
+  scope :open_now, proc { visible.includes(:openings).where(['? BETWEEN openings.opening_time AND openings.closing_time AND 
+    ? BETWEEN openings.opening_day AND openings.closing_day', Time.now.strftime('%H:%M'), Time.now.wday]) }
+
   delegate :latitude, :to => :geocode
   delegate :longitude, :to => :geocode
   
@@ -90,15 +100,13 @@ class Location < ActiveRecord::Base
     return
   end
 
+  def full_address
+    parts = [self.street, self.zip, 'USA']
+    parts.compact.join(", ")
+  end
+  
   class <<self
-    def open_now
-      all(:include => :openings, :conditions => 
-        ['visibility = ? AND ? BETWEEN openings.opening_time AND openings.closing_time AND 
-        ? BETWEEN openings.opening_day AND openings.closing_day', 
-        'yes', Time.now.strftime('%H:%M'), Time.now.wday])
-    end
-
-    def recent_comments(limit = 5)
+    def recent_comments(the_limit = 5)
       find_by_sql(['SELECT locations.id, locations.name, comments.blog_name AS blog_name, permalink
       FROM comments,locations
       WHERE
@@ -106,15 +114,7 @@ class Location < ActiveRecord::Base
         comments.commentable_id = locations.id AND
         comments.hide != 1
       GROUP BY locations.id
-      ORDER BY comments.created_at DESC, comments.id DESC LIMIT ?', limit])
-    end
-
-    def most_comments(limit = 5)
-      all(:select => 'name, permalink, comments_count', :order => 'comments_count DESC', :limit => limit, :group => 'name')
-    end
-
-    def least_comments(limit = 5)
-      all(:select => 'name, permalink, comments_count', :order => 'comments_count ASC', :limit => limit, :group => 'name')
+      ORDER BY comments.created_at DESC, comments.id DESC LIMIT ?', the_limit])
     end
 
     def highly_rated(limit = 5)

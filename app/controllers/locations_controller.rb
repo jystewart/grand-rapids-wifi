@@ -1,13 +1,8 @@
-class LocationsController < ApplicationController
-  verify :method => :post, :only => [ :comment, :rate, :destroy ], :redirect_to => { :action => :index }
-  verify :params => :id, :only => [:view, :edit, :destroy], :redirect_to => {:action => :index}
-  verify :params => :id, :only => :rate, :redirect_to => {:action => :index}
-  verify :params => :vote, :only => :rate, :redirect_to => :back
-
-  before_filter :authenticate, :except => [:index, :map, :show, :feed, :rdf, :view]
+class LocationsController < InheritedResources::Base
+  before_filter :authenticate_administrator!, :except => [:index, :map, :show, :feed, :rdf, :view]
   before_filter :load_location, :except => [:index, :list, :map, :create, :new]
 
-  # layout 'admin', :only => [:view, :feed, :list]
+  layout 'admin', :only => [:view, :feed, :list]
 
   cache_sweeper :location_sweeper
   # caches_page :index
@@ -19,9 +14,7 @@ class LocationsController < ApplicationController
 
     per_page = request.format.rdf? ? 300 : 25
 
-    @locations = Location.paginate :per_page => per_page, :order => 'name', :page => params[:page], 
-      :conditions => ['visibility = ? AND status IN (?, ?)', 'yes', 'proven', 'rumored']
-    
+    @locations = Location.to_list.paginate :per_page => per_page, :page => params[:page]
     @entries = @locations
 
     respond_to do |wants|
@@ -42,15 +35,8 @@ class LocationsController < ApplicationController
   end
 
   def map
-    @locations = Location.find_all_by_visibility('yes', 
-      :conditions => ['status IN (?) ', ['proven', 'rumored']], 
-      :order => 'name', :include => :geocoding).reject { |l| l.geocoding.nil? }
+    @locations = Location.active.visible.order('name').includes(:geocoding).reject { |l| l.geocoding.nil? }
     build_map @locations unless @locations.nil?
-  end
-  
-  def view
-    params[:format] = params[:format] == 'rss' ? 'atom' : params[:format]
-    redirect_to location_url(@location, :format => params[:format]), :status => 301
   end
   
   def show
@@ -68,50 +54,6 @@ class LocationsController < ApplicationController
     end
   end
   
-  def feed
-    response.headers["Status"] = "301 Moved Permanently"
-    redirect_to location_url(:id => params[:id], :format => :atom)
-  end
-  
-  def rdf
-    redirect_to :action => 'view', :id => params[:id], :format => 'rdf'
-  end
-
-  def new
-    @location = Location.new
-    @location.openings.build
-    render :layout => 'admin'
-  end
-
-  def create
-    @location = Location.new(params[:location])
-    if @location.save
-      flash[:notice] = 'Location was successfully created.'
-      redirect_to :action => 'index' and return
-    end
-    render :action => 'new', :layout => 'admin'
-  end
-
-  def edit
-    @location.openings.build
-    render :layout => 'admin'
-  end
-  
-  def update
-    if @location.update_attributes(params[:location])
-      flash[:notice] = 'Location was successfully updated.'
-      redirect_to location_url(@location) and return
-    end
-
-    render :action => 'edit', :layout => 'admin'
-  end
-
-  def destroy
-    @location.destroy
-    flash[:notice] = 'Location successfully deleted'
-    redirect_to :action => 'list'
-  end
-  
   private
   def load_location
     if params[:id] and params[:id].match(/^\d+$/)
@@ -123,7 +65,7 @@ class LocationsController < ApplicationController
       end
     elsif params[:id]
       conditions = {:permalink => params[:id]}
-      conditions[:status] = ['proven', 'rumored', 'closed'] unless signed_in?
+      conditions[:status] = ['proven', 'rumored', 'closed'] unless administrator_signed_in?
       @location = Location.first(:conditions => conditions, :include => [:geocoding, :neighbourhoods, :openings])
     end
     

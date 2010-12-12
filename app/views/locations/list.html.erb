@@ -11,7 +11,7 @@
 		<li>
 			<h3><%= link_to h(location.name), location_path(location) %></h3>
 	    <p><%= location.description %></p>
-			<p>Visible? <%= location.visibility %></p>
+			<p>Visible? <%= location.is_visible? ? 'Yes' : 'No' %></p>
 			<p><%= link_to 'Edit', edit_location_path(location) %> | <%= link_to 'View', location_path(location) %></p>
 		</li>
   <% end %>

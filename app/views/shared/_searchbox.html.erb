@@ -1,14 +1,14 @@
-<%- form_tag search_results_path, :method => :get do -%>
-    <p>
-      Find your nearest hotspots:<br />
-      <label for="location_zip" class="hidden-metadata">Zip Code: </label>
-      <%= select_zip %>
-      <input type="submit" value="Search" />
-    </p>
-    <p>
-      <a href="/open/now">spots open now</a> | 
-      <%= link_to 'map', :controller => 'locations', :action => 'map' %>
-      <br /><%= link_to 'advanced search', :controller => 'search' %> | 
-      <%= link_to 'full list', :controller => 'locations' %>
-    </p>
+<%= form_tag search_results_path, :method => :get do -%>
+  <p>
+    Find your nearest hotspots:<br />
+    <label for="location_zip" class="hidden-metadata">Zip Code: </label>
+    <%= select_zip %>
+    <input type="submit" value="Search" />
+  </p>
+  <p>
+    <a href="/open/now">spots open now</a> | 
+    <%= link_to 'map', map_locations_path %>
+    <br /><%= link_to 'advanced search', search_path %> | 
+    <%= link_to 'full list', locations_path %>
+  </p>
 <% end %>

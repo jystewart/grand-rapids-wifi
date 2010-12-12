@@ -5,10 +5,10 @@
   
   <p id="locationnav"><a href="#ratings">rate location</a> | <a href="#comments">read comments</a> | 
     <a href="#comment-form">post a comment</a> | <a href="mailto:wifi@grwifi.net">send us updated info</a>
-    <% if signed_in? %> | <%= link_to 'edit', edit_location_path(@location) %><% end %>
+    <% if administrator_signed_in? %> | <%= link_to 'edit', edit_location_path(@location) %><% end %>
   </p>
 
-  <%= @map.div(:width => 300, :height => 300) unless @map.nil? %>
+  <%= static_map_for @location %>
 
   <% if @location.status.to_s == 'closed' %>
     <p class="closed message">Unfortunately this hotspot is no longer operating.</p>
@@ -93,7 +93,7 @@
   <% end %>
 
   <p>Add a rating</p>
-  <% form_for :vote, @vote, :url => ratings_path(:location_id => @location.permalink), 
+  <%= form_for :vote, @vote, :url => ratings_path(:location_id => @location.permalink), 
   :html => {:id => 'ratings-form'}  do |v| %>
      <p><% (1..10).each do |number| %>
              <%= v.radio_button :rating, number %> <%= number %>
@@ -125,7 +125,7 @@
 
     <p>We are no longer accepting comments on this location.</p>
   <% else %>
-    <% form_for :comment, @comment, :url => comments_path, :html => {:id => 'comment-form'} do |f| %>
+    <%= form_for :comment, @comment, :url => comments_path, :html => {:id => 'comment-form'} do |f| %>
        <fieldset>
            <h3>Leave A Comment</h3>
 

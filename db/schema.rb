@@ -1,15 +1,36 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100530162657) do
+ActiveRecord::Schema.define(:version => 20101212184113) do
+
+  create_table "administrators", :force => true do |t|
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "administrators", ["email"], :name => "index_administrators_on_email", :unique => true
+  add_index "administrators", ["reset_password_token"], :name => "index_administrators_on_reset_password_token", :unique => true
 
   create_table "aspects", :force => true do |t|
     t.string   "name",       :limit => 31
@@ -84,8 +105,7 @@ ActiveRecord::Schema.define(:version => 20100530162657) do
     t.text      "description"
     t.string    "url"
     t.string    "status",         :limit => 10
-    t.string    "visibility",     :limit => 3,   :default => "no", :null => false
-    t.timestamp "created_at",                                      :null => false
+    t.timestamp "created_at",                                       :null => false
     t.string    "email",          :limit => 128
     t.string    "permalink",      :limit => 32
     t.string    "ssid",           :limit => 32
@@ -93,8 +113,9 @@ ActiveRecord::Schema.define(:version => 20100530162657) do
     t.string    "phone_number",   :limit => 20
     t.datetime  "updated_at"
     t.string    "country"
-    t.integer   "comments_count",                :default => 0,    :null => false
-    t.boolean   "delta",                         :default => true, :null => false
+    t.integer   "comments_count",                :default => 0,     :null => false
+    t.boolean   "delta",                         :default => true,  :null => false
+    t.boolean   "is_visible",                    :default => false
   end
 
   add_index "locations", ["name", "street"], :name => "location_ident"
@@ -103,7 +124,6 @@ ActiveRecord::Schema.define(:version => 20100530162657) do
   add_index "locations", ["permalink"], :name => "slug_3"
   add_index "locations", ["status"], :name => "index_locations_on_status"
   add_index "locations", ["updated_at"], :name => "index_locations_on_updated_at"
-  add_index "locations", ["visibility"], :name => "index_locations_on_visibility"
   add_index "locations", ["zip"], :name => "index_locations_on_zip"
 
   create_table "locations_neighbourhoods", :id => false, :force => true do |t|
@@ -122,13 +142,13 @@ ActiveRecord::Schema.define(:version => 20100530162657) do
 
   create_table "news", :force => true do |t|
     t.string   "headline"
-    t.text     "content",        :limit => 16777215
+    t.text     "content",          :limit => 16777215
     t.string   "external"
     t.datetime "created_at"
-    t.text     "extended",       :limit => 16777215
-    t.string   "permalink",      :limit => 32
-    t.integer  "user_id"
-    t.integer  "comments_count",                     :default => 0, :null => false
+    t.text     "extended",         :limit => 16777215
+    t.string   "permalink",        :limit => 32
+    t.integer  "administrator_id"
+    t.integer  "comments_count",                       :default => 0, :null => false
   end
 
   add_index "news", ["created_at"], :name => "index_news_on_created_at"

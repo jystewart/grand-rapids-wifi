@@ -1,41 +1,27 @@
-class CommentsController < ApplicationController
-  before_filter :authenticate, :except => :create
-  before_filter :load_comment, :except => [:index, :new, :create, :bulk]
-
-  verify :method => :post, :only => :create, :redirect_to => {:controller => 'welcome', :action => 'index'}
-  verify :method => [:post, :delete], :only => :destroy, :redirect_to => {:controller => 'welcome', :action => 'index'}
-  verify :params => 'comment', :only => :create, :render => {:nothing => true, :status => 404}
-
+class CommentsController < InheritedResources::Base
+  before_filter :authenticate_administrator!, :except => [:index, :create]
+  before_filter :block_bad_referers, :only => :create
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
-  rescue_from NameError, :with => :render_404
 
   cache_sweeper :comment_sweeper
     
   layout 'admin'
 
   def index
-    @comments = Comment.paginate :per_page => 30, :order => 'created_at DESC', :page => params[:page]
-
-    respond_to do |wants|
-      wants.html
-      wants.xml { render :xml => @comments.to_xml }
+    if request.format.atom?
+      @entries = Comment.visible.limit(10).order('created_at DESC')
+      @entries = @entries.reject { |c| c.commentable.nil? }
+      respond_to do |wants|
+        wants.atom
+        wants.rss
+      end
+    else
+      authenticate_administrator!
+      index!
     end
-  end
-
-  def show
-    respond_to do |wants|
-      wants.xml { render :xml => @comment.to_xml }
-      wants.html
-    end
-  end
-
-  def new
-    @comment = Comment.new
   end
 
   def create
-    render :nothing => true, :status => 403 and return unless request.env['HTTP_REFERER']
-
     entity = params[:comment][:commentable_type].constantize.find(params[:comment][:commentable_id])
     @review = entity.comments.create(params[:comment].merge(:user_ip => request.remote_ip, 
       :trackback => 0, :user_agent => request.env['HTTP_USER_AGENT']))
@@ -62,21 +48,6 @@ class CommentsController < ApplicationController
   end
 
   def edit
-  end
-  
-  def update
-    if @comment.update_attributes!(params[:comment])
-      respond_to do |wants|
-        wants.html {
-          flash[:notice] = 'Comment was successfully updated.'
-          redirect_to :action => 'index' and return
-        }
-        wants.xml { render :xml => @comment.to_xml and return }
-      end
-    end
-    render :action => 'edit' and return
-  rescue => err
-    render :nothing => true and return
   end
 
   def bulk
@@ -117,22 +88,9 @@ class CommentsController < ApplicationController
       wants.js
     end
   end
-
-  def destroy
-    @comment.destroy
-
-    respond_to do |wants|
-      wants.html {
-        flash[:notice] = 'Comment successfully deleted'
-        redirect_back_or_default(:action => 'index')
-      }
-      wants.js
-    end
-    
-  end
   
   protected
-    def load_comment
-      @comment = Comment.find(params[:id])
-    end
+     def collection
+       @comments ||= end_of_association_chain.paginate(:page => params[:page])
+     end
 end
