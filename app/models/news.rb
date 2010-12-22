@@ -17,8 +17,6 @@ class News < ActiveRecord::Base
   
   sends_pings
 
-  validates_presence_of :permalink
-  validates_uniqueness_of :permalink, :on => :save
   validates_presence_of :content
   validates_presence_of :headline
 
@@ -35,14 +33,10 @@ class News < ActiveRecord::Base
   scope :between, proc { |start, finish| where('created_at BETWEEN ? AND ?', start, finish) }
   default_scope order('created_at DESC')
 
-  has_permalink :headline
+  has_friendly_id :headline, :use_slug => true, :cache_column => 'permalink'
   
   def author
     administrator.to_s
-  end
-  
-  def to_param
-    self.permalink
   end
   
   class <<self

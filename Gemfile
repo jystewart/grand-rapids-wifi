@@ -6,7 +6,7 @@ gem 'mysql', '~> 2.8.1'
 gem "flickraw"
 gem "graticule"
 gem 'will_paginate'
-# gem 'clearance', '~> 0.9.0.rc9'
+
 gem "delayed_job", '~> 2.0.0'
 gem "thinking-sphinx", '~> 2.0.1'
 gem 'ts-delayed-delta', '~> 1.1.0', :require => 'thinking_sphinx/deltas/delayed_delta'
@@ -16,6 +16,7 @@ gem 'inherited_resources', '~> 1.1.2'
 gem 'acts_as_geocodable', '~> 2.0.0'
 
 gem 'devise', '~> 1.1.0'
+gem 'friendly_id'
 
 group :development do
   gem 'capistrano'

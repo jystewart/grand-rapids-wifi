@@ -9,9 +9,8 @@ Wifi::Application.routes.draw do
   match 'rss/:item', :to => redirect('/%{item}.atom')
   match 'rss1/:item', :to => redirect('/%{item}.rdf')
   match 'atom/:item', :to => redirect('/%{item}.atom')
-  match 'rdf', :to => redirect('/locations.rf')
-
-  match 'feed.:format', :to => ("/welcome/index.%{format}")
+  match 'rdf', :to => redirect('/locations.rdf')
+  match 'feed.:format', :to => redirect("/welcome/index.%{format}")
 
   # Regular routes
 

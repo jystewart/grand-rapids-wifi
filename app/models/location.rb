@@ -69,7 +69,6 @@ class Location < ActiveRecord::Base
   validates_presence_of :status
   validates_presence_of :street
   validates_format_of :zip, :with => /\d{5}/, :if => Proc.new { |l| l.country == 'USA' }
-  validates_uniqueness_of :permalink, :on => :save
   validates_inclusion_of :status, :in => %w(rumored proven closed)
   
   scope :zip_codes, group('zip').select('zip').order('zip').where(['zip IS NOT NULL AND is_visible = ?', true])
@@ -90,7 +89,7 @@ class Location < ActiveRecord::Base
   
   alias_attribute :title, :name
   
-  has_permalink :name
+  has_friendly_id :name, :use_slug => true, :cache_column => 'permalink'
 
   def neighbourhoods=(n_list)
     neighbourhoods.clear

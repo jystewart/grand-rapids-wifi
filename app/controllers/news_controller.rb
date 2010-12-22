@@ -19,7 +19,7 @@ class NewsController < InheritedResources::Base
   end
   
   def show
-    @story = News.find_by_permalink!(params[:id], :include => 'comments')
+    @story = News.includes(:comments).find(params[:id])
   end
   
   private

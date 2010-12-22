@@ -14,9 +14,5 @@ class Neighbourhood < ActiveRecord::Base
   
   validates_presence_of :name, :permalink
   
-  has_permalink :name
-  
-  def to_param
-    self.permalink
-  end
+  has_friendly_id :name, :use_slug => true, :cache_column => 'permalink'
 end

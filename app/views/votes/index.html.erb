@@ -1,0 +1,20 @@
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Location</th>
+    <th>Vote</th>
+    <th>Voter</th>
+    <th>Voted</th>
+  </tr>
+
+  <% @ratings.each do |vote| %>
+  <tr>
+    <td><%= vote.id %></td>
+    <td><%= vote.location.name unless vote.location.nil? %></td>
+    <td><%= vote.rating %></td>
+    <td><%= vote.voter %></td>
+    <td><%= vote.entered_at %></td>
+  </tr>
+  <% end %>
+</table>
+    
