@@ -18,6 +18,8 @@ gem 'acts_as_geocodable', '~> 2.0.0'
 gem 'devise', '~> 1.1.0'
 gem 'friendly_id'
 
+gem "exception_notification", :git => "http://github.com/rails/exception_notification.git", :require => 'exception_notifier'
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'

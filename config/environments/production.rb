@@ -46,4 +46,9 @@ Wifi::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  config.middleware.use ExceptionNotifier, :email_prefix => "[WiFi #{Rails.env}] ",
+    :sender_address => %("GR WiFi" <app.error@grwifi.net>),
+    :exception_recipients => %w{jys@ketlai.co.uk}
+  
 end
