@@ -44,4 +44,18 @@ class News < ActiveRecord::Base
   def to_param
     self.permalink
   end
+  
+  class <<self
+    def archives
+      months = find_by_sql('SELECT DISTINCT concat(year(created_at), \'-\', month(created_at)) as month FROM news ORDER BY month DESC')
+      months.collect do |date|
+        dates = date.month.split('-')
+        {
+          :name => Date::MONTHNAMES[dates[1].to_i] + ' ' + dates[0], 
+          :year => dates[0],
+          :month => sprintf('%02d', dates[1])
+        }
+      end
+    end
+  end
 end

@@ -4,6 +4,8 @@ class LocationsController < InheritedResources::Base
 
   layout 'admin', :only => [:view, :feed, :list]
 
+  respond_to :html, :json, :xml, :atom, :rdf
+
   cache_sweeper :location_sweeper
   # caches_page :index
   caches_page :map
@@ -16,26 +18,19 @@ class LocationsController < InheritedResources::Base
 
     @locations = Location.to_list.paginate :per_page => per_page, :page => params[:page]
     @entries = @locations
-
-    respond_to do |wants|
-      wants.html
-      wants.json { render :json => @locations.to_json }
-      wants.xml { render :xml => @locations.to_xml }
-      wants.atom { render :layout => false }
-      wants.rdf { render :layout => false }
-      wants.rss { redirect_to locations_url(:format => :atom), :status => 301 }
-    end
+    
+    respond_with(@locations)
   rescue WillPaginate::InvalidPage
     redirect_to locations_url(:page => 1)
   end
   
   def list
-    @locations = Location.paginate :per_page => 30, :order => 'name', :page => params[:page]
+    @locations = Location.paginate :per_page => 30, :page => params[:page]
     render :layout => 'admin'
   end
 
   def map
-    @locations = Location.active.visible.order('name').includes(:geocoding).reject { |l| l.geocoding.nil? }
+    @locations = Location.active.visible.includes(:geocoding).reject { |l| l.geocoding.nil? }
     build_map @locations unless @locations.nil?
   end
   
@@ -44,14 +39,7 @@ class LocationsController < InheritedResources::Base
 
     @average = { :total => @location.votes.count, :mean => @location.votes.average(:rating) }
     
-    respond_to do |wants|
-      wants.html
-      wants.json { render :json => @locations.to_json }
-      wants.xml { render :xml => @locations.to_xml }
-      wants.atom { render :layout => false }
-      wants.rdf { render :layout => false }
-      wants.rss { redirect_to location_url(@location, :format => 'atom'), :status => 301 }
-    end
+    respond_with(@location)
   end
   
   private
@@ -66,7 +54,7 @@ class LocationsController < InheritedResources::Base
     elsif params[:id]
       conditions = {:permalink => params[:id]}
       conditions[:status] = ['proven', 'rumored', 'closed'] unless administrator_signed_in?
-      @location = Location.first(:conditions => conditions, :include => [:geocoding, :neighbourhoods, :openings])
+      @location = Location.includes(:geocoding, :neighbourhoods, :openings).where(conditions)
     end
     
     render_404 if @location.nil?

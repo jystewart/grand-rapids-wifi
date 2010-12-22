@@ -47,9 +47,6 @@ class CommentsController < InheritedResources::Base
     end
   end
 
-  def edit
-  end
-
   def bulk
     case params[:act]
     when 'Spam'

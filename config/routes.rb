@@ -3,6 +3,7 @@ Wifi::Application.routes.draw do
   match "locations/:name/feed", :to => redirect("/locations/%{name}.atom")
   match "locations/:name/rdf", :to => redirect("/locations/%{name}.rdf")
   match "locations/view/:name(.:format)", :to => redirect("/locations/%{name}.%{format}")
+  match "locations/.rss", :to => redirect("/locations.atom")
   match "news/story/:id", :to => redirect("news/%{id}")
 
   match 'rss/:item', :to => redirect('/%{item}.atom')

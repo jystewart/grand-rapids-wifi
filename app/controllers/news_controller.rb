@@ -7,17 +7,10 @@ class NewsController < InheritedResources::Base
   
   cache_sweeper :news_sweeper
   caches_page :index, :archive, :story, :show
+  
+  respond_to :html, :atom
 
   # layout 'admin', :only => [:new, :index, :edit]
-  
-  def index
-    @stories = News.paginate :per_page => 10, :page => params[:page]
-    
-    respond_to do |wants|
-      wants.atom { render :layout => false }
-      wants.html
-    end
-  end
   
   def archive
     start = Time.utc(params[:year], params[:month])
@@ -33,17 +26,12 @@ class NewsController < InheritedResources::Base
     def begin_of_association_chain
       current_administrator
     end
+    
+    def collection
+      @stories ||= end_of_association_chain.paginate :per_page => 10, :page => params[:page]
+    end
 
     def archive_list
-      months = News.find_by_sql('select distinct concat(year(created_at), \'-\', month(created_at)) as month 
-        from news order by month desc')
-      @archives = months.collect do |date|
-        dates = date.month.split('-')
-        {
-          :name => Date::MONTHNAMES[dates[1].to_i] + ' ' + dates[0], 
-          :year => dates[0],
-          :month => sprintf('%02d', dates[1])
-        }
-      end
+      @archives = News.archives
     end
 end

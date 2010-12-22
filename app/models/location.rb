@@ -84,6 +84,7 @@ class Location < ActiveRecord::Base
   scope :open_now, proc { visible.includes(:openings).where(['? BETWEEN openings.opening_time AND openings.closing_time AND 
     ? BETWEEN openings.opening_day AND openings.closing_day', Time.now.strftime('%H:%M'), Time.now.wday]) }
 
+  default_scope order('name')
   delegate :latitude, :to => :geocode
   delegate :longitude, :to => :geocode
   
