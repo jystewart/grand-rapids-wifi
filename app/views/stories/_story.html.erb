@@ -1,0 +1,8 @@
+<div class="story hentry">
+    <h3><%= link_to story.headline, story, :class => 'bookmark entry-title' %></h3>
+    <p class="entry-content"><%= raw story.content %></p>
+    <p>Published <span class="published" title="<%= story.created_at.to_s(:uf) %>">
+      <%= story.created_at.strftime('%D') %>
+    </span> : <%= story.displayable_comments.size %> Comments  : <%= link_to 'Read More...', story %>
+    <% if administrator_signed_in? %> : <%= link_to 'Edit', [:edit, story] %><% end %></p>
+</div>
