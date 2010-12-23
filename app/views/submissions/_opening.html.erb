@@ -1,0 +1,9 @@
+<%= f.inputs do %>
+  <li>
+    <%= f.select :opening_day, %w(monday tuesday wednesday thursday friday saturday sunday) %>
+    <%= f.time_select :opening_time, :minute_step => 15, :ignore_date => true, :include_seconds => false %>
+    to 
+    <%= f.select :closing_day, %w(monday tuesday wednesday thursday friday saturday sunday) %>
+    <%= f.time_select :closing_time, :minute_step => 15, :ignore_date => true, :include_seconds => false %>
+  </li>
+<% end %>

@@ -1,0 +1,74 @@
+<% if @comparisons and @comparisons.any? %>
+<h3>Similar Locations</h3>
+
+<p>Our database contains some locations similar to the one you just submitted. Please make sure you didn't mean one of these existing listings.</p>
+
+<ul>
+  <% for location in @comparisons %>
+  <li><%= link_to h(location.name), location_path(location) %>
+    <br /><%=h location.street %>, <%=h location.city %> <%=h location.zip %></li>
+  <% end %>
+</ul>
+
+<p>If you did, you can simply close this page. Otherwise, please continue </p>
+<% end %>
+
+<%= semantic_form_for(@location, :url => submissions_path) do |form| -%>
+  <% if @comparisons and @comparisons.any? %>
+  <%= hidden_field_tag 'is_sure', 1 %>
+  <% end %>
+
+  <%= semantic_fields_for @submitter do |s| %>
+    <%= s.inputs 'Your Details' do %>
+      <li>Please provide us with a few details about yourself. This is useful so we can ensure submissions are genuine or in case we need to check any details. Locations which are private residences will only be listed if the person submitting its details is the network owner/operator.</li>
+      <%= s.input :name %>
+      <%= s.input :email %>
+      <%= s.input :connection %>
+    <% end %>
+  <% end %>
+
+  <%= form.error_messages %>
+
+  <%= form.inputs 'Hotspot Details' do %>
+    <li>Please provide all the details of this location that you can. When providing us with a description, please try to be objective.</li>
+    <%= form.input :status, :collection => ['rumored', 'proven'], :label => "Is this a location you know to work (proven) or that you've heard may have wifi (rumored)?" %>
+    <%= form.input :name %>
+    <%= form.input :free, :collection => %W(Yes No), :as => :radio %>
+    <%= form.input :ssid %>
+    <%= form.input :street %>
+    <%= form.input :city %>
+    <%= form.input :zip %>
+    <%= form.input :description %>
+    <%= form.input :url %>
+    <%= form.input :email %>
+    <%= form.input :phone_number %>  
+  <% end %>
+
+
+<fieldset id="opening">
+  <legend><h3>Hours of Operation</h3></legend>
+
+  <p>Enter hours of operation using the form below. Examples:</p>
+
+  <dl id="opening-hours-explanation">
+    <dt>If the location is open on Mondays from 7am to 7pm select:</dt>
+    <dd>"'Monday' 07:00 to Monday 19:00"</dd>
+    <dt>If it is open on Saturday from 12 noon to 2 am select:</dt>
+    <dd>"Saturday 12:00 to Sunday 02:00".</dd>
+  </dl>
+
+  <%= form.inputs :name => 'Openings', :id => 'openings' do %>
+    <%= form.add_associated_link "+ Opening", :openings, :partial => 'opening' %>
+    <%= raw form.render_associated_form :openings, :partial => 'opening', :new => 1, :edit => 1 %>
+  <% end %>
+
+</fieldset>
+
+<%= submit_tag 'Submit Location' %>
+<%- end -%>
+<%- content_for :javascript do -%>
+<%= javascript_include_tag 'jquery' %>
+<style type="text/css" media="screen">
+  legend { font-weight: bold; font-size: 1.17em;}
+</style>
+<%- end -%>
