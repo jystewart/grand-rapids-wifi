@@ -6,7 +6,7 @@
       <li>
         <h3>about grwifi</h3>
         <ul>
-            <li><%= link_to 'news', {:controller => '/news', :action => 'index'} %></li>
+            <li><%= link_to 'news', stories_path %></li>
             <li><%= link_to 'background', about_path %></li>
             <li><%= link_to 'local links', links_path %></li>
         </ul>
@@ -19,11 +19,11 @@
         </ul>
       </li>
       <li>
-        <h3><%= link_to image_tag('/images/feed-icon-16x16.png', :alt => 'XML feed'), :controller => '/feed' %> feeds</h3>
+        <h3><%= link_to image_tag('/images/feed-icon-16x16.png', :alt => 'XML feed'), root_path(:format => :atom) %> feeds</h3>
         <ul>
             <li><%= link_to 'What is this?', feeds_info_path %></li>
-            <li><%= link_to image_tag('/images/atompixel.png', :alt => 'Atom Feed'), :controller => '/feed' %></li>
-            <li><%= link_to image_tag('/images/rss1.gif', :alt => 'RSS 1 Feed'), :controller => '/feed' %></li>
+            <li><%= link_to image_tag('/images/atompixel.png', :alt => 'Atom Feed'), root_path(:format => :atom) %></li>
+            <li><%= link_to image_tag('/images/rss1.gif', :alt => 'RSS 1 Feed'), root_path(:format => :rdf) %></li>
        </ul>
       </li>
     </ul>

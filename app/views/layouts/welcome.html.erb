@@ -5,8 +5,7 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title><%= SITE_NAME %> Search - Find Wireless Hotspots</title>
-	<%= stylesheet_link_tag 'basic' %>
-	<%= stylesheet_link_tag 'frontpage' %>
+  <%= stylesheet_link_tag 'basic', 'frontpage', 'formtastic', :cache => 'homepage' %>
 	<%= auto_discovery_link_tag :atom, {:controller => 'feed', :action => 'index', :format => 'atom'}, 
 			{:title => SITE_NAME + ' Atom Feed'} %>
 </head>

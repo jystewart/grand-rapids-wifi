@@ -60,7 +60,8 @@ class Location < ActiveRecord::Base
     :as => :commentable, :conditions => 'hide = 0', :order => 'created_at ASC'
   has_many :pings, :as => :pingable, :order => 'created_at ASC'
   has_many :openings, :order => 'opening_day'
-  accepts_nested_attributes_for :openings, :allow_destroy => true, :reject_if => proc { |attrs| attrs['opening_day'].blank? }
+  accepts_nested_attributes_for :openings, :allow_destroy => true, 
+    :reject_if => proc { |attrs| attrs['opening_day'].blank? or (attrs['opening_time(4i)'] == attrs['closing_time(4i)'] and attrs['opening_time(5i)'] == attrs['closing_time(5i)']) }
 
   has_and_belongs_to_many :neighbourhoods
   accepts_nested_attributes_for :neighbourhoods
@@ -68,18 +69,19 @@ class Location < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :status
   validates_presence_of :street
-  validates_format_of :zip, :with => /\d{5}/, :if => Proc.new { |l| l.country == 'USA' }
+  validates :zip, :presence => true, :format => /\d{5}/
+
   validates_inclusion_of :status, :in => %w(rumored proven closed)
   
   scope :zip_codes, group('zip').select('zip').order('zip').where(['zip IS NOT NULL AND is_visible = ?', true])
   scope :to_list, where(:is_visible => true, :status => %W(proven rumoured)).order('name')
-  scope :latest_visible, limit(3).where(:status => 'proven', :is_visibile => true).order('updated_at DESC')
+  scope :latest_visible, limit(3).where(:status => 'proven', :is_visible => true).order('updated_at DESC')
   scope :visible, where(:is_visible => true)
   scope :active, where(:status => ['proven', 'rumored'])
 
   scope :for_widgets, select('name, permalink, comments_count').group('name')
-  scope :least_comments, proc { |the_limit| for_widget.order('comments_count ASC').limit(the_limit) }
-  scope :most_comments, proc { |the_limit| for_widget.order('comments_count DESC').limit(the_limit) }
+  scope :least_comments, proc { |the_limit| order('comments_count ASC').limit(the_limit) }
+  scope :most_comments, proc { |the_limit| order('comments_count DESC').limit(the_limit) }
   scope :open_now, proc { visible.includes(:openings).where(['? BETWEEN openings.opening_time AND openings.closing_time AND 
     ? BETWEEN openings.opening_day AND openings.closing_day', Time.now.strftime('%H:%M'), Time.now.wday]) }
 
@@ -138,9 +140,5 @@ class Location < ActiveRecord::Base
       ORDER BY relevance DESC
       LIMIT 5", name, name, name])
     end
-  end
-
-  def to_param
-    self.permalink || self.name.parameterize.to_s
   end
 end

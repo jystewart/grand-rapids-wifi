@@ -18,8 +18,8 @@ xml.rdf :RDF, "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host
       xml.rdf :Seq do
         for entry in @entries
           xml.rdf :li, 'resource' => location_url(entry) if entry.class == Location
-          xml.rdf :li, 'resource' => url_for(:only_path => false, :controller => 'news', :action => 'show', :id => entry.permalink) if entry.class == News
-          xml.rdf :li, 'resource' => url_for(:only_path => false, :controller => 'news', :action => 'show', :id => entry.commentable.permalink) if entry.is_a?(Comment) and entry.commentable.is_a?(News)
+          xml.rdf :li, 'resource' => story_url(entry) if entry.class == Story
+          xml.rdf :li, 'resource' => story_url(entry.commentable) if entry.is_a?(Comment) and entry.commentable.is_a?(Story)
           xml.rdf :li, 'resource' => location_url(entry.commentable, :anchor => 'comment' + entry.id.to_s) if entry.is_a?(Comment) and entry.commentable.is_a?(Location)
         end
       end
@@ -44,10 +44,10 @@ xml.rdf :RDF, "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host
         end
       end
     
-    elsif entry.class == News
-      xml.item 'rdf:about' => url_for(:only_path => false, :controller => 'news', :action => 'show', :id => entry.permalink) do
+    elsif entry.class == Story
+      xml.item 'rdf:about' => story_url(entry) do
         xml.title entry.headline
-        xml.link url_for(:only_path => false, :controller => 'news', :action => 'story', :id => entry.permalink)
+        xml.link story_url(entry)
         xml.description entry.content
         xml.dc :subject, 'WiFi'
         xml.dc :subject, 'Grand Rapids'
@@ -64,13 +64,11 @@ xml.rdf :RDF, "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host
         xml.dc :subject, 'Grand Rapids'
         xml.dc :subject, 'Hotspots'
       end
-    elsif entry.class == Comment and entry.commentable_type == 'News'
-      about = url_for(:only_path => false, :controller => 'news', :action => 'story', :id => entry.commentable.permalink, 
-          :anchor => 'comment' + entry.id.to_s)
+    elsif entry.class == Comment and entry.commentable_type == 'Story'
+      about = story_url(entry.commentable, :anchor => 'comment' + entry.id.to_s)
       xml.item 'rdf:about' => about do
         xml.title SITE_NAME + ': Comment on ' + entry.commentable.headline
-        xml.link url_for(:only_path => false, :controller => 'news', :action => 'story', :id => entry.commentable.permalink, 
-          :anchor => 'comment' + entry.id.to_s)
+        xml.link story_url(entry.commentable, :anchor => 'comment' + entry.id.to_s)
         xml.description entry.blog_name + ' said regarding ' + entry.commentable.headline + ' ... ' + entry.excerpt
         xml.dc :subject, 'WiFi'
         xml.dc :subject, 'Grand Rapids'

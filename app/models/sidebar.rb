@@ -13,7 +13,7 @@ class Sidebar
     @@used << this_option
     selected = @@options[this_option]
     if selected
-      return selected[:title], Location.send(selected[:method])
+      return selected[:title], Location.for_widgets.send(selected[:method], 5)
     else
       return nil
     end

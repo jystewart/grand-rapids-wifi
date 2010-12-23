@@ -20,12 +20,12 @@ xml.feed "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host}/fee
       case entry
       when Location
         xml << render(entry)
-      when News
-        xml << render(:partial => 'news/story', :format => :atom, :locals => {:entry => entry})
+      when Story
+        xml << render(:partial => 'stories/story', :format => :atom, :locals => {:entry => entry})
       when Comment
         if entry.commentable.is_a?(Location)
           xml << render(:partial => 'comments/location', :format => :atom, :locals => {:entry => entry})
-        elsif entry.commentable.is_a?(News)
+        elsif entry.commentable.is_a?(Story)
           xml << render(:partial => 'comments/news', :format => :atom, :locals => {:entry => entry})
         end
       end

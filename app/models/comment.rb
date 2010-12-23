@@ -28,7 +28,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :commentable_type
   validates_presence_of :commentable_id
   validate :valid_commentable
-  validate :valid_ip_address
+  validates_presence_of :user_ip
   
   before_create :spam_check
   
@@ -85,7 +85,7 @@ class Comment < ActiveRecord::Base
       :comment_content => excerpt}
     # @todo   Building the URI probably doesn't belong in the model
     options[:permalink] = "http://#{ROOT_URL}/locations/#{commentable.permalink}" if commentable.class == 'Location'
-    options[:permalink] = "http://#{ROOT_URL}/news/story/#{commentable.permalink}" if commentable.class == 'News'
+    options[:permalink] = "http://#{ROOT_URL}/stories/#{commentable.permalink}" if commentable.class == 'NewStory'
     options[:comment_author_url] = uri if ! uri.blank? and uri.match(/http:/)
     options[:comment_author_email] = uri unless uri.blank? or uri.match(/http:/)
     options[:comment_type] = 'trackback' if trackback == 1
@@ -96,13 +96,6 @@ class Comment < ActiveRecord::Base
     return true if self.commentable_type.constantize.find(self.commentable_id)
   rescue ActiveRecord::RecordNotFound, NoMethodError
     errors.add("commentable_id", "Must comment on a valid entry")
-    return false
-  end
-  
-  def valid_ip_address
-    return true if IPAddr.new(self.user_ip)
-  rescue ArgumentError
-    errors.add("user_ip", "We need a valid IP address")
     return false
   end
   

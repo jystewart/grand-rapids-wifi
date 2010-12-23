@@ -97,8 +97,8 @@ ActiveRecord::Schema.define(:version => 20101222155619) do
   add_index "geocodings", ["geocode_id"], :name => "geocodings_geocode_id_index"
 
   create_table "locations", :force => true do |t|
-    t.string    "name"
-    t.string    "street"
+    t.string    "name",           :limit => 127
+    t.string    "street",         :limit => 127
     t.string    "city"
     t.string    "state",          :limit => 2
     t.string    "zip",            :limit => 10
@@ -118,10 +118,8 @@ ActiveRecord::Schema.define(:version => 20101222155619) do
     t.boolean   "is_visible",                    :default => false
   end
 
-  add_index "locations", ["name", "street"], :name => "location_ident"
-  add_index "locations", ["permalink"], :name => "index_locations_on_slug"
+  add_index "locations", ["name", "street"], :name => "ident"
   add_index "locations", ["permalink"], :name => "slug", :unique => true
-  add_index "locations", ["permalink"], :name => "slug_3"
   add_index "locations", ["status"], :name => "index_locations_on_status"
   add_index "locations", ["updated_at"], :name => "index_locations_on_updated_at"
   add_index "locations", ["zip"], :name => "index_locations_on_zip"

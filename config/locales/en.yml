@@ -3,3 +3,25 @@
 
 en:
   hello: "Hello world"
+  formtastic:
+    labels:
+      comment:
+        blog_name: Your Name
+        uri: Your Website/Email
+        title: Comment title
+        excerpt: Comment
+      location:
+        name: Location Name
+        ssid: SSID/Network Names
+        street: Street Address
+        zip: ZIP code
+        url: Website
+        email: Email Address
+        neighbourhood_ids: Neighbourhoods
+      submitter:
+        name: Your Name
+        email: Your Email address
+        connection: Your connection with this location?
+    hints:
+      location:
+        ssid: for information, even if not needed for access

@@ -18,14 +18,14 @@
 </div>
 
 <div class="admin-box">
-	<h3><%= link_to 'Recent News Stories', :controller => 'news' %></h3>
+	<h3><%= link_to 'Recent News Stories', stories_path %></h3>
 
 	<ul>
 		<%- @news.each do |story| -%>
-		<li><%= link_to story.headline, news_path(story) %></li>
+		<li><%= link_to story.headline, story %></li>
 		<%- end -%>
 	</ul>
-	<p><%= link_to 'Add Story', new_news_path %></p>
+	<p><%= link_to 'Add Story', new_story_path %></p>
 </div>
 
 <div class="admin-box">

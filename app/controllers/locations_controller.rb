@@ -2,8 +2,7 @@ class LocationsController < InheritedResources::Base
   before_filter :authenticate_administrator!, :except => [:index, :map, :show, :feed, :rdf, :view]
   before_filter :load_location, :except => [:index, :list, :map, :create, :new]
 
-  layout 'admin', :only => [:view, :feed, :list]
-
+  layout proc { |c| [:edit, :create, :update, :view, :feed, :list].include?(params[:action].to_sym) ? 'admin' : 'application' }
   respond_to :html, :json, :xml, :atom, :rdf
 
   cache_sweeper :location_sweeper
@@ -43,20 +42,16 @@ class LocationsController < InheritedResources::Base
   end
   
   private
-  def load_location
-    if params[:id] and params[:id].match(/^\d+$/)
-      @location = Location.find(params[:id])
-      if params[:format] and params[:format] != 'html'
+    def load_location
+      if params[:id] and params[:id].match(/^\d+$/)
+        @location = Location.find(params[:id])
         redirect_to location_url(@location, :format => params[:format]), :status => 301 and return
-      else
-        redirect_to location_url(@location), :status => 301 and return
+      elsif params[:id]
+        scoped = Location.includes(:geocoding, :neighbourhoods, :openings)
+        scoped = scoped.where(:status => %w(proven rumored closed)) unless administrator_signed_in?
+        @location = scoped.find(params[:id])
       end
-    elsif params[:id]
-      conditions = {:permalink => params[:id]}
-      conditions[:status] = ['proven', 'rumored', 'closed'] unless administrator_signed_in?
-      @location = Location.includes(:geocoding, :neighbourhoods, :openings).where(conditions)
-    end
     
-    render_404 if @location.nil?
-  end
+      render_404 if @location.nil?
+    end
 end

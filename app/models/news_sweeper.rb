@@ -1,5 +1,5 @@
 class NewsSweeper < ActionController::Caching::Sweeper
-  observe News
+  observe Story
   
   def after_create(story)
     expire_public_pages(story) 

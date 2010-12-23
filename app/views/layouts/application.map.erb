@@ -3,16 +3,12 @@
 <html>
 <head>
   <%= stylesheet_link_tag 'basic' %>
-  <%= auto_discovery_link_tag :atom, {:controller => 'news', :action => 'index', :format => 'atom'}, 
-    {:title => 'News Story Atom Feed'} %>
+  <%= auto_discovery_link_tag :atom, story_path(:format => :atom), {:title => 'News Story Atom Feed'} %>
 
   <% if @map %>
     <%= javascript_include_tag 'jquery' %>
-    <%= Mapstraction.header(:google) %>
-    <script type="text/javascript" charset="utf-8">
-
-    </script>
-    <%= @map.to_html %>
+    <%= raw Mapstraction.header(:google) %>
+    <%= raw @map.to_html %>
   <% end %>
 
   <title><%= SITE_NAME %>: Wireless Hotspots in Grand Rapids Michigan</title>

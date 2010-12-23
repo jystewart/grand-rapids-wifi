@@ -13,27 +13,19 @@
 
 <h2>Neighbourhoods</h2>
 
-<%- setup_neighbourhoods -%>
-<%- @location.neighbourhoods.each_with_index do |neighbourhood, index| -%>
-	<p><%= select_neighbourhood(@location, index) %></p>
-<%- end -%>
+<%= f.inputs do %>
+  <%= f.input :neighbourhood_ids, :collection => Neighbourhood.all, :as => :check_boxes %>
+<% end %>
 
 <h2>Openings</h2>
 
-<ul id="opening-times">
-	<% f.fields_for :openings do |openings_form| %>
-    <li>
-      <%= openings_form.select :opening_day, %w(monday tuesday wednesday thursday friday saturday sunday) %>
-      <%= openings_form.time_select :opening_time, :minute_step => 15, :ignore_date => true, :include_seconds => false %>
-      to 
-      <%= openings_form.select :closing_day, %w(monday tuesday wednesday thursday friday saturday sunday) %>
-      <%= openings_form.time_select :closing_time, :minute_step => 15, :ignore_date => true, :include_seconds => false %>
-    </li>
-  <%- end -%>
-</ul>
+<%= form.inputs :name => 'Openings', :id => 'openings' do %>
+  <%= form.add_associated_link "+ Opening", :openings, :partial => 'opening' %>
+  <%= raw form.render_associated_form :openings, :partial => 'opening', :new => 1, :edit => 1 %>
+<% end %>
 
 <%- content_for :javascript do -%>
-<%= javascript_include_tag 'jquery', 'new-time' %>
+<%= javascript_include_tag 'jquery' %>
 <%- end -%>
 
 <!--[eoform:location]-->

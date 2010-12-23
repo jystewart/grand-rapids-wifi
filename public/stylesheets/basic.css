@@ -79,6 +79,9 @@ dt {
   border-bottom: 1px solid black;
   max-width: 600px;
 }
+.hreview:last-child {
+  border-bottom: none;
+}
 .hreview h4 {
   margin: 0px;
 }

@@ -1,0 +1,50 @@
+<div class="hfeed">
+  <div class="hentry">
+  	<h2 class="entry-title"><%=h @story.headline %></h2>
+  	<p>
+			<span class="published" title="<%= @story.created_at.to_s(:uf) %>"><%= @story.created_at.strftime('%D') %></span> : 
+    	<%= link_to 'Permalink', @story, :class => 'bookmark entry-title' %>
+    	<% if administrator_signed_in? %> : <%= link_to 'Edit', [:edit, @story] %><% end %>
+		</p>
+  	<div class="entry-content">
+    	<p><%= raw @story.content %></p>
+    	<p><%= raw format_extended(@story.extended) %></p>
+  	</div>
+	</div>
+
+	<hr />
+
+	<h3><%= @story.displayable_comments.size %> Comments</h3>
+
+	<% @story.displayable_comments.each do |@review| %>
+  	<% if @review.trackback %>
+    	<%= render :partial => 'location/trackback' %>
+  	<% else %>
+    	<%= render :partial => 'comments/view' %>
+  	<% end %>
+	<% end %>
+
+	<hr />
+
+	<%= semantic_form_for Comment.new, :html => {:id => 'comment-form'} do |f| %>
+		<h4>Add A Comment</h4>
+		<%= f.inputs :blog_name, :uri, :title, :excerpt %>
+
+	  <%= f.hidden_field :commentable_type, :value => 'Story' %>
+	  <%= f.hidden_field :commentable_id, :value => @story.id %>
+    <p><%= submit_tag 'Add Comment'%></p>
+	<% end %>
+</div>
+
+<%= render :partial => 'archives' %>
+
+<%- content_for :javascript do -%>
+<%= javascript_include_tag 'jquery', 'jquery-form', 'jquery-color' %> 
+<script type="text/javascript" charset="utf-8">
+	jQuery(document).ready(function() {
+		jQuery("#comment-form").ajaxForm({
+		    dataType: 'script',
+		    beforeSend: function(xhr) {xhr.setRequestHeader("Accept", "text/javascript");}
+		});
+</script>
+<%- end -%>

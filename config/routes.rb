@@ -12,6 +12,11 @@ Wifi::Application.routes.draw do
   match 'rdf', :to => redirect('/locations.rdf')
   match 'feed.:format', :to => redirect("/welcome/index.%{format}")
 
+  match 'news(.:format)', :to => redirect("/stories.%{format}")
+  match 'news/story/:id', :to => redirect("/stories/%{id}")
+  match 'news/:id', :to => redirect("/stories/%{id}")
+  match 'news/archive/:year/:month', :to => redirect("/stories/archive/%{year}/%{month}")
+
   # Regular routes
 
   match 'admin' => 'admin#index', :as => :admin
@@ -27,7 +32,7 @@ Wifi::Application.routes.draw do
   end
 
   resources :ratings
-  resources :news do
+  resources :stories do
     collection do
       get :archive
     end
@@ -42,12 +47,12 @@ Wifi::Application.routes.draw do
 
   devise_for :administrators
 
-  resources :neighbourhoods
+  resources :neighbourhoods, :submissions
   
   match 'open/now' => 'search#results', :as => :open, :open => 'now'
   match 'zip/:zip' => 'search#results', :as => :zip
 
-  match 'news/archive/:year/:month' => 'news#archive', :as => :archive
+  match 'stories/archive/:year/:month' => 'stories#archive', :as => :archive
   
   match 'search/results(.:format)' => 'search#results', :as => :search_results
   match 'search' => 'search#index', :as => :search
@@ -56,7 +61,7 @@ Wifi::Application.routes.draw do
   match 'about/links', :to => 'about#links', :as => :links
   match 'about/help', :to => 'about#help', :as => :help
   match 'about/feeds', :to => 'about#feeds', :as => :feeds_info
-  match 'submit', :to => 'submit#index', :as => :new_submission
-  
+  match 'submit', :to => 'submissions#new', :as => :new_submission
+
   root :to => 'welcome#index'
 end

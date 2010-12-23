@@ -93,7 +93,7 @@
   <% end %>
 
   <p>Add a rating</p>
-  <%= form_for :vote, @vote, :url => ratings_path(:location_id => @location.permalink), 
+  <%= form_for :vote, @vote, :url => ratings_path(:location_id => @location), 
   :html => {:id => 'ratings-form'}  do |v| %>
      <p><% (1..10).each do |number| %>
              <%= v.radio_button :rating, number %> <%= number %>
@@ -125,35 +125,21 @@
 
     <p>We are no longer accepting comments on this location.</p>
   <% else %>
-    <%= form_for :comment, @comment, :url => comments_path, :html => {:id => 'comment-form'} do |f| %>
-       <fieldset>
-           <h3>Leave A Comment</h3>
+    <%= semantic_form_for Comment.new, :html => {:id => 'comment-form'} do |f| %>
+       <h3>Leave A Comment</h3>
 
-           <p>This space is for sharing comments and information relating to 
-               the wireless internet access provided at this location.</p>
+       <p>This space is for sharing comments and information relating to 
+           the wireless internet access provided at this location.</p>
 
-           <p>It is not a way of contacting <%=h @location.name %>, nor is it a forum for personal grievances.</p>
+       <p>It is not a way of contacting <%=h @location.name %>, nor is it a forum for personal grievances.</p>
 
-           <p>Please keep your comments focussed on the quality of service provided and technical information about the location.</p>
+       <p>Please keep your comments focussed on the quality of service provided and technical information about the location.</p>
 
-           <p>A * means a field is required. If you provide an email address we will not publish it, but if you provide a website address we will link to it.</p>
-
-           <p><label for="comment_blog_name">Your Name (*)</label>
-             <%= f.text_field :blog_name %></p>
-
-           <p><label for="comment_uri">Your Website/Email (*)</label>
-             <%= f.text_field :uri %></p>
-
-           <p><label for="comment_title">Comment Title</label>
-             <%= f.text_field :title %></p>
-
-           <p><label for="comment_excerpt">Comment (*)</label>
-
-             <%= f.text_area :excerpt %></p>
-            <%= f.hidden_field :commentable_type, :value => 'Location' %>
-            <%= f.hidden_field :commentable_id, :value => @location.id %>
-           <p><%= submit_tag 'Add Comment' %></p>
-       </fieldset>
+       <p>A * means a field is required. If you provide an email address we will not publish it, but if you provide a website address we will link to it.</p>
+       <%= f.inputs :blog_name, :uri, :title, :excerpt %>
+       <%= f.hidden_field :commentable_type, :value => 'Location' %>
+       <%= f.hidden_field :commentable_id, :value => @location.id %>
+       <p><%= submit_tag 'Add Comment' %></p>
      <% end %>
 
    <% end %>

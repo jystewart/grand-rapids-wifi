@@ -1,0 +1,9 @@
+<%= f.error_messages %>
+<%= f.inputs do %>
+  <%= f.input :headline %>
+  <%= f.input :content %>
+  <%= f.input :external %>
+  <%= f.input :author, :collection => Administrator.all %>
+  <%= f.input :extended %>
+<% end %>
+<%= f.buttons %>

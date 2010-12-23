@@ -1,0 +1,8 @@
+<h2>Grand Rapids WiFi News : 
+  <%= Date::MONTHNAMES[params[:month].to_i] %> <%= params[:year] %></h2>
+
+<div class="hfeed">
+  <%= render @stories %>
+</div>
+
+<%= render :partial => 'archives' %>

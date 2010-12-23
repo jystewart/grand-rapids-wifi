@@ -3,10 +3,10 @@
 <p>(<em><%= link_to 'View These Results As A List', :action => 'index' %></em>)</p>
 
 <div class="results">
-    <%= @map.div %>
+    <%= raw @map.div %>
 </div>
 
 <% content_for :javascript do %>
-  <%= Mapstraction.header(:google) %>
-  <%= @map.to_html %>
+  <%= raw Mapstraction.header(:google) %>
+  <%= raw @map.to_html %>
 <% end %>

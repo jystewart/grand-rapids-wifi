@@ -1,6 +1,6 @@
 <h2>Editing location <%= @location.name %></h2>
 
-<%- semantic_form_for(@location) do |form| -%>
+<%= semantic_form_for(@location) do |form| -%>
   <%= render :partial => 'inputs', :locals => {:f => form} %>
 <%- end -%>
 

@@ -1,0 +1,7 @@
+<h1>Editing news story</h1>
+
+<%= semantic_form_for(@story) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<%- end -%>
+
+<p><%= link_to 'Show', @story %> | <%= link_to 'Back', stories_path %></p>

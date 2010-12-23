@@ -19,8 +19,7 @@ xml.rdf :RDF, "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host
           if entry.commentable_type == 'Location'
             xml.rdf :li, 'resource' => location_url(entry, :anchor => 'comment' + entry.id.to_s)
           else
-            xml.rdf :li, 'resource' => url_for(:only_path => false, :controller => 'news', :action => 'story', 
-              :id => entry.commentable.permalink, :anchor => 'comment' + entry.id.to_s)
+            xml.rdf :li, 'resource' => story_url(entry.commentable, :anchor => 'comment' + entry.id.to_s)
           end
         end
       end
@@ -31,8 +30,7 @@ xml.rdf :RDF, "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host
     if entry.commentable_type == 'Location'
       about = location_url(entry, :anchor => 'comment' + entry.id.to_s)
     else
-      about = url_for(:only_path => false, :controller => 'news', :action => 'story', :id => entry.commentable.permalink, 
-        :anchor => 'comment' + entry.id.to_s)
+      about = story_url(entry.commentable, :anchor => 'comment' + entry.id.to_s)
     end
     xml.item 'rdf:about' => about do
       if entry.commentable_type == 'Location'
@@ -45,8 +43,7 @@ xml.rdf :RDF, "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host
         end
       else
         xml.title SITE_NAME + ': Comment on ' + entry.commentable.headline
-        xml.link url_for(:only_path => false, :controller => 'news', :action => 'story', :id => entry.commentable.permalink, 
-          :anchor => 'comment' + entry.id.to_s)
+        xml.link story_url(entry.commentable, :anchor => 'comment' + entry.id.to_s)
         xml.description entry.blog_name + ' said regarding ' + entry.commentable.headline + ' ... ' + entry.excerpt
       end
       xml.dc :subject, 'WiFi'

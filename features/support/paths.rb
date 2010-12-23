@@ -10,7 +10,8 @@ module NavigationHelpers
       send("new_#{$1}_registration_path")
     when /the (.+?) new password page/
       send("new_#{$1}_password_path")
-    
+    when /the new submission page/
+      new_submission_path
     # Add more page name => path mappings here
     
     else
