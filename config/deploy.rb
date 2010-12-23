@@ -1,22 +1,16 @@
+require 'bundler/capistrano'
+set :bundle_cmd, "/opt/ruby-enterprise/bin/bundle"
 set :application, "grwifi"
 
 set :scm, :git
 set :repository,  "git@github.com:jystewart/grand-rapids-wifi.git"
 set :branch, "master"
 
-role :web, "jystewart.vm.bytemark.co.uk"
-role :app, "jystewart.vm.bytemark.co.uk"
-role :db, "jystewart.vm.bytemark.co.uk", :primary => true
+server "jystewart.vm.bytemark.co.uk", :web, :app, :db, :primary => true
 
 set :deploy_to, "/var/www/grwifi.net"
 set :rails_env, "production"
-
-namespace :deploy do
-  desc "Restart passenger"
-  task :restart, :roles => :web do
-    "touch #{current_path}/tmp/restart.txt"
-  end
-end
+set :ssh_options, { :forward_agent => true }
 
 namespace :link do
   desc "Link in the production configuration"
@@ -63,31 +57,9 @@ namespace :sphinx do
   end
 end
 
-namespace :bundler do
-  task :create_symlink, :roles => :app do
-    shared_dir = File.join(shared_path, 'bundle')
-    release_dir = File.join(current_release, '.bundle')
-    run("mkdir -p #{shared_dir} && ln -s #{shared_dir} #{release_dir}")
-  end
-  
-  task :bundle_new_release, :roles => :app do
-    bundler.create_symlink
-    run "cd #{release_path} && /opt/ruby-enterprise/bin/bundle install --relock"
-  end
-  
-  task :lock, :roles => :app do
-    run "cd #{current_release} && /opt/ruby-enterprise/bin/bundle lock;"
-  end
-  
-  task :unlock, :roles => :app do
-    run "cd #{current_release} && /opt/ruby-enterprise/bin/bundle unlock;"
-  end
-end
-
 after 'deploy:update_code', "link:config"
 after "deploy:update_code", "sphinx:link_indices"
 after "deploy:update_code", "sphinx:configure"
-after "deploy:update_code", "bundler:bundle_new_release"
 # after "deploy:start", "delayed_job:start" 
 # after "deploy:stop", "delayed_job:stop" 
 # after "deploy:restart", "delayed_job:restart"
