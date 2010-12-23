@@ -5,7 +5,7 @@ gem 'mysql', '~> 2.8.1'
 
 gem "flickraw"
 gem "graticule"
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.0.pre2'
 
 gem "delayed_job", '~> 2.0.0'
 gem "thinking-sphinx", '~> 2.0.1'
@@ -32,6 +32,8 @@ group :test do
   gem 'capybara'
   
   gem 'factory_girl'
+  gem 'launchy'
+  gem 'shoulda'
 end
 
 group :development, :test do
