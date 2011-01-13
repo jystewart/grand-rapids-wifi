@@ -15,7 +15,7 @@ module ApplicationHelper
     _uacct = "UA-694051-1";
     urchinTracker();
     -->
-    </script>'
+    </script>'.html_safe
   end
 
   def random_sidebar
