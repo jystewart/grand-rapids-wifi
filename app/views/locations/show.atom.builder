@@ -17,7 +17,11 @@ xml.feed "xml:lang"=>"en-US", "xml:base"=>"http://#{controller.request.host}/",
     xml.geo :long, @location.longitude
   end
 
-  xml.updated @location.comments.first.created_at.xmlschema unless @location.comments.empty?
+  begin
+    xml.updated @location.comments.first.created_at.xmlschema
+  rescue
+    xml.updated Time.now.xmlschema
+  end
 
   for entry in @location.displayable_comments.reverse
 
