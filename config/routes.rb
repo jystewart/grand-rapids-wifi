@@ -4,7 +4,6 @@ Wifi::Application.routes.draw do
   match "locations/:name/rdf", :to => redirect("/locations/%{name}.rdf")
   match "locations/view/:name(.:format)", :to => redirect("/locations/%{name}.%{format}")
   match "locations/.rss", :to => redirect("/locations.atom")
-  match "news/story/:id", :to => redirect("news/%{id}")
 
   match 'rss/:item', :to => redirect('/%{item}.atom')
   match 'rss1/:item', :to => redirect('/%{item}.rdf')
@@ -12,10 +11,11 @@ Wifi::Application.routes.draw do
   match 'rdf', :to => redirect('/locations.rdf')
   match 'feed.:format', :to => redirect("/welcome/index.%{format}")
 
-  match 'news(.:format)', :to => redirect("/stories.%{format}")
+  match 'news/archive/:year/:month', :to => redirect("/stories/archive/%{year}/%{month}")
   match 'news/story/:id', :to => redirect("/stories/%{id}")
   match 'news/:id', :to => redirect("/stories/%{id}")
-  match 'news/archive/:year/:month', :to => redirect("/stories/archive/%{year}/%{month}")
+  match 'news(.:format)', :to => redirect("/stories.%{format}")
+  match 'news', :to => redirect("/stories")
 
   # Regular routes
 
