@@ -1,4 +1,9 @@
 class CreateSlugs < ActiveRecord::Migration
+  class Story < ActiveRecord::Base
+    set_table_name 'news'
+    has_friendly_id :headline, :use_slug => true, :cache_column => 'permalink'
+  end
+
   def self.up
     create_table :slugs do |t|
       t.string :name
@@ -11,16 +16,14 @@ class CreateSlugs < ActiveRecord::Migration
     add_index :slugs, :sluggable_id
     add_index :slugs, [:name, :sluggable_type, :sequence, :scope], :name => "index_slugs_on_n_s_s_and_s", :unique => true
     
-    Location.find_each do |l|
-      l.slugs.create!(:name => l.permalink)
-    end
-    
-    News.find_each do |n|
-      n.slugs.create!(:name => n.headline)
-    end
-    
-    Neighbourhood.find_each do |n|
-      n.slugs.create!(:name => n.permalink)
+    [Location, Story, Neighbourhood].each do |klass|
+      klass.find_each do |k|
+        if k.permalink.present?
+          k.slugs.create!(:name => k.permalink)
+        else
+          k.save
+        end
+      end
     end
   end
 
