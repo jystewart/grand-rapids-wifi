@@ -46,6 +46,7 @@ class Location < ActiveRecord::Base
   end
   
   attr_accessor :distance
+  attr_protected :is_visible
     
   sends_pings
 

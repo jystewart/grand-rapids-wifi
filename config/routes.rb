@@ -39,6 +39,9 @@ Wifi::Application.routes.draw do
   end
 
   resources :locations do
+    member do
+      post :change_visibility
+    end
     collection do
       get :list
       get :map

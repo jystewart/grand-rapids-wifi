@@ -41,6 +41,12 @@ class LocationsController < InheritedResources::Base
     respond_with(@location)
   end
   
+  def change_visibility
+    @location.is_visible = params[:visibility]
+    @location.save
+    redirect_to @location, :notice => 'Location now visible'
+  end
+  
   private
     def load_location
       if params[:id] and params[:id].match(/^\d+$/)

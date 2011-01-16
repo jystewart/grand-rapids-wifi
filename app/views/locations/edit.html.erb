@@ -2,6 +2,12 @@
 
 <%= button_to "Delete location", @location, :method => :delete %>
 
+<% if @location.is_visible? %>
+  <%= button_to 'Approve location', change_visibility_location_path(@location, :visibility => true) %>
+<% else %>
+  <%= button_to 'Hide location', change_visibility_location_path(@location, :visibility => false) %>
+<% end %>
+
 <%= semantic_form_for(@location) do |form| -%>
   <%= render :partial => 'inputs', :locals => {:f => form} %>
 <%- end -%>
