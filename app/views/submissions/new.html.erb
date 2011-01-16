@@ -58,8 +58,8 @@
   </dl>
 
   <%= form.inputs :name => 'Openings', :id => 'openings' do %>
-    <%= form.add_associated_link "+ Opening", :openings, :partial => 'opening' %>
-    <%= raw form.render_associated_form :openings, :partial => 'opening', :new => 1, :edit => 1 %>
+    <%= form.add_associated_link "+ Opening", :openings, :partial => 'locations/opening' %>
+    <%= raw form.render_associated_form :openings, :partial => 'locations/opening', :new => 1, :edit => 1 %>
   <% end %>
 
 </fieldset>
