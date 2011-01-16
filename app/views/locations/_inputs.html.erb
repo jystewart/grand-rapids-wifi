@@ -20,8 +20,8 @@
 <h2>Openings</h2>
 
 <%= f.inputs :name => 'Openings', :id => 'openings' do %>
-  <%= form.add_associated_link "+ Opening", :openings, :partial => 'opening' %>
-  <%= raw form.render_associated_form :openings, :partial => 'opening', :new => 1, :edit => 1 %>
+  <%= f.add_associated_link "+ Opening", :openings, :partial => 'opening' %>
+  <%= raw f.render_associated_form :openings, :partial => 'opening', :new => 1, :edit => 1 %>
 <% end %>
 
 <%- content_for :javascript, javascript_include_tag('jquery') %>

@@ -1,5 +1,7 @@
 <h2>Editing location <%= @location.name %></h2>
 
+<%= button_to "Delete location", @location, :method => :delete %>
+
 <%= semantic_form_for(@location) do |form| -%>
   <%= render :partial => 'inputs', :locals => {:f => form} %>
 <%- end -%>
