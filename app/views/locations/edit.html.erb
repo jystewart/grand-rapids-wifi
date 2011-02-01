@@ -3,9 +3,9 @@
 <%= button_to "Delete location", @location, :method => :delete %>
 
 <% if @location.is_visible? %>
-  <%= button_to 'Approve location', change_visibility_location_path(@location, :visibility => true) %>
-<% else %>
   <%= button_to 'Hide location', change_visibility_location_path(@location, :visibility => false) %>
+<% else %>
+  <%= button_to 'Approve location', change_visibility_location_path(@location, :visibility => true) %>
 <% end %>
 
 <%= semantic_form_for(@location) do |form| -%>

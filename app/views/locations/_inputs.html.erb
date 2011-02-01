@@ -24,5 +24,7 @@
   <%= raw f.render_associated_form :openings, :partial => 'opening', :new => 1, :edit => 1 %>
 <% end %>
 
+<%= f.buttons %>
+
 <%- content_for :javascript, javascript_include_tag('jquery') %>
 
