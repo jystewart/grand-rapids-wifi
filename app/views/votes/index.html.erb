@@ -7,13 +7,13 @@
     <th>Voted</th>
   </tr>
 
-  <% @ratings.each do |vote| %>
+  <% @votes.each do |vote| %>
   <tr>
     <td><%= vote.id %></td>
     <td><%= vote.location.name unless vote.location.nil? %></td>
     <td><%= vote.rating %></td>
     <td><%= vote.voter %></td>
-    <td><%= vote.entered_at %></td>
+    <td><%= vote.created_at %></td>
   </tr>
   <% end %>
 </table>

@@ -17,5 +17,5 @@ class Vote < ActiveRecord::Base
   validates_numericality_of :rating, :only_integer => true
   validates_presence_of :voter
   
-  scope :listings, order('entered_at DESC').includes(:location)
+  scope :listings, order('created_at DESC').includes(:location)
 end
