@@ -83,7 +83,7 @@
      with updates. Please also note that we do not currently hold information where a location is open after 
      midnight unless it's open 24hrs/day. <strong>This email address is not for contacting <%=h @location.name %></strong>.</p>
 
-  <!-- <a name="ratings"></a>
+  <a name="ratings"></a>
   <% if @average[:total] %>
      <h3>
     <% if @average[:total] > 0 %><%= @average[:mean] %>/10 from<%- end -%> <%= @average[:total] %> Ratings
@@ -93,13 +93,13 @@
   <% end %>
 
   <p>Add a rating</p>
-  <%= form_for :vote, @vote, :url => ratings_path(:location_id => @location), 
+  <%= form_for :vote, @vote, :url => location_votes_path(@location), 
   :html => {:id => 'ratings-form'}  do |v| %>
      <p><% (1..10).each do |number| %>
              <%= v.radio_button :rating, number %> <%= number %>
          <% end %></p>
      <p><%= submit_tag 'Rate this location' %></p>
-  <% end %> -->
+  <% end %>
 
 
   <a name="comments"></a>

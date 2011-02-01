@@ -31,7 +31,6 @@ Wifi::Application.routes.draw do
     end
   end
 
-  resources :ratings
   resources :stories do
     collection do
       get :archive
@@ -39,6 +38,7 @@ Wifi::Application.routes.draw do
   end
 
   resources :locations do
+    resources :votes
     member do
       post :change_visibility
     end
