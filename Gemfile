@@ -1,7 +1,7 @@
-source :gemcutter
+source 'https://rubygems.org'
 
 gem "rails", "3.0.3"
-gem 'mysql', '~> 2.8.1'
+gem 'mysql', '~> 2.9.1'
 
 gem "flickraw"
 gem "graticule"
@@ -28,12 +28,12 @@ group :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'capybara'
-  
+
   gem 'factory_girl'
   gem 'launchy'
   gem 'shoulda'
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.2.0'  
+  gem 'rspec-rails', '~> 2.2.0'
 end

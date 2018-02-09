@@ -71,6 +71,7 @@ Vagrant.configure("2") do |config|
     sudo apt-get install -y ruby2.2 ruby2.2-dev ruby-switch bundler
 		# Required for nokogiri
 		sudo apt-get install liblzma-dev zlib1g-dev
+		sudo apt-get install libmysqlclient-dev
 		#sudo apt-get install -y mysql-server
   SHELL
 end
