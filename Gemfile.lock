@@ -105,16 +105,18 @@ GEM
       i18n
       json
       nokogiri-happymapper (>= 0.5.9)
-    has_scope (0.5.1)
+    has_scope (0.6.0)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hike (1.2.3)
     hoptoad_notifier (2.4.11)
       activesupport
       builder
     i18n (0.9.4)
       concurrent-ruby (~> 1.0)
-    inherited_resources (1.1.2)
-      has_scope (~> 0.5.0)
-      responders (~> 0.6.0)
+    inherited_resources (1.4.1)
+      has_scope (~> 0.6.0.rc)
+      responders (~> 1.0.0.rc)
     innertube (1.0.2)
     journey (1.0.4)
     json (1.8.6)
@@ -163,7 +165,8 @@ GEM
     rake (12.3.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    responders (0.6.5)
+    responders (1.0.0)
+      railties (>= 3.2, < 5)
     riddle (2.3.0)
     rspec (2.2.0)
       rspec-core (~> 2.2)
@@ -231,7 +234,7 @@ DEPENDENCIES
   friendly_id
   graticule
   hoptoad_notifier (~> 2.4.2)
-  inherited_resources (~> 1.1.2)
+  inherited_resources (~> 1.4.0)
   klgenerators!
   launchy
   mysql (~> 2.9.1)

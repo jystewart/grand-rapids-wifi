@@ -12,7 +12,7 @@ gem "thinking-sphinx", '~> 2.1.0'
 gem 'ts-delayed-delta', '~> 1.1.0', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'hoptoad_notifier', '~> 2.4.2'
 gem 'formtastic', '~> 2.0.0'
-gem 'inherited_resources', '~> 1.1.2'
+gem 'inherited_resources', '~> 1.4.0'
 gem 'acts_as_geocodable', '~> 2.0.0'
 
 gem 'devise', '~> 1.1.0'
