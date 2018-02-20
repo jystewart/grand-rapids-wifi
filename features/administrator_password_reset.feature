@@ -16,12 +16,12 @@ Feature: Sign in
 
   Scenario: Administrator follows link to reset password
     Given I requested a new password for the administrator with email "email@person.com"
-    
+
     When I follow the link in the password reset email for administrator "email@person.com"
-    And I fill in "administrator_password" with "newpassword"
-    And I fill in "Password confirmation" with "newpassword"
+    And I fill in "New password" with "newpassword"
+    And I fill in "Confirm new password" with "newpassword"
     And I press "Change my password"
-    
+
     Then I should be on the homepage
     And I should see "Your password was changed successfully. You are now signed in."
     And the password for administrator "email@person.com" should be "newpassword"

@@ -1,7 +1,7 @@
 module Formtastic #:nodoc:
 
-  class SemanticFormBuilder < ActionView::Helpers::FormBuilder
-    
+  class FormBuilder < ActionView::Helpers::FormBuilder
+
     def association_name(class_name)
       @object.respond_to?("#{class_name}_attributes=") ? class_name : class_name.pluralize
     end
@@ -9,13 +9,13 @@ module Formtastic #:nodoc:
     def extract_option_or_class_name(hash, option, object)
       (hash.delete(option) || object.class.name.split('::').last.underscore)
     end
-    
+
     #
     #
     #  Stolen from Attribute_fu (http://github.com/giraffesoft/attribute_fu)
     #  Rails 2.3 Patches from http://github.com/odadata/attribute_fu
     #
-    #  Dinamically add and remove nested forms for a has_many relation.
+    #  Dynamically add and remove nested forms for a has_many relation.
     #
     #  Add a link to remove the associated partial
     #    # Example:
@@ -117,7 +117,7 @@ module Formtastic #:nodoc:
 
       template.link_to_function(name, function, opts)
     end
-    
+
     # Render associated form
     #
     # Example:

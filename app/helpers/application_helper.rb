@@ -24,7 +24,7 @@ module ApplicationHelper
   end
   
   def select_zip
-    select('location', 'zip', Location.zip_codes.collect { |p| p.zip }.compact, { :prompt => '--Zip Code--' } )
+    select('location', 'zip', Location.unscoped.where(is_visible: true).select('DISTINCT zip').pluck(:zip).compact, { :prompt => '--Zip Code--' } )
   end
   
   def midpoint(values)

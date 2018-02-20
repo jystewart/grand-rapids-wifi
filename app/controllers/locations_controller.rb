@@ -9,7 +9,7 @@ class LocationsController < InheritedResources::Base
   # caches_page :index
   caches_page :map
   caches_page :show
-  
+
   def index
     redirect_to :action => 'map' and return unless params[:display].nil? or params[:display] != 'map'
 
@@ -17,12 +17,12 @@ class LocationsController < InheritedResources::Base
 
     @locations = Location.to_list.paginate :per_page => per_page, :page => params[:page]
     @entries = @locations
-    
+
     respond_with(@locations)
   rescue WillPaginate::InvalidPage
     redirect_to locations_url(:page => 1)
   end
-  
+
   def list
     @locations = Location.paginate :per_page => 30, :page => params[:page]
     render :layout => 'admin'
@@ -32,21 +32,21 @@ class LocationsController < InheritedResources::Base
     @locations = Location.active.visible.includes(:geocoding).reject { |l| l.geocoding.nil? }
     build_map @locations unless @locations.nil?
   end
-  
+
   def show
     build_map [@location] if request.format.html?
 
     @average = { :total => @location.votes.count, :mean => @location.votes.average(:rating) }
-    
+
     respond_with(@location)
   end
-  
+
   def change_visibility
     @location.is_visible = params[:visibility]
     @location.save
     redirect_to @location, :notice => 'Location now visible'
   end
-  
+
   private
     def load_location
       if params[:id] and params[:id].match(/^\d+$/)
@@ -55,9 +55,9 @@ class LocationsController < InheritedResources::Base
       elsif params[:id]
         scoped = Location.includes(:geocoding, :neighbourhoods, :openings)
         scoped = scoped.where(:status => %w(proven rumored closed)) unless administrator_signed_in?
-        @location = scoped.find(params[:id])
+        @location = scoped.friendly.find(params[:id])
       end
-    
+
       render_404 if @location.nil?
     end
 end

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101222155619) do
+ActiveRecord::Schema.define(:version => 20180219124327) do
 
   create_table "administrators", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                         :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20101222155619) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "reset_password_sent_at"
   end
 
   add_index "administrators", ["email"], :name => "index_administrators_on_email", :unique => true
@@ -39,17 +41,17 @@ ActiveRecord::Schema.define(:version => 20101222155619) do
   end
 
   create_table "comments", :force => true do |t|
-    t.timestamp "created_at",                                              :null => false
-    t.string    "title"
-    t.string    "uri"
-    t.string    "blog_name"
-    t.text      "excerpt",          :limit => 16777215
-    t.string    "user_ip",          :limit => 15
-    t.boolean   "trackback"
-    t.boolean   "hide",                                 :default => false
-    t.string    "commentable_type", :limit => 24
-    t.integer   "commentable_id"
-    t.boolean   "sent_to_akismet"
+    t.datetime "created_at",                                              :null => false
+    t.string   "title"
+    t.string   "uri"
+    t.string   "blog_name"
+    t.text     "excerpt",          :limit => 16777215
+    t.string   "user_ip",          :limit => 15
+    t.boolean  "trackback"
+    t.boolean  "hide",                                 :default => false
+    t.string   "commentable_type", :limit => 24
+    t.integer  "commentable_id"
+    t.boolean  "sent_to_akismet"
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
@@ -97,28 +99,30 @@ ActiveRecord::Schema.define(:version => 20101222155619) do
   add_index "geocodings", ["geocode_id"], :name => "geocodings_geocode_id_index"
 
   create_table "locations", :force => true do |t|
-    t.string    "name",           :limit => 127
-    t.string    "street",         :limit => 127
-    t.string    "city"
-    t.string    "state",          :limit => 2
-    t.string    "zip",            :limit => 10
-    t.text      "description"
-    t.string    "url"
-    t.string    "status",         :limit => 10
-    t.timestamp "created_at",                                       :null => false
-    t.string    "email",          :limit => 128
-    t.string    "permalink",      :limit => 32
-    t.string    "ssid",           :limit => 32
-    t.boolean   "free"
-    t.string    "phone_number",   :limit => 20
-    t.datetime  "updated_at"
-    t.string    "country"
-    t.integer   "comments_count",                :default => 0,     :null => false
-    t.boolean   "delta",                         :default => true,  :null => false
-    t.boolean   "is_visible",                    :default => false
+    t.string   "name",           :limit => 127
+    t.string   "street",         :limit => 127
+    t.string   "city"
+    t.string   "state",          :limit => 2
+    t.string   "zip",            :limit => 10
+    t.text     "description"
+    t.string   "url"
+    t.string   "status",         :limit => 10
+    t.datetime "created_at",                                       :null => false
+    t.string   "email",          :limit => 128
+    t.string   "permalink",      :limit => 32
+    t.string   "ssid",           :limit => 32
+    t.boolean  "free"
+    t.string   "phone_number",   :limit => 20
+    t.datetime "updated_at"
+    t.string   "country"
+    t.integer  "comments_count",                :default => 0,     :null => false
+    t.boolean  "delta",                         :default => true,  :null => false
+    t.boolean  "is_visible",                    :default => false
   end
 
   add_index "locations", ["name", "street"], :name => "ident"
+  add_index "locations", ["name", "street"], :name => "idx"
+  add_index "locations", ["name", "street"], :name => "name_street"
   add_index "locations", ["permalink"], :name => "slug", :unique => true
   add_index "locations", ["status"], :name => "index_locations_on_status"
   add_index "locations", ["updated_at"], :name => "index_locations_on_updated_at"
@@ -137,21 +141,6 @@ ActiveRecord::Schema.define(:version => 20101222155619) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "news", :force => true do |t|
-    t.string   "headline"
-    t.text     "content",          :limit => 16777215
-    t.string   "external"
-    t.datetime "created_at"
-    t.text     "extended",         :limit => 16777215
-    t.string   "permalink",        :limit => 32
-    t.integer  "administrator_id"
-    t.integer  "comments_count",                       :default => 0, :null => false
-  end
-
-  add_index "news", ["created_at"], :name => "index_news_on_created_at"
-  add_index "news", ["permalink"], :name => "index_news_on_slug"
-  add_index "news", ["permalink"], :name => "slug", :unique => true
 
   create_table "notifiables", :force => true do |t|
     t.string "name"
@@ -188,6 +177,21 @@ ActiveRecord::Schema.define(:version => 20101222155619) do
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
+  create_table "stories", :force => true do |t|
+    t.string   "headline"
+    t.text     "content",          :limit => 16777215
+    t.string   "external"
+    t.datetime "created_at"
+    t.text     "extended",         :limit => 16777215
+    t.string   "permalink",        :limit => 32
+    t.integer  "administrator_id"
+    t.integer  "comments_count",                       :default => 0, :null => false
+  end
+
+  add_index "stories", ["created_at"], :name => "index_news_on_created_at"
+  add_index "stories", ["permalink"], :name => "index_news_on_slug"
+  add_index "stories", ["permalink"], :name => "slug", :unique => true
+
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
     t.string   "email",                     :limit => 100
@@ -212,11 +216,11 @@ ActiveRecord::Schema.define(:version => 20101222155619) do
   add_index "users", ["token"], :name => "index_users_on_token"
 
   create_table "votes", :force => true do |t|
-    t.integer   "location_id", :limit => 2
-    t.integer   "rating",      :limit => 1
-    t.string    "voter",       :limit => 15
-    t.timestamp "created_at",                :null => false
-    t.integer   "aspect_id"
+    t.integer  "location_id", :limit => 2
+    t.integer  "rating",      :limit => 1
+    t.string   "voter",       :limit => 15
+    t.datetime "created_at",                :null => false
+    t.integer  "aspect_id"
   end
 
   add_index "votes", ["location_id"], :name => "vote_location"

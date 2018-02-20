@@ -1,21 +1,17 @@
 class AdminNotifier < ActionMailer::Base
-  default_url_options[:host] = DEFAULT_HOST 
-  
+  default_url_options[:host] = DEFAULT_HOST
+  default :from => SITE_EMAIL, :to => ADMIN_EMAIL
+
   def submission(location, submitter)
-    @subject    = 'Hotspot Submission For GRWiFi'
-    @recipients = ADMIN_EMAIL
-    @body['location'] = location
-    @body['submitter'] = submitter
-    @from       = SITE_EMAIL
-    @sent_on    = Time.now
+    @location = location
+    @submitter = submitter
+
+    mail(:subject => 'Hotspot Submission For GRWiFi')
   end
-  
+
   def comment(comment)
-    @subject    = 'New Comment at GRWiFi'
-    @recipients = ADMIN_EMAIL
-    @body['comment'] = comment
-    @from       = SITE_EMAIL
-    @sent_on    = Time.now
-    @content_type = "text/html"
+    @comment = comment
+
+    mail(:subject => 'New Comment at GRWiFi')
   end
 end

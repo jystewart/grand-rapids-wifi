@@ -2,10 +2,13 @@ development:
   adapter: mysql
   database: wifi_development
   username: root
-  password: 
+  password: james
 
-test: &TEST
+test: &test
   adapter: mysql
   database: wifi_test
   username: root
-  password: 
+  password: james
+
+cucumber:
+  <<: *test

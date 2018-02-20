@@ -3,7 +3,7 @@
   <h3><%=h @sidebar_title %></h3>
 
   <ul>
-    <% for location in @sidebar_locations %>
+    <% @sidebar_locations.each do |location| %>
       <li><%= link_to h(location.name), location_path(location) %></li>
     <% end %>
   </ul>

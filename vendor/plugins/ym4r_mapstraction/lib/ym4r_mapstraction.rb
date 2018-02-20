@@ -7,11 +7,11 @@ module Ym4r
   module MapstractionPlugin
     class GMapsAPIKeyConfigFileNotFoundException < StandardError
     end
-    
-    unless File.exist?(RAILS_ROOT + '/config/gmaps_api_key.yml')
-      raise GMapsAPIKeyConfigFileNotFoundException.new("File RAILS_ROOT/config/gmaps_api_key.yml not found")
+
+    unless File.exist?(Rails.root.join('config/gmaps_api_key.yml'))
+      raise GMapsAPIKeyConfigFileNotFoundException.new("File #{Rails.root.join("config/gmaps_api_key.yml")} not found")
     else
-      GMAPS_API_KEY = YAML.load_file(RAILS_ROOT + '/config/gmaps_api_key.yml')[ENV['RAILS_ENV']]
+      GMAPS_API_KEY = YAML.load_file(Rails.root.join('config/gmaps_api_key.yml'))[ENV['RAILS_ENV']]
     end
   end
 end

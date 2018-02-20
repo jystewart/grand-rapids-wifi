@@ -14,7 +14,7 @@
 #
 
 class Story < ActiveRecord::Base
-  
+
   sends_pings
 
   validates_presence_of :content
@@ -22,7 +22,7 @@ class Story < ActiveRecord::Base
 
   belongs_to :administrator
   has_many :comments, :as => :commentable, :order => 'created_at ASC'
-  has_many :displayable_comments, :class_name => 'Comment', 
+  has_many :displayable_comments, :class_name => 'Comment',
     :as => :commentable, :conditions => 'hide = 0', :order => 'created_at ASC'
   has_many :pings, :as => :pingable, :order => 'created_at ASC'
 
@@ -33,19 +33,20 @@ class Story < ActiveRecord::Base
   scope :between, proc { |start, finish| where('created_at BETWEEN ? AND ?', start, finish) }
   default_scope order('created_at DESC')
 
-  has_friendly_id :headline, :use_slug => true, :cache_column => 'permalink'
-  
+  extend FriendlyId
+  friendly_id :headline
+
   def author
     administrator.to_s
   end
-  
+
   class <<self
     def archives
       months = find_by_sql('SELECT DISTINCT concat(year(created_at), \'-\', month(created_at)) as month FROM stories ORDER BY month DESC')
       months.collect do |date|
         dates = date.month.split('-')
         {
-          :name => Date::MONTHNAMES[dates[1].to_i] + ' ' + dates[0], 
+          :name => Date::MONTHNAMES[dates[1].to_i] + ' ' + dates[0],
           :year => dates[0],
           :month => sprintf('%02d', dates[1])
         }

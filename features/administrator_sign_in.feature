@@ -8,7 +8,7 @@ Feature: Administrator Sign in
     When I go to the administrator sign in page
     And I sign in as administrator "email@person.com/password"
     Then I should see "Invalid email or password"
-    And I should not be signed in as a administrator 
+    And I should not be signed in as a administrator
 
   Scenario: Administrator enters wrong password
     Given I signed up as a administrator with "email@person.com/password"
