@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem "rails", "~> 3.2.0"
+gem 'rake', '< 11.0'
 gem 'mysql', '~> 2.9.1'
 
 gem "flickraw"
@@ -15,27 +16,26 @@ gem 'formtastic', '~> 2.0.0'
 gem 'inherited_resources', '~> 1.4.0'
 gem 'acts_as_geocodable', '~> 2.0.0'
 
-gem 'devise', '~> 1.1.0'
+gem 'devise', '~> 2.0.0'
 gem 'friendly_id'
 
 gem 'dynamic_form'
+gem 'country_select'
 
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
-  gem 'klgenerators', :git => 'https://github.com/jystewart/klgenerators.git'
 end
 
 group :test do
-  gem 'cucumber-rails'
+  gem 'test-unit', '~> 3.0'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'capybara'
 
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'launchy'
   gem 'shoulda'
-end
 
-group :development, :test do
-  gem 'rspec-rails', '~> 2.2.0'
+  gem "rspec-expectations"
 end
